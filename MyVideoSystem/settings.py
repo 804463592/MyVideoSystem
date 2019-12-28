@@ -53,7 +53,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'MyVedioSystem.urls'
+ROOT_URLCONF = 'MyVideoSystem.urls'
 
 TEMPLATES = [
     {
@@ -71,7 +71,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'MyVedioSystem.wsgi.application'
+WSGI_APPLICATION = 'MyVideoSystem.wsgi.application'
 
 
 # Database

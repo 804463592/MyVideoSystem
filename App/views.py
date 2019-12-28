@@ -7,7 +7,7 @@ from django.core import serializers
 
 import json
 
-from MyVedioSystem.settings import MEDIA_URL_PREFIX
+from MyVideoSystem.settings import MEDIA_URL_PREFIX
 from .utils import VideoCamera
 from .utils import VideoManager
 
