@@ -765,7 +765,7 @@ class VideoManager(VideoCamera,threading.Thread):
 class SystemInfo(object):
 
    '''
-    保存系统信息的类
+    保存系统信息的类,考虑系统信息存入数据库中
    '''
    def __init__(self):
       super(SystemInfo,self).__init__()
