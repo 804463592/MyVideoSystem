@@ -1,0 +1,321 @@
+@charset "UTF-8";
+
+html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+}
+
+ul, li, ol, dl, dd, dt, p, h1, h2, h3, h4, h5, h6, form, fieldset{
+    margin: 0;
+    padding: 0;
+}
+
+fieldset, img, input, button{
+    border: none;
+    padding: 0;
+    margin: 0;
+    outline-style: none;
+}
+
+ul, ol{
+    list-style-type: none;
+/*    display: flex;
+    justify-content:center;
+    align-items:center;*/
+}
+
+li{
+    display: inline-block;
+    list-style-type:none;
+}
+
+input {
+    padding-top: 0;
+    padding-bottom: 0;
+    font-family: "SimSun-ExtB", "宋体";
+}
+
+select, input {
+    veritical-align: middle;
+}
+
+select, input, textarea{
+    font-size: 12px;
+    margin:0;
+}
+
+/*固定文本框大小*/
+textarea{
+    resize: none;
+}
+
+
+img{
+    border: 0;
+    vertical-align: middle;/*本条注释后去掉两张图片上下的距离*/
+}
+
+
+table {
+    border-collapse: collapse;
+}
+
+body {
+    font: 20px/150% Arial, Verdana, "\5b8b\4f53";
+    color: #ffffff;
+    background: #fff;
+}
+
+.clerfix:before, .celerfix:after {
+    content: "";
+    display: table;
+}
+.celerfix:after {
+    clear: both;
+}
+
+.celerfix {
+    *zoom: 1;
+}
+
+a {
+    color: white;
+    text-decoration: none;  /*下划线*/
+}
+
+
+/*鼠标变色*/
+a:hover {
+    color: #c81623;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    text-decoration: none;
+    font-weight: normal;/*加粗*/
+    font-size: 100%;
+}
+
+s, i, em {
+    font-style: normal;
+    text-decoration: none;
+}
+
+/*最高权限*/
+.col-res {
+    color: red; !important;
+}
+
+
+/*公共类*/
+.w {
+    /*版心*/
+    width: 100%;/*宽度*/
+    margin: 0 auto;/*居中*/
+    height: 100%;
+}
+
+/*文字靠左*/
+.f1 {
+    float: left;
+    height: 100%;
+}
+
+/*文字靠右*/
+.fr {
+    float: right;
+    height: 100%;
+}
+
+.al {
+    text-align: left;
+}
+
+.ac {
+    text-align: center;
+}
+
+.ar {
+    text-align: right;
+}
+
+.hide {
+    display: none;
+}
+
+
+/*site-nav部分-start*/
+
+    .site-nav {
+        position: absolute;
+        display: inline;
+        width: 100%;
+        height: 5%;
+        /*line-height: 50px;*/
+        background-color: black;
+        color: white;
+    }
+
+    .log {
+        display: flex;
+        justify-content:space-around;
+        width: 100%;
+        height: 100%;
+    }
+
+    .site-nav-name {
+        display: flex;
+        position: absolute;
+        float: left;
+        /*width: 20%;*/
+        height: 100%;
+        left: 3%;
+        justify-items: center;
+        align-items: center;
+        font: 400 22px/30px "microsoft yahei";
+        /*text-align: left;*/
+    }
+    .site-nav-name a {
+        text-align: center;
+
+    }
+    .site-nav-sign {
+        display: flex;
+        position: absolute;
+        /*width: 30%;*/
+        height: 100%;
+        text-align: right;
+        float: right;
+        right: 3%;
+        justify-items: center;
+        align-items: center;
+        font: 400 16px/50px "microsoft yahei";
+    }
+    .site-nav-sign a {
+        text-align: center;
+
+    }
+    .site-nav-sign img {
+          display: inline-block;
+          height: 80%;
+        margin-right: 10px;
+        /*border: 0;*/
+        /*vertical-align: middle;*/
+        background: rgba(30, 30, 30, 0.77);
+
+    }
+
+/*site-nav部分-end*/
+
+
+/*search部分-start*/
+    .guide {
+        position: absolute;
+        height: 95%;
+        width: 100%;
+        top: 5%;
+        /*border-bottom: 2px solid #ffffff;*/
+        background-image: url("/static/images/login_images/ein-steig.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+
+
+
+
+    }
+
+    .shortcut-nav {
+        position:absolute;
+        width: 11%;
+        height: 100%;
+        margin: 0 20px 0 0;
+        /*background-color: #d3d3d3;*/
+        font: 400 14px/30px "microsoft yahei";
+        border-right: 1px solid #ffffff;
+    }
+    .shortcut-nav a {
+        /*position: absolute;*/
+        display: flex;
+        width: 100%;
+        height: 5%;
+        /*font: 400 14px/30px "microsoft yahei";*/
+        text-align: center;
+        color: black;
+        cursor: pointer;
+        /*padding-left: 30%;*/
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+    /*a:active {*/
+        /*background: green;*/
+    /*}*/
+    /*a:visited {*/
+        /*color: red; text-decoration: line-through; }*/
+
+    /*a:link { color: #06F; text-decoration: none; }!* 未访问的链接 *!*/
+
+    a:hover{
+        color: #8c8c8c;
+    }
+
+    .shortcut-nav-menu img {
+        /*position: absolute;*/
+        width: 6%;
+        height: 40%;
+        top:15px;
+        bottom: 7px;
+        left: 20%;
+        /*background: url("/static/image1/视频广场.jpg");*/
+    }
+
+
+    .guide .video-square {
+        position: absolute;
+        width: 89%;
+        height: 95%;
+        left: 11%;
+        bottom: 5%;
+        float: left;
+        /*background-color: #f1f1f1;*/
+        /*background: url("/static/images/bg2.jpg");*/
+
+    }
+
+/*search部分-end*/
+
+    footer {
+        display: flex;
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        text-align: center;
+        justify-items: center;
+        align-items: center;
+        /*color: #a9cdff;*/
+        font: 400 14px/44px "microsoft yahei";
+        background-color: black;
+
+    }
+
+    /*#footer {*/
+        /*width: 100%;*/
+        /*height: 100%;*/
+        /*text-align: center;*/
+        /*color:white;*/
+    /*}*/
+
+    footer p{
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        color:white;
+    }
+
+    footer a{
+        color: #0d8dbf;
+    }
+
+

@@ -1,0 +1,90 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>智能视频监控</title>
+    <Link rel="stylesheet" href="/static/css/basic_css/base.css"/>
+    <Link rel="shortcut icon" href="/static/images/basic_image/图标.ico"/>
+
+    {#为了屏蔽错误：GET /favicon.ico HTTP/1.1" 404 77#}
+    <link rel="icon" href="data:image/ico;base64,aWNv">
+
+    <script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    {% block linkscript %}
+    {% endblock linkscript %}
+</head>
+<body>
+    <!--site-nav部分strat-->
+    <div class="site-nav">
+        <div class="log">
+             <div class="site-nav-name">
+                    <a>视频监控系统</a>
+             </div>
+            <div class="site-nav-sign">
+                <img src="/static/images/login_images/avtar.png">
+                <a href="{% url "app:login" %}" id="login">admin,欢迎您！</a>&nbsp;
+                <a href="{% url "app:logout" %}" id="signup" class="col-res">退出登录</a>
+
+            </div>
+        </div>
+
+    </div>
+    <!--site-nav部分end-->
+
+    <!--base部分strat-->
+
+    <div class="guide">
+        <div class="w">
+            <div class="fl">
+                <div class="shortcut-nav" id ="shortcutnav">
+                    <a id="videosquare" href="{% url "app:videoSquare" %}"><img src="/static/images/basic_image/视频广场.png" >视频广场</a>
+
+                    <a id="videolookback" href="{% url "app:videoLookback" %}"><img src="/static/images/basic_image/录像回看.png" >录像回看</a>
+                    <a id="videoanalysis" href="{% url "app:videoanalysis" %}"><img src="/static/images/basic_image/智能分析.png" >智能分析</a>
+                    <a id="configuration" href="{% url "app:configuration" %}"><img src="/static/images/basic_image/基础配置.png" >基础配置</a>
+                    <a id="systeminformation" href="{% url "app:systeminformation" %}"><img src="/static/images/basic_image/版本信息.png" >系统信息</a>
+                </div>
+                <script type="text/javascript">
+                    $(function() {
+
+                        {#var index = window.location.href.split("/").length - 3;#}
+                        //这部分代码,思想在于使用url来设置a标签的css样式,即点击左边导航栏,对应的点击区域颜色变深
+                        var href = window.location.href.split("/")[4];
+                        var navlist = document.getElementsByTagName("a");
+                        var target = document.getElementById(href);
+
+                        var i;
+                        for (i = 0; i < navlist.length; i++) {
+                            if (navlist[i] == target)
+                            {
+                                navlist[i].style.background = "rgba(30, 30, 30, 0.77)";
+                                navlist[i].style.color = "white";
+                            }
+                            else {
+
+                            }
+                        }
+                    });
+                </script>
+            </div>
+            <div class="fr">
+                <div class="video-square">
+                    {% block base %}
+                    {% endblock base %}
+                </div>
+            </div>
+        </div>
+        <footer>
+            <p>Copyright © 2019 SCU图像信息研究所614B All rights reserved. 欢迎访问<a href="https://github.com/804463592" target="_blank" title="Github">Github</a>
+                和<a href="http://blog.leanote.com/lee-romantic" title="Github" target="_blank">个人博客</a>  <a href ="{% url "app:aboutus" %}">关于我们</a></p>
+        </footer>
+
+    </div>
+
+    <!--base部分end-->
+    <!--<div id="footer">SCU图像信息研究所614BⓇ</div>-->
+</body>
+
+</html>

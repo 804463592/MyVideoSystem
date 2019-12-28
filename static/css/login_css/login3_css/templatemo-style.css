@@ -1,0 +1,484 @@
+
+
+body {
+	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+	font-size: 24px;
+	font-weight: 300;
+	overflow-x: hidden;
+	
+}
+
+a, button {
+	transition: all 0.3s ease;
+	color: #FFFFFF;
+}
+
+button:focus {
+    outline: none;
+}
+
+a:hover {
+	color: #FFFF00;
+	text-decoration: underline;
+}
+a:focus {
+	text-decoration: none;
+	outline: none;
+}
+
+p {
+	color: #FFFFFF;	
+}
+
+#particles-js {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+    height: 99%;
+}
+
+.cb-slideshow-text-container {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.tm-content {
+    z-index: 1001;
+}
+
+.form-control::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: white;
+}
+.form-control::-moz-placeholder { /* Firefox 19+ */
+  color: white;
+}
+.form-control:-ms-input-placeholder { /* IE 10+ */
+  color: white;
+}
+.form-control:-moz-placeholder { /* Firefox 18- */
+  color: white;
+}
+
+.form-control::placeholder {
+    color: white;
+}
+
+.form-control {  
+    color: #FFFFFF;
+    border-radius: .5rem;
+    background-color: transparent;
+    border: 1px solid #FFFFFF;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 1.4rem;
+    font-weight: 300;
+    padding: 0.75rem 1.2rem;
+}
+
+.form-section {  
+    color: #FFFFFF;
+    background-color: transparent;
+    margin-bottom: 100px;
+}
+
+.contact_email {
+	color: #FFFFFF;
+}
+.tm-btn-subscribe {
+	background-color: #006699;
+	border-radius: .5rem;
+    border-color: white;
+	padding: 0.75rem 1.6rem;
+    font-weight: 300;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+.tm-btn-subscribe:hover {
+    background-color: #055278;
+}
+
+.tm-social-icons-container {
+    margin: 10px;
+}
+
+.tm-social-link {
+    border-color: #FFFFFF;
+    color: black;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+}
+
+.fa {
+    color: #FFFFFF;
+}
+
+.footer-link {
+    margin: 20px;
+	font-size: 18px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    color: white;
+    text-align:center;
+    width:100%;
+    z-index: 1001;
+}
+.footer-link p a{
+    color: #16b4da;
+}
+
+/* Animation */
+.cb-slideshow,
+.cb-slideshow:after {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    z-index: 0;
+}
+
+.cb-slideshow li {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    color: transparent;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: none;
+    opacity: 0;
+    z-index: 0;
+    -webkit-backface-visibility: hidden;
+    -webkit-animation: imageAnimation 72s linear infinite 0s;
+    -moz-animation: imageAnimation 72s linear infinite 0s;
+    -o-animation: imageAnimation 72s linear infinite 0s;
+    -ms-animation: imageAnimation 72s linear infinite 0s;
+    animation: imageAnimation 72s linear infinite 0s;
+
+}
+
+
+.cb-slideshow li:nth-child(1) { 
+    background-image: url(/static/images/login_images/login3/letter_bg_01.jpg)
+}
+.cb-slideshow li:nth-child(2) { 
+    background-image: url(/static/images/login_images/login3/letter_bg_02.jpg);
+    -webkit-animation-delay: 12s;
+    -moz-animation-delay: 12s;
+    -o-animation-delay: 12s;
+    -ms-animation-delay: 12s;
+    animation-delay: 12s; 
+}
+.cb-slideshow li:nth-child(3) { 
+    background-image: url(/static/images/login_images/login3/letter_bg_03.jpg);
+    -webkit-animation-delay: 24s;
+    -moz-animation-delay: 24s;
+    -o-animation-delay: 24s;
+    -ms-animation-delay: 24s;
+    animation-delay: 24s; 
+}
+.cb-slideshow li:nth-child(4) { 
+    background-image: url(/static/images/login_images/login3/letter_bg_01.jpg);
+    animation-delay: 36s; 
+}
+.cb-slideshow li:nth-child(5) { 
+    background-image: url(/static/images/login_images/login3/letter_bg_02.jpg);
+    animation-delay: 48s; 
+}
+.cb-slideshow li:nth-child(6) { 
+    background-image: url(/static/images/login_images/login3/letter_bg_03.jpg);
+    animation-delay: 60s; 
+}
+
+
+@keyframes imageAnimation { 
+	0% {
+	    opacity: 0;
+	    animation-timing-function: ease-in;
+	}
+	8% {
+	    opacity: 1;
+	    transform: scale(1.15);
+	    animation-timing-function: ease-out;
+	}
+	17% {
+	    opacity: 1;
+	    transform: scale(1.20);
+	}
+	25% {
+	    opacity: 0;
+	    transform: scale(1.40);
+	}
+	100% { opacity: 0 }
+}
+
+
+@media screen and (max-width: 1140px) { 
+    .cb-slideshow li div h3 { font-size: 140px }
+}
+@media screen and (max-width: 600px) { 
+    .cb-slideshow li div h3 { font-size: 80px }
+	.tm-content {
+		margin-top: 80px;
+	}
+}
+
+@media screen and (max-width: 576px) { 
+    .cb-slideshow li div h3 { font-size: 80px }
+	
+	.tm-btn-subscribe {
+		margin-top: 20px;
+	}
+}
+
+.anim input.checkbox:checked:after {
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+	height: .5rem;
+	border-color: transparent;
+	border-right-color: transparent;
+	animation: .4s rippling .4s ease;
+	animation-fill-mode: forwards;
+}
+
+/*##############下面是添加的style1的css里面的部分代码，目的是为了让登陆边框兼容起来，可能有部分冗余########################*/
+
+/*-- reset --*/
+html,body,div,span,applet,object,iframe,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
+article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section {display: block;}
+ol,ul{list-style:none;margin:0px;padding:0px;}
+blockquote,q{quotes:none;}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}
+table{border-collapse:collapse;border-spacing:0;}
+/*-- start editing from here --*/
+a{text-decoration:none;}
+.txt-rt{text-align:right;}/* text align right */
+.txt-lt{text-align:left;}/* text align left */
+.txt-center{text-align:center;}/* text align center */
+.float-rt{float:right;}/* float right */
+.float-lt{float:left;}/* float left */
+.clear{clear:both;}/* clear float */
+.pos-relative{position:relative;}/* Position Relative */
+.pos-absolute{position:absolute;}/* Position Absolute */
+.vertical-base{	vertical-align:baseline;}/* vertical align baseline */
+.vertical-top{	vertical-align:top;}/* vertical align top */
+nav.vertical ul li{	display:block;}/* vertical menu */
+nav.horizontal ul li{	display: inline-block;}/* horizontal menu */
+img{max-width:100%;}
+/*-- end reset --*/
+
+body,html,.wrapper { height:100%;}
+/*-- main --*/
+.main-w3layouts {
+    padding: 3em 0 0;
+}
+
+/*.agileits-top {*/
+    /*padding: 0.5em 3em 3em;*/
+/*}*/
+input[type="text"],input[type="password"]{
+    font-size: 1em;
+    color: #0d8dbf;
+	font-weight:100;
+	margin: 3em 0 0;
+    width: 60%;
+    display: block;
+    border: none;
+    padding: 1em;
+    /*登陆下面边框线的颜色*/
+    border-bottom: solid 1px #c8c8c8;
+    -webkit-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+    transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 96%, #c8c8c8 4%);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, #fff 4%);
+    background-position: -800px 0;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    color: #fff;
+}
+.text:focus, .text:valid {
+	box-shadow: none;
+	outline: none;
+	background-position: 0 0;
+}
+
+/*登陆框里面的字体*/
+::-webkit-input-placeholder {
+   color: #fff;
+   font-weight:100;
+}
+/*:-moz-placeholder { !* Firefox 18- *!*/
+   /*color: #fff;*/
+/*}*/
+/*::-moz-placeholder {  !* Firefox 19+ *!*/
+   /*color: #0ea1da;*/
+/*}*/
+/*:-ms-input-placeholder {*/
+   /*color: #fff;*/
+/*}*/
+
+/*login的大小和里面的颜色设置*/
+input[type="submit"] {
+    font-size: 1.6em;
+    color: #fff;
+    background: #16b4da;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.7em;
+    -webkit-appearance: none;
+    width: 60%;
+
+    margin: 2em 0;
+
+}
+/*点击login时候，login的变色*/
+input[type="submit"]:hover {
+    background: #becbc4;
+    -webkit-transform: translateY(8px);
+    -ms-transform: translateY(8px);
+	-o-transform: translateY(8px);
+	-ms-transform: translateY(8px);
+    transform: translateY(8px);
+	-webkit-box-shadow: 0 3px 3px 0 rgba(255, 45, 208, 0.58);
+	-moz-box-shadow: 0 3px 3px 0 rgba(255, 45, 208, 0.58);
+	box-shadow: 0 3px 3px 0 rgba(255, 255, 255, 0.58);
+	-webkit-transition: .5s all;
+	-moz-transition: .5s all;
+	-o-transition: .5s all;
+	-ms-transition: .5s all;
+    transition: .5s all;
+}
+/*.agileits-top p {*/
+    /*font-size: 1em;*/
+    /*color: #fff;*/
+    /*text-align: center;*/
+    /*letter-spacing: 1px;*/
+/*}*/
+/*.agileits-top p a {*/
+    /*color: #fff;*/
+	/*-webkit-transition: .5s all;*/
+	/*-moz-transition: .5s all;*/
+    /*transition: .5s all;*/
+/*}*/
+/*.agileits-top p a:hover{*/
+    /*color: #FFC107;*/
+/*}*/
+/*wthree是记住密码那部分*/
+.wthree-text {
+    margin-top: 5em;
+}
+
+.wthree-text ul li {
+    display: inline-block;
+    float: left;
+}
+.wthree-text ul li:nth-child(2) {
+    float: right;
+    position:absolute;
+    left:490px;
+}
+
+/*忘记密码的设置*/
+.wthree-text ul li a {
+    font-size: 1em;
+    color: #ffffff;
+}
+.wthree-text ul li a:hover{
+    color: #FFC107;
+}
+/*-- //main --*/
+/*-- checkbox --*/
+/*记住密码的字体设置*/
+.wthree-text label {
+    font-size: 1em;
+    color: #fff;
+    font-weight: 400;
+    cursor: pointer;
+    position: relative;
+}
+
+/*记住密码前面的小方框颜色*/
+input.checkbox {
+    background: #ffffff;
+	cursor: pointer;
+    width: 1.2em;
+    height: 1.2em;
+}
+input.checkbox:before {
+	content: "";
+	position: absolute;
+	width: 1.2em;
+	height: 1.2em;
+	background: inherit;
+	cursor: pointer;
+}
+input.checkbox:after {
+	content: "";
+	transition: .4s ease-in-out;
+	position: absolute;
+	top: 0px;
+	left: 0;
+	z-index: 1;
+	width: 1.2em;
+	height: 1.2em;
+	border: 1px solid #16b4da;
+}
+
+/*.anim input.checkbox:checked:after {*/
+	/*-webkit-transform: rotate(-45deg);*/
+	/*-moz-transform: rotate(-45deg);*/
+	/*-o-transform: rotate(-45deg);*/
+	/*-ms-transform: rotate(-45deg);*/
+	/*transform: rotate(-45deg);*/
+	/*height: .5rem;*/
+	/*border-color: transparent;*/
+	/*border-right-color: transparent;*/
+	/*animation: .4s rippling .4s ease;*/
+	/*animation-fill-mode: forwards;*/
+/*}*/
+/*点击记住密码的对号颜色*/
+@keyframes rippling {
+	50% {
+		border-left-color: #ffa91e;
+	}
+	100% {
+		border-bottom-color: #ffa91e;
+		border-left-color: #ffa602;
+	}
+}
+/*-- //标题 --*/
+.biaoti p {
+    font-size: 3.5em;
+    color: #ffffff;
+	text-align: center;
+	padding: 25px;
+	margin-top:3%;
+    width: 60%;
+}
+/*-- //checkbox --*/
+/*-- copyright --*/
+
+.signup p {
+    font-size: 1em;
+    color: #ffffff;
+	text-align: left;
+	padding: 2px;
+	margin-top:5%;
+}
+
+.signup p a{
+
+    color: #16b4da;
+}

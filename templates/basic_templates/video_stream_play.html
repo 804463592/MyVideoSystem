@@ -1,0 +1,31 @@
+{% extends 'basic_templates/base.html' %}
+{% load static %}
+{% block linkscript %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/basic_css/videosquare.css' %}" />
+    <script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+{% endblock linkscript %}
+
+
+{% block base %}
+     <!--<div class="search-box">-->
+         <!--<div class="search">-->
+             <!--<input type="text" placeholder="614B"/><button>搜索</button>-->
+         <!--</div>-->
+     <!--</div>-->
+
+    <div class="videosquare">
+        <li><b>视频直播</b></li>
+        <div class="video-list">
+             <ul>
+                 <li>
+                     <a href="#">
+                         <img id="video1" src="{% url "app:videoviewer" camera_idx 1 %} "></img>
+                         {{ camera_idx }}号摄像头,测试
+                     </a>
+                 </li>
+
+             </ul>
+         </div>
+    </div>
+
+{% endblock base %}

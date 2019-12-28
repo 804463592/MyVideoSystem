@@ -1,0 +1,56 @@
+{% extends 'basic_templates/base.html' %}
+{% load static %}
+{% block linkscript %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/basic_css/configuration.css' %}" />
+    <script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+{% endblock linkscript %}
+
+
+{% block base %}
+    <div class="configuration">
+        <li><b>基础设置</b></li>
+
+        <div class="base_config">
+            <form method="get">
+                <div class="set_up">
+                    <label>视频容量</label>
+                    <select>
+                        <option value="10">10 条</option>
+                        <option value="20">20 条</option>
+                        <option value="50">50 条</option>
+                        <option value="100">100 条</option>
+                    </select>
+                </div>
+                <div class="set_up">
+                    <label>视频长度</label>
+                    <select>
+                        <option value="10">10 分钟</option>
+                        <option value="20">20 分钟</option>
+                        <option value="50">30 分钟</option>
+                        <option value="100">1 小时</option>
+                    </select>
+                </div>
+                <div class="set_up">
+                    <label>视频帧率</label>
+                    <select>
+                        <option value="10">20 fps</option>
+                        <option value="20">30 fps</option>
+{#                        <option value="50">50</option>#}
+{#                        <option value="100">100</option>#}
+                    </select>
+                </div>
+{#                <div class="set_up">#}
+{#                    <label>时间显示</label>#}
+{#                    <input class="text" type="text">#}
+{#                </div>#}
+{#                <div class="set_up">#}
+{#                    <label>存储位置</label>#}
+{#                    <input class="text" type="text">#}
+                </div>
+                <button type="submit" value="保存">保存</button>
+            </form>
+        </div>
+
+    </div>
+
+{% endblock base %}

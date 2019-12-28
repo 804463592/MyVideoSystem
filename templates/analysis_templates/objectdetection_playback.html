@@ -1,0 +1,48 @@
+{% extends 'basic_templates/base.html' %}
+{% load static %}
+{% block linkscript %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/analysis_css/objectdetection_playback.css' %}" />
+    <script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/javascript/analysis_js/objectdetection_playback.js"></script>
+    <script>
+        $.ajaxSetup({
+            data:{csrfmiddlewaretoken:'{{ csrf_token }}'}
+        })
+    </script>
+{% endblock linkscript %}
+
+
+{% block base %}
+    <div class="object_detection">
+        <a class="real_time" href="{% url "app/videoanalysis:objectdetection_realtime" %}">
+            <li>实时检测</li>
+        </a>
+        <a class="play_back" href="{% url "app/videoanalysis:objectdetection_playback" %}">
+            <li>回放检测</li>
+        </a>
+        <div class="real">
+           <div class="search">
+                <input type="date" value="2019-12-12" id="date"/>
+                <input type="time" value="13:59" id="searchstarttime"/>
+                <!--<input type="time" value="13:59:59" name="endtime"/>-->
+                <!--<input type="submit" value="搜索">-->
+                <button id ="queryvideo">查询</button>
+            </div>
+
+            <div class="topMenu">
+                <ul>
+                    <table id ="mytable" style="width: 100% !important;">
+                        <thead id="t_head" style="width: 100% !important;">
+                        </thead>
+                        <tbody id ="ttt">
+
+                        </tbody>
+                    </table>
+                </ul>
+            </div>
+        </div>
+
+
+    </div>
+
+{% endblock base %}

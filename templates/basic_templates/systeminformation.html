@@ -1,0 +1,44 @@
+{% extends 'basic_templates/base.html' %}
+{% load static %}
+{% block linkscript %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/basic_css/systeminformation.css' %}" />
+    <script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/javascript/systeminformation.js"></script>
+    <script>
+        $.ajaxSetup({
+            data:{csrfmiddlewaretoken:'{{ csrf_token }}'}
+        })
+    </script>
+{% endblock linkscript %}
+
+
+{% block base %}
+    <div class="systeminformation">
+        <li><b>系统信息</b></li>
+
+        <div class="system">
+            <form class="infor" method="POST">
+                <div class="text_infor">
+                    <label>硬件信息</label><li>usb摄像头、网络摄像头</li>
+                </div>
+                <div class="text_infor">
+                    <label>系统版本</label><li>v1.0</li>
+                </div>
+                <div class="text_infor">
+                    <label>开始时间</label><li id="init_time"></li>
+                </div>
+                <div class="text_infor">
+                    <label>运行时间</label><li id="duration"></li>
+                </div>
+                <div class="text_infor">
+                    <label>运行平台</label><li>platform/ubuntu 1604</li>
+                </div>
+                <div class="text_infor">
+                    <label>存储位置</label><li>/static/videoStorage/realvideo/camera#</li>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+{% endblock base %}

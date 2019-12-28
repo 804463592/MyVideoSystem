@@ -1,0 +1,39 @@
+{% extends 'basic_templates/base.html' %}
+{% load static %}
+{% block linkscript %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/analysis_css/objectdetection_realtime.css' %}" />
+    <script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+{% endblock linkscript %}
+
+
+{% block base %}
+    <div class="object_detection">
+        <a class="real_time" href="{% url "app/videoanalysis:objectdetection_realtime" %}">
+            <li>实时检测</li>
+        </a>
+        <a class="play_back" href="{% url "app/videoanalysis:objectdetection_playback" %}">
+            <li>回放检测</li>
+        </a>
+        <div class="real">
+            <a href="{% url "app/videoanalysis:objectdetection_realtime" %}">
+                <img src="{% url "app:videoviewer" 0 1 %}">
+                <li>一号摄像头</li>
+            </a>
+            <a href="{% url "app/videoanalysis:objectdetection_realtime" %}">
+                <img src="{% url "app:videoviewer" 2 1 %}">
+                <li>二号摄像头</li>
+            </a>
+            <a href="{% url "app/videoanalysis:objectdetection_realtime" %}">
+                <img src="{% url "app:videoviewer" 2 1 %}">
+                <li>三号摄像头</li>
+            </a>
+            <a href="{% url "app/videoanalysis:objectdetection_realtime" %}">
+                <img src="{% url "app:videoviewer" 0 1 %}">
+                <li>四号摄像头</li>
+            </a>
+        </div>
+
+
+    </div>
+
+{% endblock base %}

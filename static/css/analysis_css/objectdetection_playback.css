@@ -1,0 +1,143 @@
+@charset "UTF-8";
+    .object_detection {
+        position: relative;
+        top: 20px;
+        left: 20px;
+        width: 97%;
+        height: 95%;
+        /*background-color: white;*/
+        border-top: 3px solid #3c3f41;
+
+    }
+    .object_detection .real_time {
+        position: relative;
+        display: inline-grid;
+        width: 49.5%;
+        height: 8%;
+        text-align: center;
+        align-items: center;
+        justify-items: center;
+        border: 1px solid #232323;
+        color: black;
+        background: rgba(118, 135, 143, 0.2);
+        /*background-color: #424242;*/
+    }
+    .object_detection .play_back {
+        float: right;
+        position: relative;
+        display: inline-grid;
+        width: 49.5%;
+        height: 8%;
+        text-align: center;
+        align-items: center;
+        justify-items: center;
+        border: 1px solid #232323;
+        color: black;
+        background: rgba(118, 135, 143, 0.2);
+        /*background-color: #424242;*/
+    }
+    .object_detection .real {
+        /*display: flex;*/
+        width: 100%;
+        height: 92%;
+        justify-content: center;
+    }
+
+    .real .search {
+        display: inline;
+        position: relative;
+        float: right;
+        height: 5%;
+        right: 5%;
+        text-align: right;
+    }
+    .search input {
+        position: relative;
+        float: left;
+        width: 130px;
+        height: 20px;
+        padding-left: 4px;
+        font: 400 14px/20px "microsoft yahei";
+        color: rgb(153, 153, 153);
+        border: 1px solid #0c0c0c;
+        margin-left: 4px;
+        top: 30px;
+    }
+    .search button {
+        position: relative;
+        margin-left: 4px;
+        width: 50px;
+        height: 22px;
+        background-color: #0c0c0c;
+        font: 400 16px/20px "microsoft yahei";
+        color: #ffffff;
+        top: 25px;
+        cursor: pointer;   /*光标变成手*/
+        /*cursor: text;      !*光标变成输入符*!*/
+        /*cursor: move;      !*光标变成四角箭头*!*/
+        /*cursor: default;   !*光标变成三角*!*/
+    }
+
+    .topMenu {
+        position: relative;
+        width: 98%;
+        top: 10%;
+        left: 1%;
+        height: 80%;
+        float: left;
+        /*border: 1px solid black;*/
+        overflow: scroll;
+    }
+
+    .topMenu ul {
+        display: flex;
+        padding: 0 4px 20px 4px;
+        justify-content: center;
+
+    }
+
+    .topMenu table {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        color: #4b646f;
+        border: 1px solid #d3d3d3;
+    }
+    #mytable_wrapper {
+        width: 100%;
+    }
+
+    table button {
+        position: relative;
+        margin-left: 4px;
+        width: 40px;
+        height: 30px;
+        background-color: #0c0c0c;
+        font: 400 12px/30px "microsoft yahei";
+        color: #ffffff;
+        cursor: pointer;
+    }
+    /*table thead {*/
+    /*    width:800%;*/
+    /*}*/
+
+
+    table th {
+        text-align: left;
+        width: 15% !important;
+        border: 1px solid #d3d3d3;
+        font: 400 16px/40px "microsoft yahei";
+        white-space:nowrap;
+    }
+    table td {
+        text-align: left;
+        border: 1px solid #f1f1f1;
+        font: 400 16px/40px "microsoft yahei";
+
+    }
+
+    tr:hover {
+        color: #000;
+        background-color: #fcf8e3;
+    }
+

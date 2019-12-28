@@ -1,0 +1,1 @@
+ffmpeg -i video.avi -vcodec h264 output.mp4

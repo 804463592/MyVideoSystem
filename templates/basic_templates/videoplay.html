@@ -1,0 +1,122 @@
+{##}
+{#{% extends 'basic_templates/base.html' %}#}
+{##}
+{#{% load static %}#}
+{##}
+{#{% block linkscript %}#}
+{#    <link rel="stylesheet" type="text/css" href="/static/css/basic_css/videoplay.css" />#}
+{##}
+{#    <script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>#}
+{##}
+{#    <link href="http://vjs.zencdn.net/6.6.3/video-js.css" rel="stylesheet">#}
+{#  <!-- If you'd like to support IE8 -->#}
+{#    <script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>#}
+{#     <script src="http://vjs.zencdn.net/6.6.3/video.js"></script>#}
+{##}
+{#{% endblock linkscript %}#}
+{##}
+{##}
+{#{% block base %}#}
+{##}
+{#    <div class="videoplay">#}
+{#        <li><b>播放视频</b></li>#}
+{##}
+{#    <div class="play">#}
+{##}
+{#        <video id="my-video" class="video-js" controls preload="auto" width="600" height="400" style="margin: auto"#}
+{#       data-setup="{}">#}
+{#        <source src="{{ video_url }}" type='video/mp4'>#}
+{#        <p class="vjs-no-js">#}
+{#          To view this video please enable JavaScript, and consider upgrading to a web browser that#}
+{#          <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>#}
+{#        </p>#}
+{#            您的浏览器不支持 video 属性#}
+{#        </video>#}
+{##}
+{#        <ul class="video_info">#}
+{#            <b>视频信息</b><br>#}
+{#            <b>摄影机器</b>:{{ video_camera_name }}<br>#}
+{#            <b>开始时间</b>:{{ video_start_time }}<br>#}
+{#            <b>结束时间</b>:{{ video_end_time }}<br>#}
+{##}
+{#            <section>#}
+{#                <h1>London</h1>#}
+{#                <p>#}
+{#                London is the capital city of England. It is the most populous city in the United Kingdom, with a metropolitan area of over 13 million inhabitants. Standing on the River Thames, London has been a major settlement for two millennia,#}
+{#                its history going back to its founding by the Romans, who named it Londinium.#}
+{#                </p>#}
+{#            </section>#}
+{##}
+{#        </ul>#}
+{##}
+{#    </div>#}
+{#    </div>#}
+{##}
+{#<div>#}
+{#    <h1>视频回放</h1>#}
+{#</div>#}
+{##}
+{#    #}
+{#{% endblock base %}#}
+{##}
+
+
+
+{% extends 'basic_templates/base.html' %}
+
+{% load static %}
+
+{% block linkscript %}
+    <link rel="stylesheet" type="text/css" href="/static/css/basic_css/videoplay.css" />
+
+    <script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+    <link href="http://vjs.zencdn.net/6.6.3/video-js.css" rel="stylesheet">
+
+    <!-- If you'd like to support IE8 -->
+    <script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+
+    <script src="http://vjs.zencdn.net/6.6.3/video.js"></script>
+
+{% endblock linkscript %}
+
+
+{% block base %}
+
+    <div class="videoplay">
+        <li><b>播放视频</b></li>
+
+    <div class="play">
+
+        <video id="my-video" class="video-js" controls preload="auto" width="600" height="400" style="margin: auto"
+       data-setup="{}">
+        <source src="{{ video_url }}" type='video/mp4'>
+        <p class="vjs-no-js">
+          To view this video please enable JavaScript, and consider upgrading to a web browser that
+          <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+        </p>
+            您的浏览器不支持 video 属性
+        </video>
+{#        <script src="http://vjs.zencdn.net/6.6.3/video.js"></script>#}
+        <ul class="video_info">
+            <b>视频信息</b><br>
+            <b>摄影机器</b>:{{ video_camera_name }}<br>
+            <b>开始时间</b>:{{ video_start_time }}<br>
+            <b>结束时间</b>:{{ video_end_time }}<br>
+
+            <section>
+                <h1>Attention</h1>
+                <p>
+               Due to compatibility issues, it is recommended to using Google Chrome browser and Firefox browser.
+               At present, the mobile platform only supports Xiaomi browser, while QQ browser and UC browser are not supported temporarily!
+                </p>
+            </section>
+        </ul>
+    </div>
+    </div>
+
+{% endblock base %}
+
+
+
+

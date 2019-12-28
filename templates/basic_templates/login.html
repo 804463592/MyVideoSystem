@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>Login</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ 
+<link href="/static/css/login_css/style1.css" rel="stylesheet" type="text/css" media="all" />
+
+
+</head>
+<body>
+	<!-- main -->
+	<div class="main-w3layouts wrapper">
+        <div class="biaoti">
+			 <p >网络视频监控系统 </p>
+		</div>
+
+		<div class="main-agileinfo">
+			<div class="agileits-top">
+
+				<form action="#" method="post">
+                    {% csrf_token %}
+					<input class="text" type="text" name="username" placeholder="姓名" required="">
+					<input class="text" type="password" name="password" placeholder="密码" required="">
+					<div class="wthree-text"> 
+						<ul> 
+							<li>
+								<label class="anim">
+									<input type="checkbox" class="checkbox">
+									<span> 记住密码?</span>
+								</label> 
+							</li>
+							<li><a href="#">忘记密码 ?</a> </li>
+						</ul>
+						<div class="clear"> </div>
+					</div>
+					<input type="submit" value="Login">
+
+                    {% if errmsg %} {# 判断是否有错误信息 #}
+                        <div class="error_tip" style="display: block;color: red">{{ errmsg }}</div>
+                    {% endif %}
+				</form>
+
+				<p>没有账号? <a href="{% url "app:signup" %}"> 立即注册!</a></p>
+			</div>	 
+		</div>	
+		<!-- copyright -->
+		<div class="w3copyright-agile">
+			 <p> Copyright © 2019 SCU图像信息研究所614B All rights reserved. 我的 <a href="https://github.com/804463592" target="_blank" title="Github">Github</a>
+                欢迎访问 <a href="http://blog.leanote.com/lee-romantic" title="Github" target="_blank">个人博客</a>  <a href ="{% url "app:aboutus" %}" > 关于我们</a> </p>
+		</div>
+		<!-- //copyright -->
+		<ul class="w3lsg-bubbles">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>	
+	<!-- //main --> 
+	
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>网络监控系统</title>
+    <link href="/static/css/style.css" rel='stylesheet' type='text/css'/>
+
+    <!--字体-->
+    <link href='http://fonts.useso.com/css?family=PT+Sans:400,700,400italic,700italic|Oswald:400,300,700'
+          rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Exo+2' rel='stylesheet' type='text/css'>
+
+    <style>
+        body{ align:center}
+    #divcss5{margin:0 auto;border:4px solid #000;width:800px;height:900px;background-color: #0c5653;text-align:center}
+    *{margin: 0;padding: 0;}
+img {
+width: 300px;
+height: 300px;
+}
+    </style>
+</head>
+<body>
+
+<div id="divcss5" class="top" align="center">
+    <h1 align="center" style="color: whitesmoke;">VSST视频流媒体直播</h1>
+    <div  class="recorder" id="recorder" >
+
+        <button id ="startvideo" class ="btn">开始播放</button>
+        <button id ="suspendvideo" class ="btn">暂停播放</button>
+
+        <button id="record" class="btn" >录制视频</button>
+        <button id="stop" class="btn" >停止录制</button>
+
+        <input type="button" class="btn" value="退出登录"
+               onclick="javascript:window.location.href='{% url "app:logout" %}'">
+        <a id="download"  > </a>
+
+{#<script type="text/javascript" src="/static/recorder.js"   >  $.ajaxSetup({#}
+{#            data:{csrfmiddlewaretoken:'{{ csrf_token }}'}#}
+{#        }) </script>#}
+
+        <div>
+        <img id="video" src="{% url "app:videoviewer" %}" width="300" height="300">
+        <img id="video1" src="{% url "app:videoviewer" %}" width="300" height="300">
+        <img id="video2" src="{% url "app:videoviewer" %}" width="300" height="300">
+        <img id="video3" src="{% url "app:videoviewer" %}" width="300" height="300">
+
+            <div class="copy-rights">
+            <p> Copyright@2019 智能监控组（Vedio Surverllance Smart Team） 我的<a href="https://github.com/804463592" target="_blank" title="Github">Github</a>
+               欢迎访问 <a href="http://blog.leanote.com/lee-romantic" title="Github" target="_blank">个人博客</a> <a href ="{% url "app:aboutus" %}" > 关于我们</a>
+
+            </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src ="/static/javascript/recorder.js"></script>
+
+</body>
+</html>

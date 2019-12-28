@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="application/x-javascript"> addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    } </script>
+    <link href="/static/css/login_css/style.css" rel='stylesheet' type='text/css'/>
+    <!--字体-->
+    <link href='http://fonts.useso.com/css?family=PT+Sans:400,700,400italic,700italic|Oswald:400,300,700'
+          rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Exo+2' rel='stylesheet' type='text/css'>
+    <!--//jquery-->
+    <script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+<script>$(document).ready(function (c) {
+    $('.close').on('click', function (c) {
+        $('.login-form').fadeOut('slow', function (c) {
+            $('.login-form').remove();
+        });
+    });
+});
+
+</script>
+<!--SIGN UP-->
+<h1>网络视频监控系统</h1>
+<div class="login-form">
+    <div class="close"></div>
+    <div class="head-info">
+        <label class="lbl-1"> </label>
+        <label class="lbl-2"> </label>
+        <label class="lbl-3"> </label>
+    </div>
+    <div class="clear"></div>
+    <div class="avtar">
+        <img src="/static/images/login_images/avtar.png" width="200" height="200"/>
+    </div>
+    <form method="post" action="{% url "app:login" %}">
+        <input type="text" class="text" name="username" value="Username" onfocus="this.value = '';"
+               onblur="if (this.value == '') {this.value = 'Username';}">
+               {% csrf_token %}
+        <div class="key">
+            <input type="password" name="password" value="Passowrd" onfocus="this.value = '';"
+                   onblur="if (this.value == '') {this.value = 'Password';}">
+        </div>
+
+         <a href="{% url "app:signup" %}" id ="logon">注册帐号</a>
+
+        <div class="signin">
+            <input type="submit" value="Login">
+
+{#            <input type="submit" value="Logon">#}
+
+            {% if errmsg %} {# 判断是否有错误信息 #}
+
+                <div class="error_tip" style="display: block;color: red">{{ errmsg }}</div>
+
+            {% endif %}
+        </div>
+    </form>
+
+</div>
+<div class="copy-rights">
+    <p> Copyright © 2019 SCU图像信息研究所614B All rights reserved. 我的 <a href="https://github.com/804463592" target="_blank" title="Github">Github</a>
+       欢迎访问 <a href="http://blog.leanote.com/lee-romantic" title="Github" target="_blank">个人博客</a>  <a href ="{% url "app:aboutus" %}" > 关于我们</a> </p>
+</div>
+
+</body>
+</html>

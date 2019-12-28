@@ -1,0 +1,73 @@
+@charset "UTF-8";
+    .object_detection {
+        position: relative;
+        top: 20px;
+        left: 20px;
+        width: 97%;
+        height: 95%;
+        /*background-color: white;*/
+        border-top: 3px solid #3c3f41;
+
+    }
+    .object_detection .real_time {
+        position: relative;
+        display: inline-grid;
+        width: 49.5%;
+        height: 8%;
+        text-align: center;
+        align-items: center;
+        justify-items: center;
+        border: 1px solid #232323;
+        color: black;
+        background: rgba(118, 135, 143, 0.2);
+        /*background-color: #424242;*/
+    }
+    .object_detection .play_back {
+        float: right;
+        position: relative;
+        display: inline-grid;
+        width: 49.5%;
+        height: 8%;
+        text-align: center;
+        align-items: center;
+        justify-items: center;
+        border: 1px solid #232323;
+        color: black;
+        background: rgba(118, 135, 143, 0.2);
+        /*background-color: #424242;*/
+    }
+    .object_detection .real {
+        /*display: flex;*/
+        width: 100%;
+        height: 92%;
+        justify-content: center;
+    }
+    .real a {
+        display: inline-block;
+        width: 30%;
+        height: 40%;
+        text-align: center;
+        left: 10%;
+        margin-left: 13.3%;
+        margin-top: 1%;
+        border: 1px solid white;
+        cursor: pointer;
+    }
+    /*a.hover {*/
+    /*    background: rgba(118, 135, 143, 0.2);*/
+    /*}*/
+    .real a img {
+        width: 100%;
+        height: 90%;
+    }
+
+    .real a li {
+        display: flex;
+        width: 100%;
+        height: 10%;
+        font-size: 16px;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        color: black;
+    }

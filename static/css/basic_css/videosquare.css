@@ -1,0 +1,97 @@
+@charset "UTF-8";
+
+    /*.search-box {*/
+        /*position: relative;*/
+        /*width: 100%;*/
+        /*height: 11%;*/
+    /*}*/
+
+    /*.search {*/
+        /*position: relative;*/
+        /*float: left;*/
+        /*height: 44px;*/
+        /*padding-top: 28px;*/
+        /*padding-left: 480px;*/
+        /*padding-bottom: 28px;*/
+
+    /*}*/
+    /*.search-box input {*/
+        /*position: relative;*/
+        /*float: left;*/
+        /*width: 600px;*/
+        /*height: 42px;*/
+        /*padding-left: 4px;*/
+        /*font: 400 14px/32px "microsoft yahei";*/
+        /*color: rgb(153, 153, 153);*/
+        /*border: 1px solid #008d4c;*/
+    /*}*/
+    /*.search-box button {*/
+        /*position: relative;*/
+        /*width: 80px;*/
+        /*height: 44px;*/
+        /*background-color: #008d4c;*/
+        /*font: 400 16px/36px "microsoft yahei";*/
+        /*color: white;*/
+        /*cursor: pointer;   !*光标变成手*!*/
+        /*!*cursor: text;      !*光标变成输入符*!*!*/
+        /*!*cursor: move;      !*光标变成四角箭头*!*!*/
+        /*!*cursor: default;   !*光标变成三角*!*!*/
+    /*}*/
+    .videosquare {
+        top: 20px;
+        left: 20px;
+        position: relative;
+        width: 97%;
+        height:95%;
+        /*background-color: white;*/
+        border-top: 3px solid #3c3f41;
+
+    }
+    .videosquare li {
+        width: 100%;
+        height: 5%;
+        margin-top: 2.5%;
+        text-align: center;
+        font-size: 24px;
+        color: #0c0c0c;
+    }
+    .video-list {
+        position: relative;
+        width: 100%;
+        height: 85%;
+        top: 2%;
+        left: 0.5%;
+        float: left;
+        overflow: scroll;
+        /*background-color: black;*/
+    }
+
+    .video-list li {
+        width: 380px;
+        height: 280px;
+        float: left;
+        margin-left: 10px;
+        margin-top: 8px;
+        margin-bottom: 40px;
+        border-top: 4px solid #f1f1f1;
+        border-left: 4px solid #f1f1f1;
+        border-right: 4px solid #f1f1f1;
+        border-bottom: 40px solid #f1f1f1;
+    }
+
+    .video-list a {
+        display: block;
+        width:380px;
+        height: 40px;
+        text-align: left;
+        background-color: #f1f1f1;
+        color: black;
+        font: 400 14px/44px "microsoft yahei";
+    }
+    .video-list img {
+        position: relative;
+        text-align: center;
+        width: 380px;
+        height: 280px;
+
+    }
