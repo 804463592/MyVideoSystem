@@ -3,15 +3,20 @@ import threading
 import time
 import os
 
+import re
+
 from io import BytesIO
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from App.models import VideoStorage
+from App.models import UserInfo
 
 from datetime import datetime
 
 from threading import Thread  # 创建线程的模块
 from queue import Queue
 from queue import Empty
+
+
 
 class VideoProcesser(object):
 
@@ -307,7 +312,6 @@ class VideoCamera(VideoProcesser):
         self.video_name ="{}_{}.avi".format(self.camera_name,time.strftime("%Y%m%d%H%M%S", time.localtime(time.time())))
 
         #self.video_processer = VideoProcesser()
-
         #记录每段视频的起始时间,以及结束时间
         self.start_time = datetime.now()
         self.end_time =datetime.now()
@@ -319,6 +323,8 @@ class VideoCamera(VideoProcesser):
         # frame的队列
         self.save_frame_queue = Queue(maxsize=100)
         self.play_frame_queue =Queue(maxsize=3)
+
+
 
     # 退出程序释放摄像头
     def __del__(self):
@@ -666,7 +672,7 @@ class VideoManager(VideoCamera,threading.Thread):
                     #self.save_frame_queue.put(FrameInfo(frame,current_datetime))
 
                     #因为前端处理视频帧的能力比较有限,所以放入帧的时候抽帧处理,这里也有可能阻塞？？？那怎么办,
-                    # 如果还是不想用全局帧self.frame =frame,那么最好的办法就是判断是否已满
+                    # 如果还是不想用全局帧self.frame =frame,那么需要判断是否已满
                     if n%3 ==0 and not self.play_frame_queue.full():
 
                         self.play_frame_queue.put(FrameInfo(frame,current_datetime))
@@ -687,7 +693,7 @@ class VideoManager(VideoCamera,threading.Thread):
     def videoStream(self):
         #self.frame是共用的,并且有线程在不断地更新self.frame
         while self.cap.isOpened() and self.is_running:
-                #该while true循环,仅仅在调用videoStream时循环
+            #该while true循环,仅仅在调用videoStream时循环
 
             time.sleep(0.01) #处理延迟时长至少在0.005秒以上
 
@@ -801,3 +807,65 @@ class SystemInfo(object):
    def setVideoFps(self,video_fps):
 
        self.video_fps =video_fps
+
+
+class CheckUserEmail(object):
+    def __init__(self):
+        super(CheckUserEmail,self).__init__()
+
+    def __call__(self, *args, **kwargs):
+        pass
+
+    def checkName(self,user_name):
+        '''
+        验证用户名是否重名
+        :param user_name:
+        :return:
+        '''
+        if UserInfo.objects.filter(user_name=user_name).exists():
+            return True
+        else:
+            return False
+
+    def checkEmail(self,user_email):
+         '''
+         验证邮箱是否重复
+         :param user_email:
+         :return:
+         '''
+         if UserInfo.objects.filter(user_email=user_email).exists():
+             return False
+         else:
+             return True
+
+    def matchName(self,name_or_email):
+        #如果是邮箱
+        if re.match(r'^[0-9a-zA-Z_]{0,19}@[0-9a-zA-Z]{1,13}\.[com,cn,net]{1,3}$', name_or_email):
+            user_object =UserInfo.objects.filter(user_email=name_or_email)
+            if user_object.exists():
+                return user_object.first().user_name
+            else:
+                return None
+        else:
+            return name_or_email
+
+    def checkAdmin(self,user_name,pass_word):
+        user_object =UserInfo.objects.filter(user_name=user_name)
+        if user_object.exists() and user_object.first().is_admin and user_object.first().user_password ==pass_word:
+            return True
+        else:
+            return False
+
+    def checkNamePassword(self,user_name,pass_word):
+        '''
+        验证用户名和密码是否对应
+        :param user_name:
+        :param pass_word:
+        :return:
+        '''
+        user_object =UserInfo.objects.filter(user_name=user_name)
+
+        if user_object.exists() and user_object.first().user_password ==pass_word:
+            return True
+        else:
+            return False

@@ -21,9 +21,12 @@ from datetime import datetime
 from datetime import timedelta
 
 from .utils import SystemInfo
+from .utils import CheckUserEmail
 
 #系统信息
 system_info =SystemInfo()
+check_user_email =CheckUserEmail()
+
 
 #管理摄像头的类,注意：usb摄像头必定是0,1号,ip摄像头从2开始排序
 video_obj =VideoManager(camera_idx=0,camera_type='usb')
@@ -46,25 +49,10 @@ def startVideoCamera(*video_obj_list):
             video_obj_list[i].start()
             video_obj_list[i].first_flag = False
 
-    # if video_obj.first_flag:
-    #     video_obj.start()
-    #     video_obj.first_flag = False
-    #
-    # if video_obj1.first_flag:
-    #     video_obj1.start()
-    #     video_obj1.first_flag = False
-    #
-    # if video_obj2.first_flag:
-    #     video_obj2.start()
-    #     video_obj2.first_flag = False
-
 def videoSquare(request):
 
     username = request.session.get("username")
     if username:
-
-        #确保开启了摄像头
-        startVideoCamera(video_obj, video_obj1, video_obj2)
 
         #return HttpResponse("欢迎回来，%s" % username)
         return render(request, "basic_templates/videosquare.html", context=locals())
@@ -77,29 +65,41 @@ def login(request):
         return render(request,"basic_templates/login3.html")
 
      elif request.method =="POST":
-        username =request.POST.get("username")
-        password =request.POST.get("password")
-        if not all([username,password]):
+        name_or_email =request.POST.get("username")
+        #如果是邮箱,为方便起见,也全部转换成用户名
+        user_name =check_user_email.matchName(name_or_email)
+        pass_word =request.POST.get("password")
+
+        print(user_name,pass_word)
+
+        #check_user_email.matchName如果返回None,则重新登录
+        if not all([user_name,pass_word]):
+
             return render(request,"basic_templates/login3.html")
 
-        if username =="admin" and password =="admin":
+        #管理员登录,直接去到系统信息页面
+        if check_user_email.checkAdmin(user_name,pass_word):
+            # 使用session会话技术
+            request.session["username"] = user_name
 
-            # global first_login_flag
-            # if first_login_flag:
-            #     global init_time
-            #     init_time = datetime.now()
-            #     first_login_flag = False
+            print("管理员用户")
             return render(request, "basic_templates/configuration.html")
-        elif username =="libo" and password =="libo":
+
+        #普通用户登录
+        elif check_user_email.checkNamePassword(user_name,pass_word):
+
+            # 使用session会话技术
+            request.session["username"] = user_name
 
             #开启摄像头线程,可以重复调用,以确保在不同页面都保证开启
-            startVideoCamera(video_obj,video_obj1,video_obj2)
-            # 使用session会话技术
-            request.session["username"] = username
-             #返回用户界面
+            #startVideoCamera(video_obj,video_obj1,video_obj2)
+
+             #返回一个界面
             return render(request, "basic_templates/videoanalysis.html", locals())
-        errmsg = "用户名或者密码错误"
-        return render(request,"basic_templates/login3.html",locals())
+
+        else:
+            errmsg = "用户名或者密码错误"
+            return render(request,"basic_templates/login3.html",locals())
 
 def user(request):
 
@@ -144,15 +144,6 @@ def videoViewer(request,camera_idx,is_playing):
     else:
         return HttpResponse("failed!")
 
-
-# def videoViewer1(request):
-#     # 模板渲染
-#     username = request.session.get("username")
-#     if not username:
-#         return redirect(reverse("app:login"))
-#     return StreamingHttpResponse(video_obj1.videoStream(),
-#                         content_type='multipart/x-mixed-replace; boundary=frame')
-#
 
 def videoLookBack(request):
 
@@ -202,8 +193,6 @@ def videoLookBack(request):
 
 def videoAnalysis(request):
 
-    # 确保开启了摄像头
-    startVideoCamera(video_obj, video_obj1, video_obj2)
 
     return render(request,"basic_templates/videoanalysis.html")
 
@@ -213,7 +202,7 @@ def videoStreamPlay(request,camera_idx):
         return redirect(reverse("app:login"))
 
     if request.method == "GET":
-        #print("camera_idx:",camera_idx)
+
         return render(request,"basic_templates/video_stream_play.html",context=locals())
 
 
@@ -248,8 +237,30 @@ def videoPlay(request):
 
 
 def configuration(request):
+    if request.method =="GET":
+        return render(request, "basic_templates/configuration.html")
 
-    return render(request,"basic_templates/configuration.html")
+    elif request.method =="POST":
+        #判断当前用户是否登录
+        username = request.session.get("username")
+        if not username:
+            return redirect(reverse("app:login"))
+        else:
+
+            # 获取前端系统参数信息
+            video_fps =20
+            max_frame_num =600
+
+            #验证当前用户是否为管理员,普通用户不允许修改
+            # if not check_user_email.check(username):
+            #     return
+
+            # 设置系统参数
+
+            # 确保开启线程
+            startVideoCamera(video_obj, video_obj1, video_obj2)
+
+            return JsonResponse(data ={'msg':"success"})
 
 def systemInformation(request):
     if request.method =="GET":
@@ -273,6 +284,7 @@ def signup(request):
         return render(request, "basic_templates/signup.html")
 
     elif request.method == "POST":
+
         username = request.POST.get("username")
         email = request.POST.get("email")
         password = request.POST.get("password")
@@ -284,8 +296,9 @@ def signup(request):
         user.user_password = password
 
         user.save()
-        return render(request, "basic_templates/login3.html")
+        #return render(request, "basic_templates/login3.html")
         #return HttpResponse("注册成功")
+        return redirect(reverse("app:login"))
 
 def check_user(requst):
     username = requst.GET.get("username")
