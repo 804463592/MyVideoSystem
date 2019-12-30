@@ -50,7 +50,7 @@
 # from_path = '/media/lb/学习/最近学习/Django_project/MyVedioSystem/static/videoStorage/realVideo/20191128182516.mp4'
 # to_path = '/home/1111.mp4'
 # a.convert_byfile(from_path, to_path)
-
+###########################哈哈哈哈哈哈哈哈哈哈或或或或或或或或或或或或或或或或###################EEEEEEEEE
 import os
 video_path ="/media/lb/学习/最近学习/Django_project/MyVedioSystem/static"
 video_name ="video.avi"
