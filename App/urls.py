@@ -32,7 +32,7 @@ urlpatterns =[
     path("systeminformation/", views.systemInformation, name="systeminformation"),
 
     #注册和关于
-    path("signup/",views.signUp,name = "signup"),
+    path("signup/",views.signup,name = "signup"),
     path("aboutus/",views.aboutUs,name ="aboutus"),
 
 
@@ -44,5 +44,9 @@ urlpatterns =[
     path("testvideo/",views.testVideo),
 
     path("queryvideo/",views.queryVideo),
+
+    path("checkuser/", views.check_user),
+
+    path("checkemail/", views.check_email),
 
 ]

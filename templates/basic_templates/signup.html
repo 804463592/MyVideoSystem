@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Signup</title>
+        <meta name="description" content="Edge is a beautiful Bootstrap 4 template for personal profile landing pages." />
+
+        <!--Inter UI font-->
+        <link href="https://rsms.me/inter/inter-ui.css" rel="stylesheet">
+
+        <!--vendors styles-->
+
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <!-- Bootstrap CSS / Color Scheme -->
+        <link rel="stylesheet" href="/static/css/signup_css/default.css" id="theme-color">
+
+
+        <meta charset="UTF-8">
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script type = "text/javascript"src="/static/javascript/signup/signup.js"></script>
+
+    </head>
+
+    <body>
+         <!--hero header-->
+        <div class="video-section">
+            <div class="video-wrapper">
+                <div class="video-container">
+                    <video autoplay="" loop="" muted="" style="margin: auto; position: absolute; z-index: -1; top: 50%; left: 50%; transform: translate(-50%, -50%); visibility: visible; width: 2062px; height: auto;"><source src="/static/css/signup_css/sea.mp4" type="video/mp4"></video>
+                </div>
+            </div>
+        </div>
+     <!--hero header-->
+             <div class="container">
+                 <div class="row vh-100">
+                    <div class="col-md-8 mx-auto my-auto text-center">
+                        <h1 class="display-4 mb-5 text-white">用户注册</h1>
+
+                        <form method="post" enctype="multipart/form-data" action="{% url "app:signup" %}" onsubmit="return check()" >
+
+                            {% csrf_token %}
+                            <div class="world">
+                                <label for="username_input">用户:</label>
+                                <input name = "username" type="tetx" class="form-control" id="username_input" placeholder="请输入用户名" required=""><br>
+                            </div>
+
+                            <div class="world">
+                                <label for="email_input">邮箱:</label>
+                                <input name = "email" type="tetx" class="form-control" id="email_input" placeholder="请输入邮箱" required="">
+                            </div>
+
+                            <div class="world">
+                                <label for="password_input">密码:</label>
+                                <input name = "password" type="password" class="form-control" id="password_input" placeholder="请输入密码" required="">
+                            </div>
+
+                            <div class="world">
+                                <label for="password_confirm_input">确认:</label>
+                                <input name = "password_confirm" type="password" class="form-control" id="password_confirm_input" placeholder="请确认密码" required="">
+                            </div>
+
+{#                             <div class="form-group">#}
+{#                                <label for="icon_input">头像:</label>#}
+{#                                <input name = "icon" type="file" id="icon_input">#}
+{#                            </div>#}
+                            <div class="world1" id="error_box"><br><br></div>
+
+                            <div class="world"><button type="submit" class = "btn btn-success btn-block"  onclick = "check()" >注册</button></div>
+
+                        </form>
+                    </div>
+                 </div>
+            </div>
+
+
+    </body>
