@@ -16,6 +16,7 @@ from django.core.files.uploadedfile import InMemoryUploadedFile
 
 import time
 from .models import VideoStorage
+from .models import UserInfo
 from datetime import datetime
 from datetime import timedelta
 
@@ -267,10 +268,52 @@ def systemInformation(request):
         return JsonResponse(data=init_time,safe=False)
 
 
-def signUp(request):
+def signup(request):
+    if request.method == "GET":
+        return render(request, "basic_templates/signup.html")
 
-    return HttpResponse("这里是注册页面")
+    elif request.method == "POST":
+        username = request.POST.get("username")
+        email = request.POST.get("email")
+        password = request.POST.get("password")
 
+        user = UserInfo() #创建一个类的实例
+
+        user.user_name = username
+        user.user_email = email
+        user.user_password = password
+
+        user.save()
+        return render(request, "basic_templates/login3.html")
+        #return HttpResponse("注册成功")
+
+def check_user(requst):
+    username = requst.GET.get("username")
+    users = UserInfo.objects.filter(user_name = username)
+    data = {
+        "status":200,
+        "msg": "user is only"
+    }
+    if users.exists():
+       data["status"]=901
+       data["msg"]="user already exist"
+    else:
+        pass
+    return JsonResponse(data=data)
+
+def check_email(request):
+    email = request.GET.get("email")
+    emails = UserInfo.objects.filter(user_email = email)
+    data = {
+        "status":200,
+        "msg": "email is only"
+    }
+    if emails.exists():
+       data["status"]=901
+       data["msg"]="email already exist"
+    else:
+        pass
+    return JsonResponse(data=data)
 
 def aboutUs(request):
 
