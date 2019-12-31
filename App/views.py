@@ -108,6 +108,9 @@ def login(request):
             errmsg = "用户名或者密码错误"
             return render(request,"basic_templates/login3.html",locals())
 
+
+
+
 def user(request):
 
     username =request.session.get("username")
@@ -116,6 +119,10 @@ def user(request):
         return HttpResponse("欢迎回来，%s"%username)
 
     return HttpResponse("请登录")
+
+
+
+
 
 def logout(request):
 
