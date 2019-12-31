@@ -310,7 +310,6 @@ def signUp(request):
     elif request.method == "POST":
         user_name = request.POST.get("username")
         user_email = request.POST.get("email")
-        user_email = request.POST.get("password")
         invite_code = request.POST.get("invite_code")
 
         # if UserInfo.objects.filter(Q(user_name=user_name) | Q(user_email=user_email)).exists():
