@@ -74,3 +74,4 @@ print(client.keys("*")[0].decode())
 
 for key in client.keys():
     print(key.decode())
+
