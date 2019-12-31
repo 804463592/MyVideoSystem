@@ -39,4 +39,8 @@ db.sqlite3-journal
 *.avi
 .idea
 
+#ignore all migration py files except __init__.py
+/App/migrations/*.py
+!/App/migrations/__init__.py
+
 
