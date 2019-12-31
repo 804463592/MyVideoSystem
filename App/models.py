@@ -41,6 +41,7 @@ class UserInfo(models.Model):
       user_name =models.CharField(max_length=32,unique=True)
       user_email = models.CharField(max_length=64,unique=True)
       user_password =models.CharField(max_length=32)
+      is_admin =models.BooleanField(null=False,default=False)
 
 
 if __name__ =="__main__":

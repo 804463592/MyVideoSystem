@@ -50,20 +50,28 @@
 # from_path = '/media/lb/学习/最近学习/Django_project/MyVedioSystem/static/videoStorage/realVideo/20191128182516.mp4'
 # to_path = '/home/1111.mp4'
 # a.convert_byfile(from_path, to_path)
-###########################哈哈哈哈哈哈哈哈哈哈或或或或或或或或或或或或或或或或###################EEEEEEEEE
-import os
-video_path ="/media/lb/学习/最近学习/Django_project/MyVedioSystem/static"
-video_name ="video.avi"
 
-origin_video =os.path.join(video_path,video_name)
+# import os
+# video_path ="/media/lb/学习/最近学习/Django_project/MyVedioSystem/static"
+# video_name ="video.avi"
+#
+# origin_video =os.path.join(video_path,video_name)
+#
+# convert_video =os.path.join(video_path,"optut_test.mp4")
+#
+# cmdline ="ffmpeg -i {} -vcodec h264 {}".format(origin_video,convert_video)
+#
+# flag =os.system(cmdline)
+#
+# if not flag:
+#    print("convert successfully!")
+# else:
+#     print("false!")
 
-convert_video =os.path.join(video_path,"optut_test.mp4")
+import redis
+client =redis.Redis()
+print(client.keys("*")[0].decode())
 
-cmdline ="ffmpeg -i {} -vcodec h264 {}".format(origin_video,convert_video)
+for key in client.keys():
+    print(key.decode())
 
-flag =os.system(cmdline)
-
-if not flag:
-   print("convert successfully!")
-else:
-    print("false!")
