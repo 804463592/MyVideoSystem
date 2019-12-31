@@ -22,6 +22,8 @@ from datetime import timedelta
 
 from .utils import SystemInfo
 
+from django.db.models import Q
+
 #系统信息
 system_info =SystemInfo()
 
@@ -62,7 +64,6 @@ def videoSquare(request):
 
     username = request.session.get("username")
     if username:
-
         #确保开启了摄像头
         startVideoCamera(video_obj, video_obj1, video_obj2)
 
@@ -72,7 +73,6 @@ def videoSquare(request):
         return redirect(reverse("app:login"))
 
 def login(request):
-
      if request.method =="GET":
         return render(request,"basic_templates/login3.html")
 
@@ -83,15 +83,10 @@ def login(request):
             return render(request,"basic_templates/login3.html")
 
         if username =="admin" and password =="admin":
-
-            # global first_login_flag
-            # if first_login_flag:
-            #     global init_time
-            #     init_time = datetime.now()
-            #     first_login_flag = False
+            request.session["username"] = username
             return render(request, "basic_templates/configuration.html")
-        elif username =="libo" and password =="libo":
 
+        elif username =="libo" and password =="libo":
             #开启摄像头线程,可以重复调用,以确保在不同页面都保证开启
             startVideoCamera(video_obj,video_obj1,video_obj2)
             # 使用session会话技术
@@ -143,7 +138,6 @@ def videoViewer(request,camera_idx,is_playing):
                         content_type='multipart/x-mixed-replace; boundary=frame')
     else:
         return HttpResponse("failed!")
-
 
 # def videoViewer1(request):
 #     # 模板渲染
@@ -207,6 +201,7 @@ def videoAnalysis(request):
 
     return render(request,"basic_templates/videoanalysis.html")
 
+
 def videoStreamPlay(request,camera_idx):
     username = request.session.get("username")
     if not username:
@@ -267,27 +262,39 @@ def systemInformation(request):
 
         return JsonResponse(data=init_time,safe=False)
 
-
-def signup(request):
+def signUp(request):
     if request.method == "GET":
         return render(request, "basic_templates/signup.html")
 
     elif request.method == "POST":
-        username = request.POST.get("username")
-        email = request.POST.get("email")
+        user_name = request.POST.get("username")
+        user_email = request.POST.get("email")
+        user_email = request.POST.get("password")
+        invite_code = request.POST.get("invite_code")
+
+        # if UserInfo.objects.filter(Q(user_name=user_name) | Q(user_email=user_email)).exists():
+        #     return HttpResponse("youwenti")
+        #
+        # else:
         password = request.POST.get("password")
 
-        user = UserInfo() #创建一个类的实例
+        user = UserInfo()  # 创建一个类的实例
 
-        user.user_name = username
-        user.user_email = email
+        user.user_name = user_name
+        user.user_email = user_email
         user.user_password = password
 
+        if invite_code == "VSST":
+            user.is_admin = True
+        else:
+            user.is_admin = False
+
         user.save()
-        return render(request, "basic_templates/login3.html")
+        dst = ""
+        return redirect(reverse("app:login"))
         #return HttpResponse("注册成功")
 
-def check_user(requst):
+def checkUser(requst):
     username = requst.GET.get("username")
     users = UserInfo.objects.filter(user_name = username)
     data = {
@@ -301,7 +308,7 @@ def check_user(requst):
         pass
     return JsonResponse(data=data)
 
-def check_email(request):
+def checkEmail(request):
     email = request.GET.get("email")
     emails = UserInfo.objects.filter(user_email = email)
     data = {

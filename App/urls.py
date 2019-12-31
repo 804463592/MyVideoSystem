@@ -21,7 +21,6 @@ urlpatterns =[
 
     re_path(r'^videosquare/videostreamplay/(\d+)/$',views.videoStreamPlay,name ="videostreamplay"),
 
-
     path("videolookback/", views.videoLookBack, name="videoLookback"),
     path("videolookback/videoplay/", views.videoPlay, name="videoPlay"),
 
@@ -32,9 +31,8 @@ urlpatterns =[
     path("systeminformation/", views.systemInformation, name="systeminformation"),
 
     #注册和关于
-    path("signup/",views.signup,name = "signup"),
+    path("signup/",views.signUp,name = "signup"),
     path("aboutus/",views.aboutUs,name ="aboutus"),
-
 
     #下面的是没有用的
     path("savevideo/",views.saveVideo,name ="savevideo"),
@@ -45,8 +43,7 @@ urlpatterns =[
 
     path("queryvideo/",views.queryVideo),
 
-    path("checkuser/", views.check_user),
+    path("checkuser/", views.checkUser),
 
-    path("checkemail/", views.check_email),
-
+    path("checkemail/", views.checkEmail),
 ]

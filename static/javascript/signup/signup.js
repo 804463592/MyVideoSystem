@@ -1,4 +1,4 @@
-//TODO:注册完成之后,跳转到登录界面,用户名和邮箱存在,直接点击注册,会出现异常
+//TODO:注册完成之后,跳转到登录界面,然后点击浏览器左上角的返回上一页,由于用户名和邮箱存在,直接点击注册,会出现异常
 var isError = true;
 
 $(function () {
@@ -10,6 +10,7 @@ $(function () {
     $username.change(function () {
         var username = $username.val().trim();//获取到username的值,.trim()去除左右两边的空格
         var $username_info = $("#username_info");//用户名的提示信息
+
         if (username.length)//若输入用户名长度大于0
         {
             //将用户名发送服务器进行预校验
@@ -102,7 +103,6 @@ $(function () {
 
     //验证密码
     var $password = $("#password_input");
-
     var $password_confirm = $("#password_confirm_input");
     $password_confirm.change(function () {
         var password_confirm = $password_confirm.val();
@@ -119,9 +119,7 @@ $(function () {
             console.log(password_confirm);
             isError = true;
         }
-
     })
-
 })
 
 function check() {
@@ -130,15 +128,19 @@ function check() {
 
     var $username = $("#username_input");
     var username = $username.val().trim();
+    if(username.length==0)
+    {
+        oError.innerHTML = "    ";
+        oError.innerHTML = " ";
+    }
 
-    console.log(isError);
     if(isError == false)
     {
         return false
     }
-    if(isError == true)
+    else
     {
-        oError.innerHTML = "注册成功";
+        oError.innerHTML = "注册成功!";
         return true
     }
 }
