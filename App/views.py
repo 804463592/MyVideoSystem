@@ -45,7 +45,7 @@ video_obj2 = VideoManager(camera_idx=2, camera_type='ip',
 
 
 def startVideoCamera(system_info,*video_obj_list):
-    # 仅仅只初始化线程一次
+    # 仅仅只初始化线程一次，保证系统最开始开启，就不能改变。
     for i in range(len(video_obj_list)):
         if video_obj_list[i].first_flag:
 
@@ -60,6 +60,7 @@ def startVideoCamera(system_info,*video_obj_list):
             video_obj_list[i].first_flag = False
 
 def videoSquare(request):
+    # 保证用户已登录
     username = request.session.get("username")
     if username:
 
@@ -95,12 +96,13 @@ def login(request):
             if check_user_email.checkAdmin(user_name):
 
                 #return render(request, "basic_templates/configuration.html")
+                #redirevt重定向，reverse反向解析
                  return redirect(reverse("app:configuration"))
             #普通用户登录
             else:
 
                 #开启摄像头线程,可以重复调用,以确保在不同页面都保证开启
-                startVideoCamera(video_obj,video_obj1,video_obj2)
+                # startVideoCamera(video_obj,video_obj1,video_obj2)
                  #返回一个界面
                 return render(request, "basic_templates/videoanalysis.html", locals())
 
@@ -246,60 +248,40 @@ def configuration(request):
 
     if request.method =="GET":
 
-        # 获取前端系统参数信息
-        videos_fps = 21
-        frames_max_num = 601
-        videos_max_num = 21
-
-        # system_info.setVideosFps(videos_fps=videos_fps)
-        # system_info.setVideosMaxNum(videos_max_num=videos_max_num)
-        # system_info.setFrameMaxNum(frames_max_num=frames_max_num)
-        system_info.setSystemInfo(videos_max_num =videos_max_num,frames_max_num=frames_max_num,videos_fps =videos_fps)
-
-        # 验证当前用户是否为管理员,普通用户不允许修改
-        if check_user_email.checkAdmin(username):
-            # 设置系统参数,并开启线程（该函数可保证已经开启则不允许重复开启,即不允许重复设置）
-            startVideoCamera(system_info, video_obj, video_obj1, video_obj2)
-
         return render(request, "basic_templates/configuration.html")
 
     elif request.method =="POST":
-
         # 获取前端系统参数信息
-        videos_fps = 21
-        frames_max_num = 601
-        videos_max_num = 21
-
-        system_info.setVideosFps(videos_fps=videos_fps)
-        system_info.setVideosMaxNum(videos_max_num=videos_max_num)
-        system_info.setFrameMaxNum(frames_max_num=frames_max_num)
+        videos_max_num = int(request.POST.get("capacity"))
+        video_length = int(request.POST.get('length'))
+        videos_fps = int(request.POST.get('fps'))
+        print(videos_max_num, video_length, videos_fps)
+        frames_max_num = 60*video_length*videos_fps
+        print("videos_max_num:",videos_max_num,"frames_max_num:",frames_max_num, "videos_fps:",videos_fps)
+        # system_info.setVideosFps(videos_fps=videos_fps)
+        # system_info.setVideosMaxNum(videos_max_num=videos_max_num)
+        # system_info.setFrameMaxNum(frames_max_num=frames_max_num)
+        # system_info.setSystemInfo(videos_max_num=videos_max_num, frames_max_num=frames_max_num, videos_fps=videos_fps)
 
         # 验证当前用户是否为管理员,普通用户不允许修改
         if check_user_email.checkAdmin(username):
             # 设置系统参数,并开启线程（该函数可保证已经开启则不允许重复开启,即不允许重复设置）
             startVideoCamera(system_info, video_obj, video_obj1, video_obj2)
 
-        return JsonResponse(data ={'msg':"system setting success！"})
+
+        return JsonResponse(data ={'msg':"system setting success！"}, safe=False)
 
 
 def systemInformation(request):
-    # 判断当前用户是否登录
-    username = request.session.get("username")
-    if not username:
-        return redirect(reverse("app:login"))
-
-    if request.method =="GET":
+    if request.method == "GET":
 
         return render(request, "basic_templates/systeminformation.html", context=locals())
 
         # return render(request, "basic_templates/videolookback.html", context=locals())
-    elif request.method =="POST":
+    elif request.method == "POST":
 
         init_time = system_info.getInitTime()
 
-        # init_time = "2019-12-26T09:50:43.919"
-        # print(init_time.strftime("%Y-%m-%d %H:%M:%S"))
-        # addtwodimdict(json_data, 1, "init_time", init_time)
 
         return JsonResponse(data=init_time,safe=False)
 

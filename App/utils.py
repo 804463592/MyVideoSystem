@@ -175,22 +175,13 @@ class VideoProcesser(object):
             print("删除视频{video}时,{video}不存在！".format(video=video_path))
         self.delEmptyDir(os.path.join("./static/videoStorage/realvideo",camera_name))
 
-
-    # def delOriginVideo(self,video_name ="camera0_video1.mp4"):
-    #     """
-    #     :param video_name:待删除的视频名
-    #     :return: None
-    #     """
-    #     video_path =os.path.join(self.video_path,video_name)
-    #     if os.path.exists(video_path):
-    #         os.remove(video_path)
-    #         print("删除视频{}成功！".format(video_path))
-    #     else:
-    #         print("删除视频{video}时,{video}不存在！".format(video =video_path))
-
 class VideoInfo(object):
     '''
     用于保存视频信息的类
+    1.获取视频名称
+    2.获取开始时间
+    3.获取结束时间
+    4.获取摄像机名称
     '''
     def __init__(self,camera_name,video_name,start_time,end_time):
         self.video_name =video_name
@@ -248,7 +239,7 @@ class VideoCamera(VideoProcesser):
             self.frames_max_num = 400
             self.videos_fps = 20
 
-        self.video_id =0
+        self.video_id = 0
         #self.video_name ="video0.avi"
         self.video_name ="{}_{}.avi".format(self.camera_name,time.strftime("%Y%m%d%H%M%S", time.localtime(time.time())))
 
@@ -259,7 +250,6 @@ class VideoCamera(VideoProcesser):
 
         #视频处理任务队列
         self.queue =Queue(maxsize=5)
-        #self.video_consumer =VideoConsumer()
 
         # frame的队列
         self.save_frame_queue = Queue(maxsize=100)
@@ -300,6 +290,7 @@ class VideoCamera(VideoProcesser):
                 #fourcc = cv2.VideoWriter_fourcc(*'MJPG')
                 #fourcc = cv2.VideoWriter_fourcc('I', '4', '2', '0')
                 #fourcc = cv2.VideoWriter_fourcc('m', 'p', '4', 'v')
+                # 获取摄像头的视频流，然后保存到本地
                 fourcc = cv2.VideoWriter_fourcc(*'XVID')
                 if self.camera_type=="usb":
                     self.out = cv2.VideoWriter('./static/transferStation/{}'.format(self.video_name), fourcc, self.videos_fps,
@@ -345,7 +336,7 @@ class VideoCamera(VideoProcesser):
                 if frame_info:
                     frame =frame_info.getFrame()
                     current_time =frame_info.getCurrentTime()
-                    self.saveFrameProducer(frame,current_time)
+                    self.saveFrameProducer(frame, current_time)
             except Empty as e:
                 print("the frame.queue is empty!,Error:{}".format(e))
 
@@ -397,6 +388,10 @@ class VideoCamera(VideoProcesser):
             print(thread_name + " start!")
 
 class FrameInfo(object):
+    '''
+    1.获取帧
+    2.获取当前时间
+    '''
     def __init__(self,frame,current_time):
         super(FrameInfo,self).__init__()
         self.frame =frame
@@ -530,6 +525,7 @@ class VideoManager(VideoCamera,threading.Thread):
                     ret, jpeg = cv2.imencode('.jpg',frame)
                     if ret:
                        frame = jpeg.tobytes()
+                       # 不断显示每一镇
                        if frame is not None:
                            self.global_frame = frame
                            yield (b'--frame\r\n'
@@ -538,6 +534,7 @@ class VideoManager(VideoCamera,threading.Thread):
                            yield (b'--frame\r\n'
                                   b'Content-Type: image/jpeg\r\n\r\n' + self.global_frame + b'\r\n\r\n')
                     else:
+                        #若没有下一帧就无法显示。
                        yield (b'--frame\r\n'
                               b'Content-Type: image/jpeg\r\n\r\n' + self.global_frame + b'\r\n\r\n')
 
@@ -581,15 +578,15 @@ class VideoManager(VideoCamera,threading.Thread):
 
 
     # #以下方法暂时未调用
-    def startPlay(self):
-        if self.is_running:
-            print("正在播放！")
-        self.is_running =True
-
-    def stopPlay(self):
-        if not self.is_running:
-            print("已经停止播放！")
-        self.is_running =False
+    # def startPlay(self):
+    #     if self.is_running:
+    #         print("正在播放！")
+    #     self.is_running =True
+    #
+    # def stopPlay(self):
+    #     if not self.is_running:
+    #         print("已经停止播放！")
+    #     self.is_running =False
 
 class SystemInfo(object):
 
@@ -611,7 +608,7 @@ class SystemInfo(object):
       #视频的帧率
       self.videos_fps =self.clamp(videos_fps,15,50)
 
-   #夹紧函数
+   #夹紧函数,保证系统信息里的内容在一定范围内。
    def clamp(self,value,low,high):
        if value > high:
            value = high
@@ -619,6 +616,7 @@ class SystemInfo(object):
            value = low
        return value
 
+   #获取系统开启时间的函数
    def getInitTime(self):
 
        return self.init_time
