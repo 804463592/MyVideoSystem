@@ -45,7 +45,7 @@ video_obj2 = VideoManager(camera_idx=2, camera_type='ip',
 
 
 def startVideoCamera(system_info,*video_obj_list):
-    # 仅仅只初始化线程一次
+    # 仅仅只初始化线程一次，保证系统最开始开启，就不能改变。
     for i in range(len(video_obj_list)):
         if video_obj_list[i].first_flag:
 
@@ -60,6 +60,7 @@ def startVideoCamera(system_info,*video_obj_list):
             video_obj_list[i].first_flag = False
 
 def videoSquare(request):
+    # 保证用户已登录
     username = request.session.get("username")
     if username:
 
@@ -95,6 +96,7 @@ def login(request):
             if check_user_email.checkAdmin(user_name):
 
                 #return render(request, "basic_templates/configuration.html")
+                #redirevt重定向，reverse反向解析
                  return redirect(reverse("app:configuration"))
             #普通用户登录
             else:
