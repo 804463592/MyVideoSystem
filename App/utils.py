@@ -2,7 +2,6 @@ import cv2
 import threading
 import time
 import os
-
 import re
 
 from io import BytesIO
@@ -11,7 +10,6 @@ from App.models import VideoStorage
 from App.models import UserInfo
 
 from datetime import datetime
-
 from threading import Thread  # 创建线程的模块
 from queue import Queue
 from queue import Empty
@@ -212,80 +210,6 @@ class VideoInfo(object):
     def getCameraName(self):
         return self.camera_name
 
-class SavingThread(threading.Thread):
-    '''
-    将avi视频转码,并存入数据库的线程
-    '''
-    def __init__(self,video_name,camera_name,start_time,end_time):
-        threading.Thread.__init__(self)
-
-        self.video_name =video_name
-        self.camera_name =camera_name
-        self.start_name =start_time
-        self.end_time =end_time
-
-        self.isRunning = True
-        self.video_processer = VideoProcesser()
-
-    def run(self):
-        while self.isRunning:
-            self.video_processer.checkPath()
-
-            # 转换avi视频为h264格式(采用多线程,否则会阻塞主程序,影响主程序存储视频，造成视频段不完全连续！！！)
-            self.video_processer.toH264(self.video_name, delete_oringinal_video=True)
-            # 存入数据库并删除掉原始视频
-            self.video_processer.saveToDB(self.video_name.replace("avi", "mp4"),self.camera_name,self.start_name,self.end_time)
-
-            self.isRunning = False
-
-    def stop(self):
-        self.isRunning =False
-
-class VideoConsumer(VideoProcesser):
-    '''
-    一个可以调用的消费者线程对象,继承自VideoProcesser,传入对象为队列q
-    '''
-    def __init__(self):
-        #VideoProcesser.__init__()
-        super(VideoConsumer,self).__init__()
-        self.is_running =True
-
-    def handler(self,q,consumer_thread_name):
-
-        while self.is_running:
-            try:
-                video_info =q.get()
-
-                #取出相关信息
-                video_name =video_info.getVideoName()
-                camera_name =video_info.getCameraName()
-                start_time =video_info.getStartTime()
-                end_time =video_info.getEndTime()
-
-                # 转换avi视频为h264格式(采用多线程,否则会阻塞主程序,影响主程序存储视频，造成视频段不完全连续！！！)
-                self.toH264(video_name)
-                # 存入数据库并删除掉原始视频
-                self.saveToDB(video_name.replace("avi", "mp4"), camera_name, start_time,end_time)
-                print("{} consuming {} and saving to database!".format(consumer_thread_name, video_name))
-            except Empty:
-                print("queue empty！")
-    def startThread(self,q):
-        '''
-        :param q: 队列
-        :return: None
-        '''
-        #只检查一次,不要在handler中不停的检查
-        self.checkPath()
-        #开启一定数量的消费者线程
-        for i in range(3):
-            Thread(target=self.handler,args=(q,"Consumer-Thread-{}".format(i))).start()
-
-    def __call__(self,q):
-        self.startThread(q)
-
-    def stop(self):
-        self.is_running =False
-
 class VideoCamera(VideoProcesser):
     def __init__(self,camera_idx =0,camera_address =None,camera_type ="usb",system_info =None,**kargs):
 
@@ -335,7 +259,7 @@ class VideoCamera(VideoProcesser):
 
         #视频处理任务队列
         self.queue =Queue(maxsize=5)
-        self.video_consumer =VideoConsumer()
+        #self.video_consumer =VideoConsumer()
 
         # frame的队列
         self.save_frame_queue = Queue(maxsize=100)
@@ -349,141 +273,13 @@ class VideoCamera(VideoProcesser):
 
     def setFramesMaxNumAndFps(self,system_info=None):
         if system_info is not None:
-            self.frames_max_num =system_info.getFramesMaxNum()#400
+            self.frames_max_num =system_info.getFramesMaxNum()
             self.videos_fps =system_info.getVideosFps()
             print("set camera{}:frames_max_num:{},video_fps:{}".format(self.camera_name, self.frames_max_num,
                                                                               self.videos_fps))
         else:
             self.frames_max_num = 400
             self.videos_fps = 20
-
-    def getFrame(self):
-
-        ret, frame = self.cap.read()  #是每一帧的图像，是个三维矩阵,和下面的jpeg一样，都是numpy.ndarray类型
-
-        if ret:
-            if self.current_frame_num<self.max_frame_num:
-               self.current_frame_num+=1
-               #print("currFrame:",self.currFrameNum)
-            else:
-
-                # # 转换avi视频为h264格式(后面采用多线程,这里好像发生了阻塞！！！)
-                # self.video_processor.toH264(self.videoName)
-                # #存入数据库并删除掉原始视频
-                # self.video_processor.saveToDB(self.videoName.replace("avi","mp4"))
-
-                #当前视频结束,记录当前视频结束时间
-                self.end_time =datetime.now()
-
-                #开启多线程:将视频存入数据库,同时删除转码后的mp4视频
-                saving_threading =SavingThread(video_name=self.video_name,camera_name=self.camera_name,start_time=self.start_time,end_time=self.end_time)
-                saving_threading.start()
-
-                #这里产生一个新的视频段
-                if self.video_id<5:
-                    # 视频重命名
-                    self.video_id += 1
-                    self.video_name = "video{video_id}.avi".format(video_id=str(self.video_id))
-                    print("video_name:", self.video_name)
-
-                   #释放资源，针对下一个视频则再重新生成即可
-                    if self.out != None:
-                        self.out.release()
-                        self.out = None
-                else:
-                    self.video_id =0
-
-                #当前帧归零,记录视频起始时间
-                self.current_frame_num =0
-                self.start_time =datetime.now()
-
-            #获取当前时间,并视频显示
-            week =["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
-            current_time =time.strftime("%Y-%m-%d {} %H:%M:%S".format(week[int(time.strftime("%w"))]),time.localtime(time.time()))
-            cv2.putText(frame, current_time, (50, 50), cv2.FONT_HERSHEY_COMPLEX, 0.6, (50, 100, 200), 2)
-
-            if ret and self.is_play:
-
-                ret, jpeg = cv2.imencode('.jpg', frame)
-
-                # 视频录制
-                if self.is_record:
-                    if self.out == None:
-
-                        fourcc = cv2.VideoWriter_fourcc(*'MJPG')
-                        self.out = cv2.VideoWriter('./static/video.avi', fourcc, 20.0, (640, 480))
-                    #ret, frame = self.cap.read()
-                    if ret:
-                        self.out.write(frame)
-
-                # 不录制，分时间段保存视频
-                else:
-
-                    if self.out == None:
-                        fourcc = cv2.VideoWriter_fourcc(*'MJPG')
-                        self.out = cv2.VideoWriter('./static/{}'.format(self.video_name), fourcc, 20.0, (640, 480))
-                    if ret:
-                        self.out.write(frame)
-
-                    #录制时候不能释放资源
-                    # if self.out != None:
-                    #      self.out.release()
-                    #      self.out = None
-
-                return jpeg.tobytes()
-            else:
-                return None
-
-    def saveFrame(self,frame,current_datetime):
-
-            if self.current_frame_num == 0:
-                self.start_time = current_datetime
-
-            if self.current_frame_num < self.max_frame_num:
-                self.current_frame_num += 1
-                # print("currFrame:",self.currFrameNum)
-                ret, jpeg = cv2.imencode('.jpg', frame)
-
-                if self.out == None:
-                    fourcc = cv2.VideoWriter_fourcc(*'MJPG')
-                    self.out = cv2.VideoWriter('./static/transerStation/{}'.format(self.video_name), fourcc, 20.0, (640, 480))
-                if ret:
-                    self.out.write(frame)
-
-            else:
-                # 当前视频结束,记录当前视频结束时间
-                self.end_time = current_datetime
-
-                # # 开启多线程:将视频存入数据库,同时删除转码后的mp4视频
-                saving_threading = SavingThread(video_name=self.video_name, camera_name=self.camera_name,
-                                                start_time=self.start_time, end_time=self.end_time)
-                saving_threading.start()
-
-                # 转换avi视频为h264格式(采用多线程,否则会阻塞主程序,影响主程序存储视频，造成视频段不完全连续！！！)
-                # self.video_processor.toH264(self.video_name)
-                # # 存入数据库并删除掉原始视频
-                # self.video_processor.saveToDB(self.video_name.replace("avi", "mp4"), self.camera_name, self.start_name,
-                #                               self.end_time)
-
-                # 这里产生一个新的视频段
-                if self.video_id < 3:
-                    # 视频重命名
-                    self.video_id += 1
-
-                else:
-                    self.video_id = 0
-
-                self.video_name = "video{video_id}.avi".format(video_id=str(self.video_id))
-                print("video_name:", self.video_name)
-
-                # 当前帧归零,记录视频起始时间
-                self.current_frame_num = 0
-                #self.start_time = current_datetime
-
-                # 释放资源，针对下一个视频则再重新生成即可
-                if self.out != None:
-                    self.out.release()
-                    self.out = None
 
     def saveFrameProducer(self,frame,current_datetime):
         '''
@@ -552,7 +348,6 @@ class VideoCamera(VideoProcesser):
                     self.saveFrameProducer(frame,current_time)
             except Empty as e:
                 print("the frame.queue is empty!,Error:{}".format(e))
-
 
     def videoHandler(self,consumer_thread_name):
         while True:
@@ -859,7 +654,6 @@ class SystemInfo(object):
        self.setVideosMaxNum(videos_max_num)
        self.setFrameMaxNum(frames_max_num)
        self.setVideosFps(videos_fps)
-
 
 class CheckUserEmail(object):
     def __init__(self):
