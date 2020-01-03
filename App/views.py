@@ -43,7 +43,6 @@ video_obj1 = VideoManager(camera_idx=1, camera_type='usb', system_info=system_in
 video_obj2 = VideoManager(camera_idx=2, camera_type='ip',
                           camera_address='rtsp://admin:scuimage508@202.115.53.245', system_info=system_info)
 
-
 def startVideoCamera(system_info,*video_obj_list):
     # 仅仅只初始化线程一次
     for i in range(len(video_obj_list)):
@@ -62,7 +61,6 @@ def startVideoCamera(system_info,*video_obj_list):
 def videoSquare(request):
     username = request.session.get("username")
     if username:
-
         #return HttpResponse("欢迎回来，%s" % username)
         return render(request, "basic_templates/videosquare.html", context=locals())
     else:
@@ -100,7 +98,7 @@ def login(request):
             else:
 
                 #开启摄像头线程,可以重复调用,以确保在不同页面都保证开启
-                startVideoCamera(video_obj,video_obj1,video_obj2)
+                startVideoCamera(system_info,video_obj,video_obj1,video_obj2)
                  #返回一个界面
                 return render(request, "basic_templates/videoanalysis.html", locals())
 
@@ -108,26 +106,22 @@ def login(request):
             errmsg = "用户名或者密码错误"
             return render(request,"basic_templates/login3.html",locals())
 
-
-
-
 def user(request):
 
-    username =request.session.get("username")
-    #不一定要等于admin,username有值即代表已经登录
-    if username:
-        return HttpResponse("欢迎回来，%s"%username)
+    # username =request.session.get("username")
+    # #不一定要等于admin,username有值即代表已经登录
+    # if username:
+    #     return HttpResponse("欢迎回来，%s"%username)
+    #return HttpResponse("请登录")
 
-    return HttpResponse("请登录")
-
-
-
+    return render(request,"basic_templates/userinfo.html")
 
 
 def logout(request):
 
     request.session.flush()
     return redirect(reverse("app:login"))
+
 
 def videoViewer(request,camera_idx,is_playing):
 
@@ -309,6 +303,7 @@ def systemInformation(request):
         # addtwodimdict(json_data, 1, "init_time", init_time)
 
         return JsonResponse(data=init_time,safe=False)
+
 
 def signUp(request):
     if request.method == "GET":

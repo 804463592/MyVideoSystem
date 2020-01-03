@@ -36,7 +36,9 @@ class VideoProcesser(object):
     def setVideosMaxNum(self,system_info):
 
         if system_info is not None:
+            print("eeeee",type(system_info))
             self.videos_max_num = system_info.getVideosMaxNum()
+
             print("set videos_max_num:", self.videos_max_num)
         else:
             self.videos_max_num = 20

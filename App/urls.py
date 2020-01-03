@@ -34,6 +34,13 @@ urlpatterns =[
     path("signup/",views.signUp,name = "signup"),
     path("aboutus/",views.aboutUs,name ="aboutus"),
 
+    path("queryvideo/", views.queryVideo),
+
+    path("checkuser/", views.checkUser),
+
+    path("checkemail/", views.checkEmail),
+    path("user/",views.user,name = "user"),
+
     #下面的是没有用的
     path("savevideo/",views.saveVideo,name ="savevideo"),
 
@@ -41,9 +48,4 @@ urlpatterns =[
 
     path("testvideo/",views.testVideo),
 
-    path("queryvideo/",views.queryVideo),
-
-    path("checkuser/", views.checkUser),
-
-    path("checkemail/", views.checkEmail),
 ]

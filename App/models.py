@@ -40,6 +40,7 @@ class UserInfo(models.Model):
       user_name =models.CharField(max_length=32,unique=True)
       user_email = models.CharField(max_length=64,unique=True)
       user_password =models.CharField(max_length=32)
+      user_icom = models.ImageField(upload_to="icon", default=u"/static/images/login_images/avtar.png", max_length=100)
       is_admin =models.BooleanField(null=False,default=False)
 
 if __name__ =="__main__":
