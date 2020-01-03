@@ -44,7 +44,7 @@ video_obj2 = VideoManager(camera_idx=2, camera_type='ip',
                           camera_address='rtsp://admin:scuimage508@202.115.53.245', system_info=system_info)
 
 def startVideoCamera(system_info,*video_obj_list):
-    # 仅仅只初始化线程一次
+    # 仅仅只初始化线程一次，保证系统最开始开启，就不能改变。
     for i in range(len(video_obj_list)):
         if video_obj_list[i].first_flag:
 
@@ -59,6 +59,7 @@ def startVideoCamera(system_info,*video_obj_list):
             video_obj_list[i].first_flag = False
 
 def videoSquare(request):
+    # 保证用户已登录
     username = request.session.get("username")
     if username:
         #return HttpResponse("欢迎回来，%s" % username)
@@ -93,12 +94,17 @@ def login(request):
             if check_user_email.checkAdmin(user_name):
 
                 #return render(request, "basic_templates/configuration.html")
+                #redirevt重定向，reverse反向解析
                  return redirect(reverse("app:configuration"))
             #普通用户登录
             else:
 
                 #开启摄像头线程,可以重复调用,以确保在不同页面都保证开启
+<<<<<<< HEAD
                 startVideoCamera(system_info,video_obj,video_obj1,video_obj2)
+=======
+                # startVideoCamera(video_obj,video_obj1,video_obj2)
+>>>>>>> 362d86d6bd5a58abaf873499fdcc69a84bc4f830
                  #返回一个界面
                 return render(request, "basic_templates/videoanalysis.html", locals())
 
@@ -148,7 +154,6 @@ def videoViewer(request,camera_idx,is_playing):
                         content_type='multipart/x-mixed-replace; boundary=frame')
     else:
         return HttpResponse("failed!")
-
 
 def videoLookBack(request):
     username = request.session.get("username")
@@ -247,60 +252,40 @@ def configuration(request):
 
     if request.method =="GET":
 
+        return render(request, "basic_templates/configuration.html")
+
+    elif request.method =="POST":
         # 获取前端系统参数信息
-        videos_fps = 21
-        frames_max_num = 601
-        videos_max_num = 21
+        videos_max_num = int(request.POST.get("capacity"))
+        video_length = int(request.POST.get('length'))
+        videos_fps = int(request.POST.get('fps'))
+        print(videos_max_num, video_length, videos_fps)
+        frames_max_num = 60*video_length*videos_fps
+        print("videos_max_num:",videos_max_num,"frames_max_num:",frames_max_num, "videos_fps:",videos_fps)
 
         # system_info.setVideosFps(videos_fps=videos_fps)
         # system_info.setVideosMaxNum(videos_max_num=videos_max_num)
         # system_info.setFrameMaxNum(frames_max_num=frames_max_num)
-        system_info.setSystemInfo(videos_max_num =videos_max_num,frames_max_num=frames_max_num,videos_fps =videos_fps)
+
+        system_info.setSystemInfo(videos_max_num=videos_max_num, frames_max_num=frames_max_num, videos_fps=videos_fps)
 
         # 验证当前用户是否为管理员,普通用户不允许修改
         if check_user_email.checkAdmin(username):
             # 设置系统参数,并开启线程（该函数可保证已经开启则不允许重复开启,即不允许重复设置）
             startVideoCamera(system_info, video_obj, video_obj1, video_obj2)
 
-        return render(request, "basic_templates/configuration.html")
-
-    elif request.method =="POST":
-
-        # 获取前端系统参数信息
-        videos_fps = 21
-        frames_max_num = 601
-        videos_max_num = 21
-
-        system_info.setVideosFps(videos_fps=videos_fps)
-        system_info.setVideosMaxNum(videos_max_num=videos_max_num)
-        system_info.setFrameMaxNum(frames_max_num=frames_max_num)
-
-        # 验证当前用户是否为管理员,普通用户不允许修改
-        if check_user_email.checkAdmin(username):
-            # 设置系统参数,并开启线程（该函数可保证已经开启则不允许重复开启,即不允许重复设置）
-            startVideoCamera(system_info, video_obj, video_obj1, video_obj2)
-
-        return JsonResponse(data ={'msg':"system setting success！"})
+        return JsonResponse(data ={'msg':"system setting success！"}, safe=False)
 
 
 def systemInformation(request):
-    # 判断当前用户是否登录
-    username = request.session.get("username")
-    if not username:
-        return redirect(reverse("app:login"))
-
-    if request.method =="GET":
+    if request.method == "GET":
 
         return render(request, "basic_templates/systeminformation.html", context=locals())
 
         # return render(request, "basic_templates/videolookback.html", context=locals())
-    elif request.method =="POST":
+    elif request.method == "POST":
 
         init_time = system_info.getInitTime()
-
-        # init_time = "2019-12-26T09:50:43.919"
-        # print(init_time.strftime("%Y-%m-%d %H:%M:%S"))
-        # addtwodimdict(json_data, 1, "init_time", init_time)
 
         return JsonResponse(data=init_time,safe=False)
 
@@ -368,193 +353,6 @@ def aboutUs(request):
     return HttpResponse("关于我们")
 
 
-#
-#
-# def recordstatus(request):
-#
-#     username = request.session.get("username")
-#     if not username:
-#         return redirect(reverse("app:login"))
-#
-#     if request.method =='POST':
-#         print("the method is POST")
-#
-#     json_result = json.loads(request.body)
-#     status =json_result['status']
-#
-#     if status =='start_record':
-#
-#         videoObj.start_record()
-#
-#         return JsonResponse(data={"result":"start recording"})
-#
-#     elif status =='stop_record':
-#
-#         videoObj.stop_record()
-#
-#         return JsonResponse(data={"result": "stop recording"})
-#
-# def playstatus(request):
-#     username = request.session.get("username")
-#     if not username:
-#         return redirect(reverse("app:login"))
-#
-#     if request.method =='POST':
-#         print("the method is POST")
-#
-#     postBody = request.body
-#     json_result = json.loads(postBody)
-#
-#     status =json_result['status']
-#
-#     if status =='start_play':
-#
-#          videoObj.start_play()
-#
-#          return JsonResponse(data={"result": "start playing"})
-#
-#     elif status =='suspend_play':
-#
-#          videoObj.stop_paly()
-#
-#          return JsonResponse(data={"result":"stop playing"})
-#
 
-
-
-# """
-#
-# 下面的视图函数全是测试用的,暂无实际用处：
-#
-# """
-#
-
-def saveVideo(request):
-
-    current_time = time.strftime("%Y%m%d%H%M%S", time.localtime(time.time()))
-
-    print(type(current_time),current_time)
-
-    front_path = "{0}.{1}".format(current_time, "mp4")
-
-    f = BytesIO()
-
-    file_object = open('./static/video1.mp4',"rb")
-    try:
-        all_the_bytes = file_object.read()
-    finally:
-        file_object.close()
-
-    f.write(all_the_bytes)
-
-    video_loaded = InMemoryUploadedFile(f, None, front_path, "video/mpeg", len(all_the_bytes), None, None)
-
-    # with open("./static/video.avi", "rb") as f:
-    #     # 循环读取一段视频，一次性读取1024个字节
-    #     while True:
-    #         strb = f.read(1024)
-    #         if strb == b"":
-    #             break
-    #         print(type(strb))
-
-    #VideoStorage.objects.last()
-
-    nowtime =datetime.now()
-
-    newvideo =VideoStorage()
-
-    newvideo.camera_name ="camera1"
-
-    newvideo.start_time =nowtime
-
-    newvideo.video_file =video_loaded
-
-    newvideo.save()
-
-    return HttpResponse("已经存储视频")
-
-
-def testFile(request):
-    #earliest_video =VideoStorage.objects.last()
-    if request.method =="POST":
-        json_result = json.loads(request.body)
-        minute = int(json_result['minute'])
-
-        print("minute:",minute)
-
-        query_video = VideoStorage.objects.filter(start_time__minute=minute).order_by("start_time")
-        return JsonResponse(data={"json_state": "already received json!"})
-
-        # return render(request, "videoShow.html", context=locals())
-    else:
-        return HttpResponse("testFile!!!")
-
-    #query_video = VideoStorage.objects.all()
-
-    #print("earliest_video type:",type(earliest_video))
-
-    #print("earliest_video video file type:",type(earliest_video.video_file))
-
-    #print(earliest_video.video_file.path)
-
-    # import os
-    #
-    # if os.path.exists(video.video_file.path):
-    #     os.remove(video.video_file.path)
-
-    # print(video.video_file.url)
-    #
-    # print(MEDIA_URL_PREFIX+video.video_file.url)
-
-    # return render(request,"videolookback.html",context =locals())
-
-
-def testVideo(request):
-
-    testvideo_count =VideoStorage.objects.all().count()
-
-    testvideo =VideoStorage.objects.all().first()
-
-    video_url =MEDIA_URL_PREFIX+testvideo.video_file.url
-    #testvideo.delete()
-    print(video_url)
-
-    #return HttpResponse("视频个数为{}".format(testvideo_count))
-    return render(request,"videoShow.html",context=locals())
-
-def queryVideo(request):
-
-    #通过request获取查询字段
-
-    #假设这是我想看的时间，那么需要获取一个查询时间段,假设每段视频的长度为video_timedelta
-    video_timedelta =timedelta(minutes=10)
-    query_time =datetime(year=2019,month=12,day =3,hour=22,minute=10,second=0)
-    query_range =[query_time-video_timedelta,query_time+video_timedelta]
-    query_video =VideoStorage.objects.filter(start_time__range=query_range).order_by("start_time")
-
-    #时间间隔
-    t_now =datetime.now()
-    t_delta =timedelta(minutes=20000) #这个时间间隔决定了,我们的数据库最多能保存多长时间的视频
-    t_start =t_now -t_delta
-
-    print("t_now:",t_now)
-    print("t_start:",t_start)
-
-    query =VideoStorage.objects.filter(camera_name="camera1",start_time__range=[t_start,t_now])
-
-    #query_test =VideoStorage.objects.filter()
-
-    #query = VideoStorage.objects.filter(start_time__year=2020)
-
-    if query.exists() or query_video.exists():
-        #print("objects type:", VideoStorage.objects)
-
-        #print("query:", query[0])
-
-        #print("query name:", query[0].start_time)
-
-        return render(request, "videoShow.html", context=locals())
-    else:
-        return HttpResponse("查询不存在")
 
 
