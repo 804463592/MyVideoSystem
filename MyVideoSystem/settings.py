@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     # 'VideoAnalysis',
     'VideoAnalysis.apps.VideoanalysisConfig',
+    'AboutUs'
 ]
 
 MIDDLEWARE = [
