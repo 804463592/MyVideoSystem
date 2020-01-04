@@ -13,6 +13,8 @@ from threading import Thread  # 创建线程的模块
 from queue import Queue
 from queue import Empty
 
+#from opencv_yolov3.yolo import yolov3_detect
+
 class VideoProcesser(object):
 
     def __init__(self,video_path="./static/transferStation",**kargs):
@@ -689,13 +691,15 @@ class VideoManager(VideoCamera,threading.Thread):
         while self.cap.isOpened() and self.is_running:
                 #该while true循环,仅仅在调用videoStream时循环
 
-            time.sleep(0.01) #处理延迟时长至少在0.005秒以上
+            #time.sleep(0.01) #处理延迟时长至少在0.005秒以上
 
             #frame =self.frame
             try:
                 frame_info =self.play_frame_queue.get()
                 if frame_info:
                     frame =frame_info.getFrame()
+
+                    #frame =yolov3_detect(frame)
 
                     ret, jpeg = cv2.imencode('.jpg',frame)
                     if ret:
