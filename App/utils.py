@@ -2,28 +2,44 @@ import cv2
 import threading
 import time
 import os
+import re
 
 from io import BytesIO
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from App.models import VideoStorage
+from App.models import UserInfo
 
 from datetime import datetime
-
 from threading import Thread  # 创建线程的模块
 from queue import Queue
 from queue import Empty
+
 
 #from opencv_yolov3.yolo import yolov3_detect
 
 class VideoProcesser(object):
 
-    def __init__(self,video_path="./static/transferStation",**kargs):
+    def __init__(self,video_path="./static/transferStation",system_info=None,**kargs):
 
         super(VideoProcesser, self).__init__(**kargs)
 
         self.video_path = video_path
         #也可以使用相对路径, ./中,点不可缺少
         #self.video_path ="./static"
+
+        if system_info is not None:
+           self.videos_max_num =system_info.getVideosMaxNum()
+           print("videos_max_num:",self.videos_max_num)
+        else:
+            self.videos_max_num =20
+
+    def setVideosMaxNum(self,system_info):
+
+        if system_info is not None:
+            self.videos_max_num = system_info.getVideosMaxNum()
+            print("set videos_max_num:", self.videos_max_num)
+        else:
+            self.videos_max_num = 20
 
     def checkPath(self,camera_name ="camera0"):
         for root, dirs, names in os.walk(self.video_path):
@@ -121,7 +137,8 @@ class VideoProcesser(object):
         #以应对多摄像头的情况,所以需要对各自摄像头视频的数量进行统计
         video_num = VideoStorage.objects.filter(camera_name=camera_name).count()
 
-        if video_num<10:
+        print("videos_max_num:", self.videos_max_num)
+        if video_num<self.videos_max_num:
             VideoStorage.objects.create(camera_name=camera_name,video_file=video_loaded,start_time=start_time,end_time=end_time)
         else:
             #将新的视频,覆盖最老的视频
@@ -150,8 +167,6 @@ class VideoProcesser(object):
             update_obj.end_time =end_time
             update_obj.save()
 
-        #TODO：删除avi视频和原始mp4视频,甚至数据库mp4都使用同一个函数,同时该函数应当具有检查当前文件夹是否是空文件的能力
-
         #删除原始的mp4视频
         #self.delOriginVideo(video_name)
         video_path = os.path.join(self.video_path, video_name)
@@ -160,25 +175,15 @@ class VideoProcesser(object):
             print("删除视频{}成功！".format(video_path))
         else:
             print("删除视频{video}时,{video}不存在！".format(video=video_path))
-
         self.delEmptyDir(os.path.join("./static/videoStorage/realvideo",camera_name))
-
-
-    def delOriginVideo(self,video_name ="camera0_video1.mp4"):
-        """
-        :param video_name:待删除的视频名
-        :return: None
-        """
-        video_path =os.path.join(self.video_path,video_name)
-        if os.path.exists(video_path):
-            os.remove(video_path)
-            print("删除视频{}成功！".format(video_path))
-        else:
-            print("删除视频{video}时,{video}不存在！".format(video =video_path))
 
 class VideoInfo(object):
     '''
     用于保存视频信息的类
+    1.获取视频名称
+    2.获取开始时间
+    3.获取结束时间
+    4.获取摄像机名称
     '''
     def __init__(self,camera_name,video_name,start_time,end_time):
         self.video_name =video_name
@@ -198,85 +203,11 @@ class VideoInfo(object):
     def getCameraName(self):
         return self.camera_name
 
-class SavingThread(threading.Thread):
-    '''
-    将avi视频转码,并存入数据库的线程
-    '''
-    def __init__(self,video_name,camera_name,start_time,end_time):
-        threading.Thread.__init__(self)
-
-        self.video_name =video_name
-        self.camera_name =camera_name
-        self.start_name =start_time
-        self.end_time =end_time
-
-        self.isRunning = True
-        self.video_processer = VideoProcesser()
-
-    def run(self):
-        while self.isRunning:
-            self.video_processer.checkPath()
-
-            # 转换avi视频为h264格式(采用多线程,否则会阻塞主程序,影响主程序存储视频，造成视频段不完全连续！！！)
-            self.video_processer.toH264(self.video_name, delete_oringinal_video=True)
-            # 存入数据库并删除掉原始视频
-            self.video_processer.saveToDB(self.video_name.replace("avi", "mp4"),self.camera_name,self.start_name,self.end_time)
-
-            self.isRunning = False
-
-    def stop(self):
-        self.isRunning =False
-
-class VideoConsumer(VideoProcesser):
-    '''
-    一个可以调用的消费者线程对象,继承自VideoProcesser,传入对象为队列q
-    '''
-    def __init__(self):
-        #VideoProcesser.__init__()
-        super(VideoConsumer,self).__init__()
-        self.is_running =True
-
-    def handler(self,q,consumer_thread_name):
-
-        while self.is_running:
-            try:
-                video_info =q.get()
-
-                #取出相关信息
-                video_name =video_info.getVideoName()
-                camera_name =video_info.getCameraName()
-                start_time =video_info.getStartTime()
-                end_time =video_info.getEndTime()
-
-                # 转换avi视频为h264格式(采用多线程,否则会阻塞主程序,影响主程序存储视频，造成视频段不完全连续！！！)
-                self.toH264(video_name)
-                # 存入数据库并删除掉原始视频
-                self.saveToDB(video_name.replace("avi", "mp4"), camera_name, start_time,end_time)
-                print("{} consuming {} and saving to database!".format(consumer_thread_name, video_name))
-            except Empty:
-                print("queue empty！")
-    def startThread(self,q):
-        '''
-        :param q: 队列
-        :return: None
-        '''
-        #只检查一次,不要在handler中不停的检查
-        self.checkPath()
-        #开启一定数量的消费者线程
-        for i in range(3):
-            Thread(target=self.handler,args=(q,"Consumer-Thread-{}".format(i))).start()
-
-    def __call__(self,q):
-        self.startThread(q)
-
-    def stop(self):
-        self.is_running =False
-
 class VideoCamera(VideoProcesser):
-    def __init__(self,camera_idx =0,camera_address =None,camera_type ="usb",**kargs):
+    def __init__(self,camera_idx =0,camera_address =None,camera_type ="usb",system_info =None,**kargs):
 
         # VideoProcesser.__init__()
-        super(VideoCamera, self).__init__(**kargs)
+        super(VideoCamera, self).__init__(system_info=system_info,**kargs)
 
         #无论usb还是ip,均采用序号给摄像头命名
         self.camera_name = "camera{}".format(camera_idx)
@@ -302,157 +233,45 @@ class VideoCamera(VideoProcesser):
 
         #表示当前帧的周期,先假设每段视频存400帧
         self.current_frame_num =0
-        self.max_frame_num =400
 
-        self.video_id =0
+        if system_info is not None:
+            self.frames_max_num =system_info.getFramesMaxNum()#400
+            self.videos_fps =system_info.getVideosFps()
+        else:
+            self.frames_max_num = 400
+            self.videos_fps = 20
+
+        self.video_id = 0
         #self.video_name ="video0.avi"
         self.video_name ="{}_{}.avi".format(self.camera_name,time.strftime("%Y%m%d%H%M%S", time.localtime(time.time())))
 
         #self.video_processer = VideoProcesser()
-
         #记录每段视频的起始时间,以及结束时间
         self.start_time = datetime.now()
         self.end_time =datetime.now()
 
         #视频处理任务队列
         self.queue =Queue(maxsize=5)
-        self.video_consumer =VideoConsumer()
 
         # frame的队列
         self.save_frame_queue = Queue(maxsize=100)
         self.play_frame_queue =Queue(maxsize=3)
 
+        print("initialize camera{}:frames_max_num:{},video_fps:{}".format(self.camera_name, self.frames_max_num,
+                                                                      self.videos_fps))
     # 退出程序释放摄像头
     def __del__(self):
         self.cap.release()
 
-    def getFrame(self):
-
-        ret, frame = self.cap.read()  #是每一帧的图像，是个三维矩阵,和下面的jpeg一样，都是numpy.ndarray类型
-
-        if ret:
-            if self.current_frame_num<self.max_frame_num:
-               self.current_frame_num+=1
-               #print("currFrame:",self.currFrameNum)
-            else:
-
-                # # 转换avi视频为h264格式(后面采用多线程,这里好像发生了阻塞！！！)
-                # self.video_processor.toH264(self.videoName)
-                # #存入数据库并删除掉原始视频
-                # self.video_processor.saveToDB(self.videoName.replace("avi","mp4"))
-
-                #当前视频结束,记录当前视频结束时间
-                self.end_time =datetime.now()
-
-                #开启多线程:将视频存入数据库,同时删除转码后的mp4视频
-                saving_threading =SavingThread(video_name=self.video_name,camera_name=self.camera_name,start_time=self.start_time,end_time=self.end_time)
-                saving_threading.start()
-
-                #这里产生一个新的视频段
-                if self.video_id<5:
-                    # 视频重命名
-                    self.video_id += 1
-                    self.video_name = "video{video_id}.avi".format(video_id=str(self.video_id))
-                    print("video_name:", self.video_name)
-
-                   #释放资源，针对下一个视频则再重新生成即可
-                    if self.out != None:
-                        self.out.release()
-                        self.out = None
-                else:
-                    self.video_id =0
-
-                #当前帧归零,记录视频起始时间
-                self.current_frame_num =0
-                self.start_time =datetime.now()
-
-            #获取当前时间,并视频显示
-            week =["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
-            current_time =time.strftime("%Y-%m-%d {} %H:%M:%S".format(week[int(time.strftime("%w"))]),time.localtime(time.time()))
-            cv2.putText(frame, current_time, (50, 50), cv2.FONT_HERSHEY_COMPLEX, 0.6, (50, 100, 200), 2)
-
-            if ret and self.is_play:
-
-                ret, jpeg = cv2.imencode('.jpg', frame)
-
-                # 视频录制
-                if self.is_record:
-                    if self.out == None:
-
-                        fourcc = cv2.VideoWriter_fourcc(*'MJPG')
-                        self.out = cv2.VideoWriter('./static/video.avi', fourcc, 20.0, (640, 480))
-                    #ret, frame = self.cap.read()
-                    if ret:
-                        self.out.write(frame)
-
-                # 不录制，分时间段保存视频
-                else:
-
-                    if self.out == None:
-                        fourcc = cv2.VideoWriter_fourcc(*'MJPG')
-                        self.out = cv2.VideoWriter('./static/{}'.format(self.video_name), fourcc, 20.0, (640, 480))
-                    if ret:
-                        self.out.write(frame)
-
-                    #录制时候不能释放资源
-                    # if self.out != None:
-                    #      self.out.release()
-                    #      self.out = None
-
-                return jpeg.tobytes()
-            else:
-                return None
-
-    def saveFrame(self,frame,current_datetime):
-
-            if self.current_frame_num == 0:
-                self.start_time = current_datetime
-
-            if self.current_frame_num < self.max_frame_num:
-                self.current_frame_num += 1
-                # print("currFrame:",self.currFrameNum)
-                ret, jpeg = cv2.imencode('.jpg', frame)
-
-                if self.out == None:
-                    fourcc = cv2.VideoWriter_fourcc(*'MJPG')
-                    self.out = cv2.VideoWriter('./static/transerStation/{}'.format(self.video_name), fourcc, 20.0, (640, 480))
-                if ret:
-                    self.out.write(frame)
-
-            else:
-                # 当前视频结束,记录当前视频结束时间
-                self.end_time = current_datetime
-
-                # # 开启多线程:将视频存入数据库,同时删除转码后的mp4视频
-                saving_threading = SavingThread(video_name=self.video_name, camera_name=self.camera_name,
-                                                start_time=self.start_time, end_time=self.end_time)
-                saving_threading.start()
-
-                # 转换avi视频为h264格式(采用多线程,否则会阻塞主程序,影响主程序存储视频，造成视频段不完全连续！！！)
-                # self.video_processor.toH264(self.video_name)
-                # # 存入数据库并删除掉原始视频
-                # self.video_processor.saveToDB(self.video_name.replace("avi", "mp4"), self.camera_name, self.start_name,
-                #                               self.end_time)
-
-                # 这里产生一个新的视频段
-                if self.video_id < 3:
-                    # 视频重命名
-                    self.video_id += 1
-
-                else:
-                    self.video_id = 0
-
-                self.video_name = "video{video_id}.avi".format(video_id=str(self.video_id))
-                print("video_name:", self.video_name)
-
-                # 当前帧归零,记录视频起始时间
-                self.current_frame_num = 0
-                #self.start_time = current_datetime
-
-                # 释放资源，针对下一个视频则再重新生成即可
-                if self.out != None:
-                    self.out.release()
-                    self.out = None
+    def setFramesMaxNumAndFps(self,system_info=None):
+        if system_info is not None:
+            self.frames_max_num =system_info.getFramesMaxNum()
+            self.videos_fps =system_info.getVideosFps()
+            print("set camera{}:frames_max_num:{},video_fps:{}".format(self.camera_name, self.frames_max_num,
+                                                                              self.videos_fps))
+        else:
+            self.frames_max_num = 400
+            self.videos_fps = 20
 
     def saveFrameProducer(self,frame,current_datetime):
         '''
@@ -465,20 +284,21 @@ class VideoCamera(VideoProcesser):
         if self.current_frame_num == 0:
             self.start_time = current_datetime
 
-        if self.current_frame_num < self.max_frame_num:
+        if self.current_frame_num < self.frames_max_num:
             self.current_frame_num += 1
 
             #ret, jpeg = cv2.imencode('.jpg', frame)
             if self.out == None:
                 #fourcc = cv2.VideoWriter_fourcc(*'MJPG')
-                # fourcc = cv2.VideoWriter_fourcc('I', '4', '2', '0')
+                #fourcc = cv2.VideoWriter_fourcc('I', '4', '2', '0')
                 #fourcc = cv2.VideoWriter_fourcc('m', 'p', '4', 'v')
+                # 获取摄像头的视频流，然后保存到本地
                 fourcc = cv2.VideoWriter_fourcc(*'XVID')
                 if self.camera_type=="usb":
-                    self.out = cv2.VideoWriter('./static/transferStation/{}'.format(self.video_name), fourcc, 20.0,
+                    self.out = cv2.VideoWriter('./static/transferStation/{}'.format(self.video_name), fourcc, self.videos_fps,
                                             (640, 480))  #usb摄像头的形状
                 elif self.camera_type =="ip":
-                    self.out = cv2.VideoWriter('./static/transferStation/{}'.format(self.video_name), fourcc, 20.0,
+                    self.out = cv2.VideoWriter('./static/transferStation/{}'.format(self.video_name), fourcc, self.videos_fps,
                                            (1920,1080))   #形状问题啊,又作死了！！！
 
             self.out.write(frame)
@@ -518,10 +338,9 @@ class VideoCamera(VideoProcesser):
                 if frame_info:
                     frame =frame_info.getFrame()
                     current_time =frame_info.getCurrentTime()
-                    self.saveFrameProducer(frame,current_time)
+                    self.saveFrameProducer(frame, current_time)
             except Empty as e:
                 print("the frame.queue is empty!,Error:{}".format(e))
-
 
     def videoHandler(self,consumer_thread_name):
         while True:
@@ -561,6 +380,9 @@ class VideoCamera(VideoProcesser):
         '''
         #只检查一次,不要在videoHandler中不停的检查（那样会删除到正在读写的视频）
         self.checkPath(self.camera_name)
+
+        print("initialize camera{}:frames_max_num:{},video_fps:{}".format(self.camera_name, self.frames_max_num,
+                                                                          self.videos_fps))
         # 开启一定数量的消费者线程
         for i in range(n):
             thread_name ="{}-ConsumerThread-{}".format(self.camera_name,i)
@@ -568,6 +390,10 @@ class VideoCamera(VideoProcesser):
             print(thread_name + " start!")
 
 class FrameInfo(object):
+    '''
+    1.获取帧
+    2.获取当前时间
+    '''
     def __init__(self,frame,current_time):
         super(FrameInfo,self).__init__()
         self.frame =frame
@@ -578,7 +404,7 @@ class FrameInfo(object):
         return self.current_time
 
 class VideoManager(VideoCamera,threading.Thread):
-    def __init__(self,camera_idx =0,camera_address =None,camera_type ="usb"):
+    def __init__(self,camera_idx =0,camera_address =None,camera_type ="usb",system_info=None):
         """
         之所以要将类VideoCamera再包装为VideoManager的原因是,
           (1)使用yield需要一个全局的global_frame,也即一个类似全局变量的东西,但是如果声明为全局变量,则对每个摄像头都要声明一个全局变量,不如使用类再包装一下
@@ -590,12 +416,11 @@ class VideoManager(VideoCamera,threading.Thread):
         #print("MRO:",self.__class__.mro())
 
         #threading.Thread.__init__(self)
-        super(VideoManager, self).__init__(camera_idx =camera_idx,camera_address =camera_address,camera_type =camera_type)
+        super(VideoManager, self).__init__(camera_idx =camera_idx,camera_address =camera_address,camera_type =camera_type,system_info=system_info)
 
         self.global_frame =None
         #self.video_camera=VideoCamera(camera_idx=camera_idx,camera_address =camera_address)
         self.camera_index =camera_idx
-
         self.camera_address =camera_address
 
         #该帧是视频实时播放,以及保存视频时共用的帧
@@ -603,7 +428,7 @@ class VideoManager(VideoCamera,threading.Thread):
 
         self.current_datetime =datetime.now()
 
-        #代表是否是第一次
+        #代表是否是第一次启动
         self.first_flag =True
         #当前摄像机是否播放
         self.is_running =True
@@ -621,9 +446,9 @@ class VideoManager(VideoCamera,threading.Thread):
 
     def run(self):
         #先开启avi视频消费者线程等待
-        #self.startConsumerThread()
+        self.startConsumerThread()
         #开启帧消费者线程（同时也是avi视频的生产者）
-        #Thread(target=self.saveFrameQueueProducer).start()
+        Thread(target=self.saveFrameQueueProducer).start()
 
         # 默认情况下,系统一开始就要开启线程运行就需要保存视频
         n=2
@@ -665,10 +490,10 @@ class VideoManager(VideoCamera,threading.Thread):
                     #采用队列看起来是比上面共用帧更好的方式,但是要注意这里的put是可以阻塞的，
                     #也就是说,当你忘了开启消费者线程的时候,队列满了的时候,代码会阻塞在这里,导致后面的队列里面没有视频
                     #所以在这里不一定是更好的方式！！！
-                    #self.save_frame_queue.put(FrameInfo(frame,current_datetime))
+                    self.save_frame_queue.put(FrameInfo(frame,current_datetime))
 
                     #因为前端处理视频帧的能力比较有限,所以放入帧的时候抽帧处理,这里也有可能阻塞？？？那怎么办,
-                    # 如果还是不想用全局帧self.frame =frame,那么最好的办法就是判断是否已满
+                    # 如果还是不想用全局帧self.frame =frame,那么需要判断是否已满
                     if n%3 ==0 and not self.play_frame_queue.full():
 
                         self.play_frame_queue.put(FrameInfo(frame,current_datetime))
@@ -689,7 +514,7 @@ class VideoManager(VideoCamera,threading.Thread):
     def videoStream(self):
         #self.frame是共用的,并且有线程在不断地更新self.frame
         while self.cap.isOpened() and self.is_running:
-                #该while true循环,仅仅在调用videoStream时循环
+            #该while true循环,仅仅在调用videoStream时循环
 
             #time.sleep(0.01) #处理延迟时长至少在0.005秒以上
 
@@ -704,6 +529,7 @@ class VideoManager(VideoCamera,threading.Thread):
                     ret, jpeg = cv2.imencode('.jpg',frame)
                     if ret:
                        frame = jpeg.tobytes()
+                       # 不断显示每一镇
                        if frame is not None:
                            self.global_frame = frame
                            yield (b'--frame\r\n'
@@ -712,6 +538,7 @@ class VideoManager(VideoCamera,threading.Thread):
                            yield (b'--frame\r\n'
                                   b'Content-Type: image/jpeg\r\n\r\n' + self.global_frame + b'\r\n\r\n')
                     else:
+                        #若没有下一帧就无法显示。
                        yield (b'--frame\r\n'
                               b'Content-Type: image/jpeg\r\n\r\n' + self.global_frame + b'\r\n\r\n')
 
@@ -755,53 +582,146 @@ class VideoManager(VideoCamera,threading.Thread):
 
 
     # #以下方法暂时未调用
-    def startPlay(self):
-        if self.is_running:
-            print("正在播放！")
-        self.is_running =True
-
-    def stopPlay(self):
-        if not self.is_running:
-            print("已经停止播放！")
-        self.is_running =False
-
+    # def startPlay(self):
+    #     if self.is_running:
+    #         print("正在播放！")
+    #     self.is_running =True
+    #
+    # def stopPlay(self):
+    #     if not self.is_running:
+    #         print("已经停止播放！")
+    #     self.is_running =False
 
 class SystemInfo(object):
 
    '''
-    保存系统信息的类
+    保存系统信息的类,考虑系统信息存入数据库中
    '''
-   def __init__(self):
+   def __init__(self,videos_max_num =20,frames_max_num=600,videos_fps =20):
       super(SystemInfo,self).__init__()
 
       #系统开启的时间
       self.init_time =datetime.now()
 
-      #每个是系统所允许的最大视频数量
-      self.videos_num =20
+      #每个是系统所允许每个摄像头的最大视频数量
+      self.videos_max_num =self.clamp(videos_max_num,10,30)
 
       #每段视频的帧数
-      self.max_frame_num =600
+      self.frames_max_num =self.clamp(frames_max_num,500,2000)
 
       #视频的帧率
-      self.video_fps =20
+      self.videos_fps =self.clamp(videos_fps,15,50)
 
+   #夹紧函数,保证系统信息里的内容在一定范围内。
+   def clamp(self,value,low,high):
+       if value > high:
+           value = high
+       elif value < low:
+           value = low
+       return value
+
+   #获取系统开启时间的函数
    def getInitTime(self):
 
        return self.init_time
 
-   def setVideoNum(self,video_num):
+   #获取系统信息
+   def getVideosMaxNum(self):
 
-       #TODO:检查参数合法性,下同
-       if not isinstance(int,video_num):
-           raise TypeError("{} type error!".format(video_num))
+       return self.videos_max_num
 
-       self.videos_num =video_num
+   def getFramesMaxNum(self):
 
-   def setMaxFrameNum(self,max_frame_num):
+       return self.frames_max_num
 
-       self.max_frame_num =max_frame_num
+   def getVideosFps(self):
 
-   def setVideoFps(self,video_fps):
+       return self.videos_fps
 
-       self.video_fps =video_fps
+   #设置系统信息
+   def setVideosMaxNum(self,videos_max_num):
+
+       self.videos_max_num =self.clamp(videos_max_num,10,30)
+
+   def setFrameMaxNum(self,frames_max_num):
+
+       self.frames_max_num =self.clamp(frames_max_num,500,2000)
+
+   def setVideosFps(self,videos_fps):
+
+       self.videos_fps =self.clamp(videos_fps,15,50)
+
+   def setSystemInfo(self,videos_max_num =20,frames_max_num=600,videos_fps =20):
+
+       self.setVideosMaxNum(videos_max_num)
+       self.setFrameMaxNum(frames_max_num)
+       self.setVideosFps(videos_fps)
+
+class CheckUserEmail(object):
+    def __init__(self):
+        super(CheckUserEmail,self).__init__()
+
+    def checkName(self,user_name):
+        '''
+        验证用户名是否重名
+        :param user_name:用户名
+        :return:布尔变量
+        '''
+        if UserInfo.objects.filter(user_name=user_name).exists():
+            return True
+        else:
+            return False
+
+    def checkEmail(self,user_email):
+         '''
+         验证邮箱是否重复
+         :param user_email:邮箱
+         :return:bool变量
+         '''
+         if UserInfo.objects.filter(user_email=user_email).exists():
+             return False
+         else:
+             return True
+
+    def matchName(self,name_or_email):
+        '''
+        如果是邮箱,匹配用户名,否则直接返回
+        :param name_or_email: 用户名或者邮箱
+        :return: None或者用户名
+        '''
+        if re.match(r'^[0-9a-zA-Z_]{0,19}@[0-9a-zA-Z]{1,13}\.[com,cn,net]{1,3}$', name_or_email):
+            user_object =UserInfo.objects.filter(user_email=name_or_email)
+            if user_object.exists():
+                return user_object.first().user_name
+            else:
+                return None
+        else:
+            return name_or_email
+
+    def checkAdmin(self,user_name):
+        '''
+        验证用户是否是管理员,不需要验证密码（因为用户名是session中取出来的,没有存密码,且前面已经验证密码）
+        :param user_name: 用户名
+        :param pass_word: 密码
+        :return: 布尔变量
+        '''
+        user_object =UserInfo.objects.filter(user_name=user_name)
+        if user_object.exists() and user_object.first().is_admin:
+            return True
+        else:
+            return False
+
+    def checkNamePassword(self,user_name,pass_word):
+        '''
+        验证用户名和密码是否对应
+        :param user_name:输入的用户名
+        :param pass_word:输入的密码
+        :return:boolean变量
+        '''
+        user_object =UserInfo.objects.filter(user_name=user_name)
+
+        if user_object.exists() and user_object.first().user_password == pass_word:
+            return True
+        else:
+            return False
+

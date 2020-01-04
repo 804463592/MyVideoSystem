@@ -3,6 +3,7 @@
 # curr  =time.strftime("%Y-%m-%d calender%w %H:%M:%S",time.localtime(time.time()))
 #
 # print(curr)
+# import
 
 
 # import sys, os
@@ -51,19 +52,27 @@
 # to_path = '/home/1111.mp4'
 # a.convert_byfile(from_path, to_path)
 
-import os
-video_path ="/media/lb/学习/最近学习/Django_project/MyVedioSystem/static"
-video_name ="video.avi"
+# import os
+# video_path ="/media/lb/学习/最近学习/Django_project/MyVedioSystem/static"
+# video_name ="video.avi"
+#
+# origin_video =os.path.join(video_path,video_name)
+#
+# convert_video =os.path.join(video_path,"optut_test.mp4")
+#
+# cmdline ="ffmpeg -i {} -vcodec h264 {}".format(origin_video,convert_video)
+#
+# flag =os.system(cmdline)
+#
+# if not flag:
+#    print("convert successfully!")
+# else:
+#     print("false!")
 
-origin_video =os.path.join(video_path,video_name)
+import redis
+client =redis.Redis()
+print(client.keys("*")[0].decode())
 
-convert_video =os.path.join(video_path,"optut_test.mp4")
+for key in client.keys():
+    print(key.decode())
 
-cmdline ="ffmpeg -i {} -vcodec h264 {}".format(origin_video,convert_video)
-
-flag =os.system(cmdline)
-
-if not flag:
-   print("convert successfully!")
-else:
-    print("false!")

@@ -35,17 +35,12 @@ class VideoStorage(models.Model):
 
       end_time =models.DateTimeField(verbose_name="结束时间",default=timezone.now)
 
-# class UserInfo(models.Model):
-#
-#       user_name =models.CharField(max_length=16,unique=True,primary_key=True)
-#
-#       user_avatar =models.ImageField(upload_to="userAvatar")
-#
-#       user_password =models.CharField(max_length=32)
-#
-#       user_level =models.IntegerField(default=0)
 
-
+class UserInfo(models.Model):
+      user_name =models.CharField(max_length=32,unique=True)
+      user_email = models.CharField(max_length=64,unique=True)
+      user_password =models.CharField(max_length=32)
+      is_admin =models.BooleanField(null=False,default=False)
 
 if __name__ =="__main__":
     #generate_video_path()

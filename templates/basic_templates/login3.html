@@ -38,9 +38,13 @@
 		            </div>
 
                     <form action="#" method="post">
+
                         {% csrf_token %}
-					    <input class="text" type="text" name="username" placeholder="用户名" required="">
+
+					    <input class="text" type="text" name="username" id="username_input" placeholder="用户名" required="">
+{#                        <input class="text" type="text" name="email" id="email_input" placeholder="用户名" required="">#}
 					    <input class="text" type="password" name="password" placeholder="密码" required="">
+
 					    <div class="wthree-text">
 						    <ul>
 							    <li>
@@ -57,8 +61,9 @@
                     <div class="signup">
                         <p>没有账号? <a href="{% url "app:signup" %}"> 立即注册!</a></p>
 				    </div>
+                    <div id="error_box"></div>
 
-					<input type="submit" value="登陆">
+					<input type="submit"  value="登陆">
 
                     {% if errmsg %} {# 判断是否有错误信息 #}
                         <div class="error_tip" style="display: block;color: red">{{ errmsg }}</div>
