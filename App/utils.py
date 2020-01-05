@@ -14,8 +14,7 @@ from threading import Thread  # 创建线程的模块
 from queue import Queue
 from queue import Empty
 
-
-#from opencv_yolov3.yolo import yolov3_detect
+from .opencv_yolov3.yolo import yolov3_detect
 
 class VideoProcesser(object):
 
@@ -524,7 +523,7 @@ class VideoManager(VideoCamera,threading.Thread):
                 if frame_info:
                     frame =frame_info.getFrame()
 
-                    #frame =yolov3_detect(frame)
+                    frame =yolov3_detect(frame)
 
                     ret, jpeg = cv2.imencode('.jpg',frame)
                     if ret:
