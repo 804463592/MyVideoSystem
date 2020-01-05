@@ -344,7 +344,8 @@ def checkEmail(request):
 
 def aboutUs(request):
 
-    return HttpResponse("关于我们")
+    return render(request, "basic_templates/aboutus.html")
+
 
 
 
