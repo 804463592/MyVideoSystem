@@ -13,8 +13,13 @@ from datetime import datetime
 from threading import Thread  # 创建线程的模块
 from queue import Queue
 from queue import Empty
-
+#opencv CPU版
 from .opencv_yolov3.yolo import yolov3_detect
+#pytorch GPU版
+from .yolov3_detection.cap_detect import YoloDetect
+
+yolov3 = YoloDetect(GPU_ids=0)   # 实例化YOLOV3检测
+
 
 class VideoProcesser(object):
 
@@ -445,9 +450,9 @@ class VideoManager(VideoCamera,threading.Thread):
 
     def run(self):
         #先开启avi视频消费者线程等待
-        self.startConsumerThread()
+        #self.startConsumerThread()
         #开启帧消费者线程（同时也是avi视频的生产者）
-        Thread(target=self.saveFrameQueueProducer).start()
+        #Thread(target=self.saveFrameQueueProducer).start()
 
         # 默认情况下,系统一开始就要开启线程运行就需要保存视频
         n=2
@@ -523,7 +528,8 @@ class VideoManager(VideoCamera,threading.Thread):
                 if frame_info:
                     frame =frame_info.getFrame()
 
-                    frame =yolov3_detect(frame)
+                    #frame =yolov3_detect(frame)
+                    frame =yolov3.detection(frame)                     
 
                     ret, jpeg = cv2.imencode('.jpg',frame)
                     if ret:
