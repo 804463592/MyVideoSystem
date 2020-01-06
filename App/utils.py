@@ -13,9 +13,13 @@ from datetime import datetime
 from threading import Thread  # 创建线程的模块
 from queue import Queue
 from queue import Empty
+#opencv CPU版
+from .opencv_yolov3.yolo import yolov3_detect
+#pytorch GPU版
+from .yolov3_detection.cap_detect import YoloDetect
 
+yolov3 = YoloDetect(GPU_ids=0)   # 实例化YOLOV3检测
 
-#from opencv_yolov3.yolo import yolov3_detect
 
 class VideoProcesser(object):
 
@@ -446,9 +450,9 @@ class VideoManager(VideoCamera,threading.Thread):
 
     def run(self):
         #先开启avi视频消费者线程等待
-        self.startConsumerThread()
+        #self.startConsumerThread()
         #开启帧消费者线程（同时也是avi视频的生产者）
-        Thread(target=self.saveFrameQueueProducer).start()
+        #Thread(target=self.saveFrameQueueProducer).start()
 
         # 默认情况下,系统一开始就要开启线程运行就需要保存视频
         n=2
@@ -490,7 +494,7 @@ class VideoManager(VideoCamera,threading.Thread):
                     #采用队列看起来是比上面共用帧更好的方式,但是要注意这里的put是可以阻塞的，
                     #也就是说,当你忘了开启消费者线程的时候,队列满了的时候,代码会阻塞在这里,导致后面的队列里面没有视频
                     #所以在这里不一定是更好的方式！！！
-                    self.save_frame_queue.put(FrameInfo(frame,current_datetime))
+                    # self.save_frame_queue.put(FrameInfo(frame,current_datetime))
 
                     #因为前端处理视频帧的能力比较有限,所以放入帧的时候抽帧处理,这里也有可能阻塞？？？那怎么办,
                     # 如果还是不想用全局帧self.frame =frame,那么需要判断是否已满
@@ -525,6 +529,7 @@ class VideoManager(VideoCamera,threading.Thread):
                     frame =frame_info.getFrame()
 
                     #frame =yolov3_detect(frame)
+                    frame =yolov3.detection(frame)                     
 
                     ret, jpeg = cv2.imencode('.jpg',frame)
                     if ret:

@@ -1,0 +1,26 @@
+---2018.9.23 调试笔记  （刘强，四川大学图像信息研究所614） 
+ 
+官方代码下载： https://github.com/marvis/pytorch-yolo3/tree/python3
+
+运行环境在anaconda下的pytorch环境或pycharm都测试OK！
+Python 3.5
+OpenCV
+
+PyTorch 0.4, 1.0等版本都可以
+
+
+
+运行：python  cap_detect.py   #默认请连接好摄像头！！
+-------------------------------------------------------------------------------
+# 导入包
+from .yolov3_detection.cap_detect import YoloDetect
+
+# 实例化YOLOV3检测
+YOLOV3 = YoloDetect(GPU_ids=0)   
+
+
+# 使用YOLOV3检测
+frame = YOLOV3.detection(frame)  
+
+
+

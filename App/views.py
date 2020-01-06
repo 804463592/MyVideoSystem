@@ -41,7 +41,7 @@ video_obj = VideoManager(camera_idx=0, camera_type='usb', system_info=system_inf
 video_obj1 = VideoManager(camera_idx=1, camera_type='usb', system_info=system_info)
 
 video_obj2 = VideoManager(camera_idx=2, camera_type='ip',
-                          camera_address='rtsp://admin:scuimage508@202.115.53.245', system_info=system_info)
+                          camera_address='rtsp://admin:scuimage508@202.115.52.245', system_info=system_info)
 
 
 def startVideoCamera(system_info,*video_obj_list):
@@ -344,7 +344,8 @@ def checkEmail(request):
 
 def aboutUs(request):
 
-    return HttpResponse("关于我们")
+    return render(request, "basic_templates/aboutus.html")
+
 
 
 
