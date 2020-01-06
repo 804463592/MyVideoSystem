@@ -11,11 +11,11 @@ import cv2
 def detect_cv2(model, cfgfile, weightfile, img):
     num_classes = 80
     if num_classes == 20:
-        namesfile = '/home/liuq/MyVideoSystem-dev/App/yolov3_detection/voc.names'
+        namesfile = './App/yolov3_detection/voc.names'
     elif num_classes == 80:
-        namesfile = '/home/liuq/MyVideoSystem-dev/App/yolov3_detection/coco.names'
+        namesfile = './App/yolov3_detection/coco.names'
     else:
-        namesfile = '/home/liuq/MyVideoSystem-dev/App/yolov3_detection/names'
+        namesfile = './App/yolov3_detection/names'
     
     use_cuda = 1
     if use_cuda:
