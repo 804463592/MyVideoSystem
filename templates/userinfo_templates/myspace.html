@@ -1,0 +1,278 @@
+{% extends 'userinfo_templates/userinfo_base.html' %}
+{% load static %}
+
+<link href="/static/css/userinfo_css/style.css" type="text/css" rel="stylesheet" media="all">
+
+{% block infobase %}
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="keywords" content="" />
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <!-- Custom Theme files -->
+    <link href="/static/css/userinfo_css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+    <link href="/static/css/userinfo_css/style.css" type="text/css" rel="stylesheet" media="all">
+    <!-- font-awesome icons -->
+    <link href="/static/css/userinfo_css/fontawesome-all.min.css" rel="stylesheet">
+    <!-- //Custom Theme files -->
+    <!-- online-fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet">
+    <!-- //online-fonts -->
+</head>
+
+<body>
+    <h3 class="w3_head mb-5">个人空间</h3>
+        	 <!-- 个人空间部分 -->
+    <section class="gallery" id="gallery">
+        <div class="container py-lg-5">
+
+			 <div class="row news-grids mt-lg-5 mt-4 text-center">
+                <div class="col-md-6 gal-img">
+                    <a href="#gal1"><img src="/static/images/userinfo_images/g2.jpg" alt="news image" class="img-fluid"></a>
+                </div>
+                <div class="col-md-6 proj-1 gal-img">
+                    <a href="#gal2"><img src="/static/images/userinfo_images/g3.jpg" alt="news image" class="img-fluid"></a>
+                </div>
+                <div class="col-md-6 mt-5 gal-img">
+                    <a href="#gal3"><img src="/static/images/userinfo_images/g4.jpg" alt="news image" class="img-fluid"></a>
+                </div>
+                <div class="col-md-6 mt-5 gal-img">
+                    <a href="#gal4"><img src="/static/images/userinfo_images/g5.jpg" alt="news image" class="img-fluid"></a>
+                </div>
+                <div class="col-md-6 mt-5 gal-img">
+                    <a href="#gal5"><img src="/static/images/userinfo_images/g6.jpg" alt="news image" class="img-fluid"></a>
+                </div>
+                <div class="col-md-6 mt-5 gal-img">
+                    <a href="#gal6"><img src="/static/images/userinfo_images/g7.jpg" alt="news image" class="img-fluid"></a>
+                </div>
+            </div>
+        </div>
+        <!-- popup-->
+        <div id="gal1" class="pop-overlay animate">
+            <div class="popup">
+                <img src="/static/images/userinfo_images/g2.jpg" alt="Popup Image" class="img-fluid" />
+                <p class="mt-4">Nulla viverra pharetra se, eget pulvinar neque pharetra ac int. placerat placerat dolor.</p>
+                <a class="close" href="#gallery">&times;</a>
+            </div>
+        </div>
+        <!-- //popup -->
+
+        <!-- popup-->
+        <div id="gal2" class="pop-overlay animate">
+            <div class="popup">
+                <img src="/static/images/userinfo_images/g3.jpg" alt="Popup Image" class="img-fluid" />
+                <p class="mt-4">Nulla viverra pharetra se, eget pulvinar neque pharetra ac int. placerat placerat dolor.</p>
+                <a class="close" href="#gallery">&times;</a>
+            </div>
+        </div>
+        <!-- //popup -->
+        <!-- popup-->
+        <div id="gal3" class="pop-overlay animate">
+            <div class="popup">
+                <img src="/static/images/userinfo_images/g4.jpg" alt="Popup Image" class="img-fluid" />
+                <p class="mt-4">Nulla viverra pharetra se, eget pulvinar neque pharetra ac int. placerat placerat dolor.</p>
+                <a class="close" href="#gallery">&times;</a>
+            </div>
+        </div>
+        <!-- //popup3 -->
+        <!-- popup-->
+        <div id="gal4" class="pop-overlay animate">
+            <div class="popup">
+                <img src="/static/images/userinfo_images/g5.jpg" alt="Popup Image" class="img-fluid" />
+                <p class="mt-4">Nulla viverra pharetra se, eget pulvinar neque pharetra ac int. placerat placerat dolor.</p>
+                <a class="close" href="#gallery">&times;</a>
+            </div>
+        </div>
+        <!-- //popup -->
+        <!-- popup-->
+        <div id="gal5" class="pop-overlay animate">
+            <div class="popup">
+                <img src="/static/images/userinfo_images/g6.jpg" alt="Popup Image" class="img-fluid" />
+                <p class="mt-4">Nulla viverra pharetra se, eget pulvinar neque pharetra ac int. placerat placerat dolor.</p>
+                <a class="close" href="#gallery">&times;</a>
+            </div>
+        </div>
+        <!-- //popup -->
+        <!-- popup-->
+        <div id="gal6" class="pop-overlay animate">
+            <div class="popup">
+                <img src="/static/images/userinfo_images/g7.jpg" alt="Popup Image" class="img-fluid" />
+                <p class="mt-4">Nulla viverra pharetra se, eget pulvinar neque pharetra ac int. placerat placerat dolor.</p>
+                <a class="close" href="#gallery">&times;</a>
+            </div>
+        </div>
+        <!-- //popup -->
+    </section>
+
+
+		<!-- news -->
+       <div class="news" id="news">
+		<div class="text-left">
+			<h3 class="w3_head mb-5">Recent News</h3>
+		</div>
+			<div class="row news-grids">
+				<div class="col-lg-6 news-grids-left">
+					<div class="news_top">
+						<img src="/static/images/userinfo_images/g1.jpg" alt="news image" class="img-fluid">
+						<h4>Nulla pellentesque</h4>
+						<p class="newsp">Accumsan orci faucibus id eu lorem semper. Eu ac iaculis </p>
+					</div>
+				</div>
+				<div class="col-lg-6 news-grids-middle">
+					<div class="news_top">
+						<img src="/static/images/userinfo_images/g8.jpg" alt="news image" class="img-fluid">
+						<h4>Nulla pellentesque</h4>
+						<p class="newsp">Accumsan orci faucibus id eu lorem semper. Eu ac iaculis </p>
+					</div>
+				</div>
+				<div class="col-lg-6 news-grids-right">
+					<div class="news_top">
+						<img src="/static/images/userinfo_images/g9.jpg" alt="news image" class="img-fluid">
+						<h4>Nulla pellentesque</h4>
+						<p class="newsp">Accumsan orci faucibus id eu lorem semper. Eu ac iaculis </p>
+					</div>
+				</div>
+				<div class="col-lg-6 news-grids-right">
+					<div class="news_top">
+						<img src="/static/images/userinfo_images/g10.jpg" alt="news image" class="img-fluid">
+						<h4>Nulla pellentesque</h4>
+						<p class="newsp">Accumsan orci faucibus id eu lorem semper. Eu ac iaculis </p>
+					</div>
+				</div>
+				<div class="col-lg-6 news-grids-right">
+					<div class="news_top">
+						<img src="/static/images/userinfo_images/g11.jpg" alt="news image" class="img-fluid">
+						<h4>Nulla pellentesque</h4>
+						<p class="newsp">Accumsan orci faucibus id eu lorem semper. Eu ac iaculis </p>
+					</div>
+				</div>
+				<div class="col-lg-6 news-grids-right">
+					<div class="news_top">
+						<img src="/static/images/userinfo_images/g12.jpg" alt="news image" class="img-fluid">
+						<h4>Nulla pellentesque</h4>
+						<p class="newsp">Accumsan orci faucibus id eu lorem semper. Eu ac iaculis </p>
+					</div>
+				</div>
+			</div>
+			<a class="btn btn-primary mt-lg-5 mt-3 agile-link-bnr" href="#about" role="button">Learn More</a>
+		</div>
+<!-- //news -->
+
+	 <!-- //contact -->
+    </div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock infobase %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{#<!DOCTYPE html>#}
+{#<html lang="zxx">#}
+{#<head>#}
+{#    <title>Home</title>#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1">#}
+{#    <meta charset="utf-8" />#}
+{#    <meta name="keywords" content="" />#}
+{#    <script>#}
+{#        addEventListener("load", function () {#}
+{#            setTimeout(hideURLbar, 0);#}
+{#        }, false);#}
+{##}
+{#        function hideURLbar() {#}
+{#            window.scrollTo(0, 1);#}
+{#        }#}
+{#    </script>#}
+{#    <!-- Custom Theme files -->#}
+{#    <link href="/static/css/userinfo_css/bootstrap.css" type="text/css" rel="stylesheet" media="all">#}
+{#    <link href="/static/css/userinfo_css/style.css" type="text/css" rel="stylesheet" media="all">#}
+{#    <!-- font-awesome icons -->#}
+{#    <link href="/static/css/userinfo_css/fontawesome-all.min.css" rel="stylesheet">#}
+{#    <!-- //Custom Theme files -->#}
+{#    <!-- online-fonts -->#}
+{#    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet">#}
+{#    <!-- //online-fonts -->#}
+{#</head>#}
+{##}
+{#<body>#}
+{##}
+{#    <form>#}
+{#      <div class="form-group">#}
+{#        <label for="exampleInputEmail1">Email address</label>#}
+{#        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">#}
+{#      </div>#}
+{##}
+{#      <div class="form-group">#}
+{#        <label for="exampleInputPassword1">Password</label>#}
+{#        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">#}
+{#      </div>#}
+{##}
+{#      <div class="form-group">#}
+{#        <label for="exampleInputFile">File input</label>#}
+{#        <input type="file" id="exampleInputFile">#}
+{#        <p class="help-block">Example block-level help text here.</p>#}
+{#      </div>#}
+{##}
+{#      <div class="checkbox">#}
+{#        <label>#}
+{#          <input type="checkbox"> Check me out#}
+{#        </label>#}
+{#      </div>#}
+{##}
+{#      <button type="submit" class="btn btn-default">Submit</button>#}
+{#    </form>#}
+{##}
+{#</body>#}
+{#</html>#}
+
+

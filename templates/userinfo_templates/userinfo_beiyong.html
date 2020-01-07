@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="keywords" content="" />
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <!-- Custom Theme files -->
+    <link href="/static/css/userinfo_css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+    <link href="/static/css/userinfo_css/style.css" type="text/css" rel="stylesheet" media="all">
+    <!-- font-awesome icons -->
+    <link href="/static/css/userinfo_css/fontawesome-all.min.css" rel="stylesheet">
+    <!-- //Custom Theme files -->
+    <!-- online-fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet">
+    <!-- //online-fonts -->
+</head>
+
+<body>
+
+    <div class="sidenav" >
+		<div class="side_top">
+            <img src="{{icon_url}}" alt="news image" class="img-fluid navimg">
+{#			<img src={{icon_url}}  class="img-fluid navimg">#}
+			<h1>{{ user_signature }}</h1>
+		</div>
+		<!-- header -->
+		<header>
+			<div class="container-fluid px-lg-5 ">
+				<nav class="mnu mx-auto">
+                    <label for="drop" class="toggle">Menu</label>
+                    <input type="checkbox" id="drop">
+						<ul class="menu">
+
+							 <li class="mt-sm-3"><a href="#about" class="scroll">基本信息</a></li>
+{#                             <li class="mt-sm-3"><a href="#services" class="scroll">账号设置</a></li>#}
+                             <li class="mt-sm-3"><a href="#gallery" class="scroll">个人空间</a></li>
+							 <li class="mt-sm-3"><a href="#news" class="scroll">修改资料</a></li>
+                            <li class="mt-sm-3"><a href="{% url "app:pwdchange" %}" class="scroll">修改密码</a></li>
+
+                        </ul>
+				</nav>
+			</div>
+		</header>
+    </div>
+    <div class="main" id="about">
+        <div class="banner-text-w3ls" style="background:#f0f4f4">
+{#        <div class="banner-text-w3ls" style="background-image:linear-gradient(to top, #a8edea 0%, #fed6e3 100%)">#}
+{#        <div class="banner-text-w3ls" style="background-image: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%)">#}
+
+
+            <div class="container">
+                <h3 class="w3_head mb-5">基本信息</h3>
+                    <div class="mx-auto text-left">
+                            <img src="{{icon_url}}" alt="news image" class="round_icon" >
+                            <p>用户名:{{ username }}</p><br/>
+                            <p>邮&emsp;箱:{{ user_email}}</p><br/>
+
+                            <form method="post" enctype="multipart/form-data" action="{% url "app:userinfo" %}" >
+                                {% csrf_token %}
+                                <div class="wlfg-wrap clearfix">
+                                    <p>性&emsp;别：</p>
+                                    <label  class="roup"><input type="radio" hidefocus="true" value="1"  name="gender">男&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                    <label  class="lh16"><input type="radio" hidefocus="true" value="2" checked="checked" name="gender">女</label>
+                                </div><br/>
+
+                                <div class="wlfg-wrap clearfix">
+                                    <p>个性签名:</p>
+                                    <textarea name="signature" rows="4" cols="100" onpropertychange="if(this.scrollHeight>100) this.style.posHeight=this.scrollHeight+8"></textarea>
+                                </div><br/>
+
+                                 <div class="wlfg-wrap clearfix">
+                                    <p>原&nbsp;&nbsp;密&nbsp;&nbsp;码：</p>
+                                    <input name = "oldpassword" type="tetx" id="oldpassword_input" size="50" maxlength="40" placeholder="">
+                                 </div><br/>
+
+                                <div class="wlfg-wrap clearfix">
+                                    <p>修改密码：</p>
+                                    <input name = "newpassword" type="tetx" id="newpassword_input" size="50" maxlength="40" placeholder="6-10位数字和字母的组合">
+                                </div><br/>
+
+                                <div class="wlfg-wrap clearfix">
+                                    <p>确认密码：</p>
+                                    <input name = "newpassword_confirm" type="tetx" id="newpassword_confirm_input" size="50" maxlength="40" placeholder="请再次输入新密码确认">
+                                </div>
+
+{#                                <a class="btn btn-primary mt-lg-5 mt-3 agile-link-bnr" style="float:left;"href="#services" role="button">保存</a><br/><br/><br/><br/><br/>#}
+                                <div class="btn"><button type="submit"  class="btn btn-primary btn-block" style="float:left" >保存</button></div><br/><br/>
+
+                            </form>
+                    </div>
+            </div>
+        </div>
+
+        <HR  width="100%" color=#E4F4D4 SIZE=0/>
+
+
+{#    <div class="tlinks" style="background:#f0f4f4"></div>#}
+{#<!-- services -->#}
+{#			<section class="slide-wrapper" id="services" style="background:#f0f4f4">#}
+{##}
+{#                    <div class="services">#}
+{#                        <div class="d-flex services-box">#}
+{#                            <h3 class="w3_head mb-5">账号设置</h3>#}
+{#                        </div>#}
+{#					<div/>#}
+{#					<div class="row service_w3top mt-5">#}
+{#                         <div class="wlfg-wrap clearfix">#}
+{#                            <p>修改用户名：</p>#}
+{#                             <input name = "new_username" type="tetx" id="new_username_input" size="50" maxlength="40" placeholder="">#}
+{#                         </div><br/>#}
+{#                         <div class="wlfg-wrap clearfix">#}
+{#                            <p>修改密码：</p>#}
+{#                             <input name = "new_username" type="tetx" id="new_username_input" size="50" maxlength="40" placeholder="6-10位数字和字母的组合">#}
+{#                         </div><br/>#}
+{#                         <div class="wlfg-wrap clearfix">#}
+{#                            <p>确认密码：</p>#}
+{#                             <input name = "new_username" type="tetx" id="new_username_input" size="50" maxlength="40" >#}
+{#                         </div><br/>#}
+{#                        <a class="btn btn-primary mt-lg-5 mt-3 agile-link-bnr" style="float:left;"href="#services" role="button">确认</a><br/><br/>#}
+{#                    </div>#}
+{#                    <!-- .Services ends here -->#}
+{#                </section>#}
+{#			<!-- //services -->#}
+{#         <HR style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#E4F4D4 SIZE=3/>#}
+
+
+
+        	 <!-- 个人空间部分 -->
+    <section class="gallery" id="gallery">
+        <div class="container py-lg-5">
+           <h3 class="w3_head mb-5">个人空间</h3>
+			 <div class="row news-grids mt-lg-5 mt-4 text-center">
+                <div class="col-md-6 gal-img">
+                    <a href="#gal1"><img src="/static/images/userinfo_images/g2.jpg" alt="news image" class="img-fluid"></a>
+                </div>
+                <div class="col-md-6 proj-1 gal-img">
+                    <a href="#gal2"><img src="/static/images/userinfo_images/g3.jpg" alt="news image" class="img-fluid"></a>
+                </div>
+                <div class="col-md-6 mt-5 gal-img">
+                    <a href="#gal3"><img src="/static/images/userinfo_images/g4.jpg" alt="news image" class="img-fluid"></a>
+                </div>
+                <div class="col-md-6 mt-5 gal-img">
+                    <a href="#gal4"><img src="/static/images/userinfo_images/g5.jpg" alt="news image" class="img-fluid"></a>
+                </div>
+                <div class="col-md-6 mt-5 gal-img">
+                    <a href="#gal5"><img src="/static/images/userinfo_images/g6.jpg" alt="news image" class="img-fluid"></a>
+                </div>
+                <div class="col-md-6 mt-5 gal-img">
+                    <a href="#gal6"><img src="/static/images/userinfo_images/g7.jpg" alt="news image" class="img-fluid"></a>
+                </div>
+            </div>
+        </div>
+        <!-- popup-->
+        <div id="gal1" class="pop-overlay animate">
+            <div class="popup">
+                <img src="/static/images/userinfo_images/g2.jpg" alt="Popup Image" class="img-fluid" />
+                <p class="mt-4">Nulla viverra pharetra se, eget pulvinar neque pharetra ac int. placerat placerat dolor.</p>
+                <a class="close" href="#gallery">&times;</a>
+            </div>
+        </div>
+        <!-- //popup -->
+
+        <!-- popup-->
+        <div id="gal2" class="pop-overlay animate">
+            <div class="popup">
+                <img src="/static/images/userinfo_images/g3.jpg" alt="Popup Image" class="img-fluid" />
+                <p class="mt-4">Nulla viverra pharetra se, eget pulvinar neque pharetra ac int. placerat placerat dolor.</p>
+                <a class="close" href="#gallery">&times;</a>
+            </div>
+        </div>
+        <!-- //popup -->
+        <!-- popup-->
+        <div id="gal3" class="pop-overlay animate">
+            <div class="popup">
+                <img src="/static/images/userinfo_images/g4.jpg" alt="Popup Image" class="img-fluid" />
+                <p class="mt-4">Nulla viverra pharetra se, eget pulvinar neque pharetra ac int. placerat placerat dolor.</p>
+                <a class="close" href="#gallery">&times;</a>
+            </div>
+        </div>
+        <!-- //popup3 -->
+        <!-- popup-->
+        <div id="gal4" class="pop-overlay animate">
+            <div class="popup">
+                <img src="/static/images/userinfo_images/g5.jpg" alt="Popup Image" class="img-fluid" />
+                <p class="mt-4">Nulla viverra pharetra se, eget pulvinar neque pharetra ac int. placerat placerat dolor.</p>
+                <a class="close" href="#gallery">&times;</a>
+            </div>
+        </div>
+        <!-- //popup -->
+        <!-- popup-->
+        <div id="gal5" class="pop-overlay animate">
+            <div class="popup">
+                <img src="/static/images/userinfo_images/g6.jpg" alt="Popup Image" class="img-fluid" />
+                <p class="mt-4">Nulla viverra pharetra se, eget pulvinar neque pharetra ac int. placerat placerat dolor.</p>
+                <a class="close" href="#gallery">&times;</a>
+            </div>
+        </div>
+        <!-- //popup -->
+        <!-- popup-->
+        <div id="gal6" class="pop-overlay animate">
+            <div class="popup">
+                <img src="/static/images/userinfo_images/g7.jpg" alt="Popup Image" class="img-fluid" />
+                <p class="mt-4">Nulla viverra pharetra se, eget pulvinar neque pharetra ac int. placerat placerat dolor.</p>
+                <a class="close" href="#gallery">&times;</a>
+            </div>
+        </div>
+        <!-- //popup -->
+    </section>
+
+
+		<!-- news -->
+       <div class="news" id="news">
+		<div class="text-left">
+			<h3 class="w3_head mb-5">Recent News</h3>
+		</div>
+			<div class="row news-grids">
+				<div class="col-lg-6 news-grids-left">
+					<div class="news_top">
+						<img src="/static/images/userinfo_images/g1.jpg" alt="news image" class="img-fluid">
+						<h4>Nulla pellentesque</h4>
+						<p class="newsp">Accumsan orci faucibus id eu lorem semper. Eu ac iaculis </p>
+					</div>
+				</div>
+				<div class="col-lg-6 news-grids-middle">
+					<div class="news_top">
+						<img src="/static/images/userinfo_images/g8.jpg" alt="news image" class="img-fluid">
+						<h4>Nulla pellentesque</h4>
+						<p class="newsp">Accumsan orci faucibus id eu lorem semper. Eu ac iaculis </p>
+					</div>
+				</div>
+				<div class="col-lg-6 news-grids-right">
+					<div class="news_top">
+						<img src="/static/images/userinfo_images/g9.jpg" alt="news image" class="img-fluid">
+						<h4>Nulla pellentesque</h4>
+						<p class="newsp">Accumsan orci faucibus id eu lorem semper. Eu ac iaculis </p>
+					</div>
+				</div>
+				<div class="col-lg-6 news-grids-right">
+					<div class="news_top">
+						<img src="/static/images/userinfo_images/g10.jpg" alt="news image" class="img-fluid">
+						<h4>Nulla pellentesque</h4>
+						<p class="newsp">Accumsan orci faucibus id eu lorem semper. Eu ac iaculis </p>
+					</div>
+				</div>
+				<div class="col-lg-6 news-grids-right">
+					<div class="news_top">
+						<img src="/static/images/userinfo_images/g11.jpg" alt="news image" class="img-fluid">
+						<h4>Nulla pellentesque</h4>
+						<p class="newsp">Accumsan orci faucibus id eu lorem semper. Eu ac iaculis </p>
+					</div>
+				</div>
+				<div class="col-lg-6 news-grids-right">
+					<div class="news_top">
+						<img src="/static/images/userinfo_images/g12.jpg" alt="news image" class="img-fluid">
+						<h4>Nulla pellentesque</h4>
+						<p class="newsp">Accumsan orci faucibus id eu lorem semper. Eu ac iaculis </p>
+					</div>
+				</div>
+			</div>
+			<a class="btn btn-primary mt-lg-5 mt-3 agile-link-bnr" href="#about" role="button">Learn More</a>
+		</div>
+<!-- //news -->
+
+
+<!-- contact -->
+	 <section class="wedo" id="contact">
+			<h3 class="w3_head mb-5">修改密码 </h3>
+		   <p class="banp mt-5"> Integer porttitor mollisar curae suspendisse mauris posuere accumsan massa posuere lacus convallis tellus interdum. Amet nullam fringilla nibh nulla convallis ut venenatis purus sit arcu sociis.</p>
+		   <div class="row mt-4">
+			   <div class="col-lg-7 contact_grid_right">
+					<form action="#" method="post">
+						<div class="row contact_top">
+							<div class="col-sm-6">
+								<input type="text" name="Name" placeholder="Name" required="">
+							</div>
+							<div class="col-sm-6">
+								<input type="email" name="Email" placeholder="Email" required="">
+							</div>
+						</div>
+
+							<textarea name="Message" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message...';}" required>Message...</textarea>
+							<input type="submit" class="btn" value="Send Message">
+					</form>
+				</div>
+				<div class="col-lg-5 contact_grid_left">
+				<h3 class="w3_head mb-5">Locate Us </h3>
+					<ul class="footer-bottom-list">
+							<li>
+								<span class="fa fa-map-marker"></span> 3481 Honey Street
+								<span> California, USA </span>
+
+							</li>
+							<li>
+								<span class="fa fa-envelope"></span>
+								<a href="mailto:name@example.com"> mail@example.com</a>
+							</li>
+							<li>
+								<span class="fa fa-phone"></span> +143 367 436 2049 </li>
+							<li>
+								<span class="fa fa-fax"></span> +166 367 808 5055 </li>
+							<li>
+								<span class="fa fa-globe"></span>
+								<a href="#"> www.websitename.com</a>
+							</li>
+					</ul>
+				</div>
+			</div>
+			<div class="cpy-right text-left">
+				<p>Copyright &copy; 2019.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
+
+				</p>
+			</div>
+	</section>
+	 <!-- //contact -->
+    </div>
+
+</body>
+</html>
+
+

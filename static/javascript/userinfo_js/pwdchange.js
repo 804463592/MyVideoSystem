@@ -55,43 +55,6 @@ $(function () {
         }
     })
 
-    //校验邮箱是否重复及格式是否正确
-    var $email = $("#email_input");
-    $email.change(function () {
-        var email = $email.val().trim();//获取到email的值,.trim()去除左右两边的空格
-
-        if (email.length)
-        {
-            //将邮箱发送服务器进行预校验
-            $.getJSON("/app/checkemail/",{'email':email},function (data)
-            {
-                console.log(data);
-
-                if(data['status'] == 200)
-                {
-                    oError.innerHTML = " ";
-                    //isError = false
-
-                    //当邮箱唯一可用时,判断邮箱格式是否正确
-                    var reg = /^[0-9a-zA-Z_]{0,19}@[0-9a-zA-Z]{1,13}\.[com,cn,net]{1,3}$/;
-                    isok = reg.test(email);
-                    if (!isok)
-                    {
-                       console.log("邮箱不正确");
-                       oError.innerHTML = "邮箱格式不正确";
-                       isError = false
-                       // return
-                    }
-                }
-
-                if(data['status'] == 901)
-                {
-                    oError.innerHTML = "该邮箱已存在";
-                    isError = false
-                }
-            })
-        }
-    })
 
     //密码的格式是否符合要求
     var $password = $("#password_input");

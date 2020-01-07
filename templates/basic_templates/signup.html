@@ -73,10 +73,18 @@
 
                                 <div class="world">
                                     <label for="invite_code_input" style="float:left">邀请码:</label>
-                                    <input name = "invite_code" type="text" class="form-control" id="invite_code_input" placeholder="管理员注册请输入邀请码">
+                                    <input name = "invite_code" type="text" class="form-control" id="invite_code_input" placeholder="管理员注册请输入邀请码"><br/>
                                 </div>
 
-                                <div class="world1" id="error_box"><br><p>{{ dst }}</p><br></div>
+{#                                <div class="world">#}
+{#                                    <label for="icon_input" style="float:left"><span style="color:red ">*</span>头像:</label>#}
+{#                                    <input name = "icon" type="file" class="form-control" id="invite_code_input" required="">#}
+{#                                </div>#}
+
+{#                                <input type="file" name="img">#}
+{#                                <button type="submit">上传</button>#}
+
+                                <div class="world1" id="error_box"><br><p>{{ dst }}</p></div>
 
                                 <div class="pt-3"><button type="submit" class = "btn btn-white-alt text-blue btn-lg"  onclick = "check()" >注册</button></div>
 

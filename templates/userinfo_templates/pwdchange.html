@@ -1,0 +1,115 @@
+{% extends 'userinfo_templates/userinfo_base.html' %}
+{% load static %}
+
+{#    {% block title %}title自定义{% endblock %}#}
+
+{% block linkscript %}
+    <script type="text/javascript" src="static/javascript/userinfo_js/pwdchange.js"></script>
+{% endblock linkscript %}
+
+{% block infobase %}
+     <form method="post" enctype="multipart/form-data"  >
+     {% csrf_token %}
+     <h3 class="w3_head mb-5">修改密码</h3><br/>
+
+     <div class="form-group">
+        <label for="password1">原&nbsp;密&nbsp;码:</label>
+        <input name = "password1" type="password" class="form-control" style="width:600px" id="password1" placeholder="请输入原密码" required="">
+      </div>
+
+      <div class="form-group">
+        <label for="password2">修改密码:</label>
+        <input name = "password2" type="password2" class="form-control" style="width:600px" id="password2" placeholder="请输入6-10位数字和字母组合的新密码" required="">
+      </div>
+
+      <div class="form-group">
+        <label for="password2_confirm">确认密码:</label>
+        <input name = "password2_confirm" type="password" class="form-control" style="width:600px" id="password2_confirm" placeholder="请再次输入新密码确认" required="">
+      </div><br/>
+
+      {% if errmsg %} {# 判断是否有错误信息 #}
+        <div class="error_tip" style="display: block;color: red">{{ errmsg }}</div>
+      {% endif %}
+
+      <button type="submit" class="btn btn-default" onclick="check()">提&nbsp;&nbsp;交</button>
+    </form>
+
+{% endblock infobase %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{#<!DOCTYPE html>#}
+{#<html lang="zxx">#}
+{#<head>#}
+{#    <title>Home</title>#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1">#}
+{#    <meta charset="utf-8" />#}
+{#    <meta name="keywords" content="" />#}
+{#    <script>#}
+{#        addEventListener("load", function () {#}
+{#            setTimeout(hideURLbar, 0);#}
+{#        }, false);#}
+{##}
+{#        function hideURLbar() {#}
+{#            window.scrollTo(0, 1);#}
+{#        }#}
+{#    </script>#}
+{#    <!-- Custom Theme files -->#}
+{#    <link href="/static/css/userinfo_css/bootstrap.css" type="text/css" rel="stylesheet" media="all">#}
+{#    <link href="/static/css/userinfo_css/style.css" type="text/css" rel="stylesheet" media="all">#}
+{#    <!-- font-awesome icons -->#}
+{#    <link href="/static/css/userinfo_css/fontawesome-all.min.css" rel="stylesheet">#}
+{#    <!-- //Custom Theme files -->#}
+{#    <!-- online-fonts -->#}
+{#    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet">#}
+{#    <!-- //online-fonts -->#}
+{#</head>#}
+{##}
+{#<body>#}
+{##}
+{#    <form>#}
+{#      <div class="form-group">#}
+{#        <label for="exampleInputEmail1">Email address</label>#}
+{#        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">#}
+{#      </div>#}
+{##}
+{#      <div class="form-group">#}
+{#        <label for="exampleInputPassword1">Password</label>#}
+{#        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">#}
+{#      </div>#}
+{##}
+{#      <div class="form-group">#}
+{#        <label for="exampleInputFile">File input</label>#}
+{#        <input type="file" id="exampleInputFile">#}
+{#        <p class="help-block">Example block-level help text here.</p>#}
+{#      </div>#}
+{##}
+{#      <div class="checkbox">#}
+{#        <label>#}
+{#          <input type="checkbox"> Check me out#}
+{#        </label>#}
+{#      </div>#}
+{##}
+{#      <button type="submit" class="btn btn-default">Submit</button>#}
+{#    </form>#}
+{##}
+{#</body>#}
+{#</html>#}
+
+

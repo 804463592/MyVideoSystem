@@ -1,13 +1,16 @@
 from django.http import HttpResponse, StreamingHttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.core.files.base import ContentFile
+from django.core.files.storage import default_storage
+import os
 
 from django.contrib import messages
 from django.core import serializers
 
 import json
-
 from MyVideoSystem.settings import MEDIA_URL_PREFIX
+
 from .utils import VideoCamera
 from .utils import VideoManager
 
@@ -78,15 +81,12 @@ def login(request):
         user_name =check_user_email.matchName(name_or_email)
         pass_word =request.POST.get("password")
 
-
         #check_user_email.matchName如果返回None,则重新登录
         if not all([user_name,pass_word]):
 
             return render(request,"basic_templates/login3.html")
 
         if check_user_email.checkNamePassword(user_name,pass_word):
-
-
             # 使用session会话技术
             request.session["username"] = user_name
 
@@ -98,36 +98,108 @@ def login(request):
                  return redirect(reverse("app:configuration"))
             #普通用户登录
             else:
-
                 #开启摄像头线程,可以重复调用,以确保在不同页面都保证开启
-<<<<<<< HEAD
                 startVideoCamera(system_info,video_obj,video_obj1,video_obj2)
-=======
-                # startVideoCamera(video_obj,video_obj1,video_obj2)
->>>>>>> 362d86d6bd5a58abaf873499fdcc69a84bc4f830
                  #返回一个界面
                 return render(request, "basic_templates/videoanalysis.html", locals())
-
         else:
             errmsg = "用户名或者密码错误"
             return render(request,"basic_templates/login3.html",locals())
 
-def user(request):
+def userInfo(request):
+    username = request.session.get("username")
+    if not username:
+        return redirect(reverse("app:login"))
 
-    # username =request.session.get("username")
-    # #不一定要等于admin,username有值即代表已经登录
-    # if username:
-    #     return HttpResponse("欢迎回来，%s"%username)
-    #return HttpResponse("请登录")
+    #下面是对输入的读取显示
+    user = UserInfo.objects.get(user_name=username)
+    user_email = user.user_email
 
-    return render(request,"basic_templates/userinfo.html")
+    data = {
+        "username":username,
+        "user_email": user_email,
+        "icon_url":"/static/videoStorage/"+user.user_icon.url,
+        "user_signature":user.user_signature,
+        # "user_password":user.user_password,
+    }
+    # user_gender = request.POST.get("gender")
+    # user_signature = request.POST.get("signature")
+    #
+    # user_newpassword = request.POST.get("newpassword")
+    # print("user_gender",user_gender)
+    #
+    # # user = UserInfo.objects.get(username=username)  # 创建一个类的实例
+    # UserInfo.objects.filter(user_name=username).update(user_signature = user_signature,user_password = user_newpassword)
 
+    # user.user_gender = user_gender
+    # user.user_password = user_newpassword
+    # user.user_signature = user_signature
+    # user.save()
+    return render(request, "userinfo_templates/userinfo.html", context=data)
+
+def aboutMe(request):
+    username = request.session.get("username")
+    if not username:
+        return redirect(reverse("app:login"))
+
+    return render(request, "userinfo_templates/aboutme.html", context=locals())
+
+def infoChange(request):
+    username = request.session.get("username")
+    if not username:
+        return redirect(reverse("app:login"))
+
+    return render(request, "userinfo_templates/infochange.html",context=locals())
+
+def pwdChange(request):
+    username = request.session.get("username")
+    if not username:
+        return redirect(reverse("app:login"))
+
+    user = UserInfo.objects.get(user_name=username)
+
+    oldpassword = user.user_password
+
+    password1 =  request.POST.get("password1")
+    print("password1",password1)
+
+    if oldpassword != password1:
+        errmsg = "原密码输入错误"
+    else:
+        password2 = request.POST.get("password2")
+
+        if len(password2)>10 or len(password2)<6:
+            errmsg = "新密码输入格式有问题"
+
+
+
+    return render(request, "userinfo_templates/pwdchange.html",context=locals())
+
+
+
+def mySpace(request):
+    username = request.session.get("username")
+    if not username:
+        return redirect(reverse("app:login"))
+
+    return render(request, "userinfo_templates/myspace.html", context=locals())
+
+
+
+
+# def base(request):
+#     username = request.session.get("username")
+#     if not username:
+#         return redirect(reverse("app:login"))
+#username_input
+#     user = UserInfo.objects.filter(user_name=username)
+#     # avatar = request.FILES.get('icon')
+#     return render(request, "basic_templates/base.html", {'user': user})
 
 def logout(request):
 
     request.session.flush()
     return redirect(reverse("app:login"))
-
 
 def videoViewer(request,camera_idx,is_playing):
 
@@ -204,7 +276,6 @@ def videoAnalysis(request):
 
     return render(request,"basic_templates/videoanalysis.html")
 
-
 def videoStreamPlay(request,camera_idx):
     username = request.session.get("username")
     if not username:
@@ -213,7 +284,6 @@ def videoStreamPlay(request,camera_idx):
     if request.method == "GET":
 
         return render(request,"basic_templates/video_stream_play.html",context=locals())
-
 
 def videoPlay(request):
     username = request.session.get("username")
@@ -242,7 +312,6 @@ def videoPlay(request):
         return render(request,"basic_templates/videoplay.html",context={"video_url":video_url,"video_camera_name":video_camera_name,
                                                     "video_start_time":video_start_time,"video_end_time":video_end_time
                                                     })
-
 
 def configuration(request):
     # 判断当前用户是否登录
@@ -276,7 +345,6 @@ def configuration(request):
 
         return JsonResponse(data ={'msg':"system setting success！"}, safe=False)
 
-
 def systemInformation(request):
     if request.method == "GET":
 
@@ -289,7 +357,6 @@ def systemInformation(request):
 
         return JsonResponse(data=init_time,safe=False)
 
-
 def signUp(request):
     if request.method == "GET":
         return render(request, "basic_templates/signup.html")
@@ -298,7 +365,7 @@ def signUp(request):
         user_name = request.POST.get("username")
         user_email = request.POST.get("email")
         invite_code = request.POST.get("invite_code")
-
+        #user_icon = request.FILES.get("icon")
         # if UserInfo.objects.filter(Q(user_name=user_name) | Q(user_email=user_email)).exists():
         #     return HttpResponse("youwenti")
         #
@@ -310,15 +377,21 @@ def signUp(request):
         user.user_name = user_name
         user.user_email = user_email
         user.user_password = password
+        #user.user_icon = user_icon
 
         if invite_code == "VSST":
             user.is_admin = True
         else:
             user.is_admin = False
-
+        #
+        # path = os.path.join(settings.STATICFILES_DIRS,path)
+        # path = default_storage.save('/static/images/userinfo_images/icon_images/'+image.name,ContentFile(image.read()))
+        # tmp_file = os.path.join(settings.BASE_DIR,path)
+        #
+        # print("user_icon",tmp_file)
+        #user.user_icon = user_icon
         user.save()
         return redirect(reverse("app:login"))
-        #return render(request, "basic_templates/login3.html")
 
 def checkUser(requst):
     username = requst.GET.get("username")
@@ -333,6 +406,7 @@ def checkUser(requst):
     else:
         pass
     return JsonResponse(data=data)
+
 
 def checkEmail(request):
     email = request.GET.get("email")
