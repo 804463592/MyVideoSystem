@@ -86,33 +86,33 @@
     <div class="videoplay">
         <li><b>播放视频</b></li>
 
-    <div class="play">
+        <div class="play">
 
-        <video id="my-video" class="video-js" controls preload="auto" width="600" height="400" style="margin: auto"
-       data-setup="{}">
-        <source src="{{ video_url }}" type='video/mp4'>
-        <p class="vjs-no-js">
-          To view this video please enable JavaScript, and consider upgrading to a web browser that
-          <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-        </p>
-            您的浏览器不支持 video 属性
-        </video>
-{#        <script src="http://vjs.zencdn.net/6.6.3/video.js"></script>#}
-        <ul class="video_info">
-            <b>视频信息</b><br>
-            <b>摄影机器</b>:{{ video_camera_name }}<br>
-            <b>开始时间</b>:{{ video_start_time }}<br>
-            <b>结束时间</b>:{{ video_end_time }}<br>
+            <video id="my-video" class="video-js" controls preload="auto" width="600" height="400" style="margin: auto"
+           data-setup="{}">
+            <source src="{{ video_url }}" type='video/mp4'>
+            <p class="vjs-no-js">
+              To view this video please enable JavaScript, and consider upgrading to a web browser that
+              <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+            </p>
+                您的浏览器不支持 video 属性
+            </video>
+    {#        <script src="http://vjs.zencdn.net/6.6.3/video.js"></script>#}
+            <ul class="video_info">
+                <b>视频信息</b><br>
+                <b>摄影机器</b>:{{ video_camera_name }}<br>
+                <b>开始时间</b>:{{ video_start_time }}<br>
+                <b>结束时间</b>:{{ video_end_time }}<br>
 
-            <section>
-                <h1>Attention</h1>
-                <p>
-               Due to compatibility issues, it is recommended to using Google Chrome browser and Firefox browser.
-               At present, the mobile platform only supports Xiaomi browser, while QQ browser and UC browser are not supported temporarily!
-                </p>
-            </section>
-        </ul>
-    </div>
+                <section>
+                    <h1>Attention</h1>
+                    <p>
+                   Due to compatibility issues, it is recommended to using Google Chrome browser and Firefox browser.
+                   At present, the mobile platform only supports Xiaomi browser, while QQ browser and UC browser are not supported temporarily!
+                    </p>
+                </section>
+            </ul>
+        </div>
     </div>
 
 {% endblock base %}
