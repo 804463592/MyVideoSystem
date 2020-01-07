@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'gs+t3-jk%3i0!#i&w6@1a2)u#7!7w=36)^^rtz6zjpxcw#37bo'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -126,13 +126,12 @@ USE_TZ = False
 STATIC_URL = '/static/'
 
 #新增
-#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 #去掉
-STATICFILES_DIRS =[
-    os.path.join(BASE_DIR,'static'),
-]
-
+# STATICFILES_DIRS =[
+#     os.path.join(BASE_DIR,'static'),
+# ]
 
 MEDIA_ROOT =os.path.join(BASE_DIR,"static/videoStorage")
 MEDIA_URL_PREFIX ="/static/videoStorage/"

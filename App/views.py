@@ -254,9 +254,9 @@ def configuration(request):
         videos_max_num = int(request.POST.get("capacity"))
         video_length = int(request.POST.get('length'))
         videos_fps = int(request.POST.get('fps'))
-        print(videos_max_num, video_length, videos_fps)
+        #print(videos_max_num, video_length, videos_fps)
         frames_max_num = 60*video_length*videos_fps
-        print("videos_max_num:",videos_max_num,"frames_max_num:",frames_max_num, "videos_fps:",videos_fps)
+        #print("videos_max_num:",videos_max_num,"frames_max_num:",frames_max_num, "videos_fps:",videos_fps)
 
         # system_info.setVideosFps(videos_fps=videos_fps)
         # system_info.setVideosMaxNum(videos_max_num=videos_max_num)

@@ -16,9 +16,9 @@ from queue import Empty
 #opencv CPU版
 from .opencv_yolov3.yolo import yolov3_detect
 #pytorch GPU版
-from .yolov3_detection.cap_detect import YoloDetect
+#from .yolov3_detection.cap_detect import YoloDetect
 
-yolov3 = YoloDetect(GPU_ids=0)   # 实例化YOLOV3检测
+#yolov3 = YoloDetect(GPU_ids=0)   # 实例化YOLOV3检测
 
 
 class VideoProcesser(object):
@@ -529,7 +529,7 @@ class VideoManager(VideoCamera,threading.Thread):
                     frame =frame_info.getFrame()
 
                     #frame =yolov3_detect(frame)
-                    frame =yolov3.detection(frame)                     
+                    #frame =yolov3.detection(frame)
 
                     ret, jpeg = cv2.imencode('.jpg',frame)
                     if ret:

@@ -30,6 +30,7 @@ urlpatterns = [
 
     #新增
     #url(r'^static/(?P<path>.*)$', static.serve,{'document_root': settings.STATIC_ROOT}, name='static'),
+
     path('aboutus/',include(("AboutUs.urls","AboutUs"),namespace='aboutus')),
 
 ]
