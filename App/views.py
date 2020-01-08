@@ -138,7 +138,7 @@ def videoViewer(request,camera_idx,is_playing):
     else:
         video_object = video_obj2
 
-    print(camera_idx,is_playing,type(camera_idx),type(is_playing))
+    #print(camera_idx,is_playing,type(camera_idx),type(is_playing))
 
     # 模板渲染
     if is_playing =='1':
