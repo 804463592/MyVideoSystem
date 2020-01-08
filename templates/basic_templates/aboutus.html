@@ -81,14 +81,11 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
                             <a href="{% url "app:aboutus" %}" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">首页 <span class="pe-7s-angle-down"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-{#                                <li><a href="index.html">Fullscreen Slider</a></li>#}
-{#                                <li><a href="index-video.html">Fullscreen Video</a></li>#}
-{#                                <li><a href="index-single-page.html">Single Page</a></li>#}
-{#                                <li><a href="index-landing-page.html">Landing Page</a></li>#}
-{#                                <li><a href="index-minimal.html">Minimal</a></li>#}
-{#                                <li><a href="index-countdown.html">Coming Soon</a></li>#}
-                            </ul>
+                            <ul class="dropdown-menu" role="menu"></ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="{% url "app:videoanalysis" %}" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">智能监控系统 <span class="pe-7s-angle-down"></span></a>
+                            <ul class="dropdown-menu" role="menu"></ul>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">研究方向 <span class="pe-7s-angle-down"></span></a>
@@ -108,6 +105,7 @@
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{% url "aboutus:members" %}">毕业成员</a></li>
                                 <li><a href="{% url "aboutus:members" %}">本届成员</a></li>
+                                <li><a href="{% url "aboutus:members" %}">指导老师</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -276,7 +274,24 @@
 
             </div>
         </section>
+{#我们的理念#}
+        <div class="col-sm-6 nopadding-lr silver-bg">
+            <div class="section-inner pad-sides-60 match-height" data-mh="promo-inner">
+                <h3 class="mb50">Experience <span class="theme-accent-color">Piper</span></h3>
+                <p class="lead mb50">Conveniently leverage other's distinctive expertise and backend metrics. Progressively harness intuitive systems and ethical niches. Continually drive extensible benefits vis-a-vis leading-edge meta-services. Conveniently leverage existing market-driven outsourcing vis-a-vis e-business process improvements. Intrinsicly extend quality interfaces with intermandated innovation.</p>
+                <p class="mb50">Quickly network web-enabled alignments without bleeding-edge supply chains. Credibly network sticky growth strategies via excellent infomediaries. Dramatically grow prospective core competencies whereas one-to-one manufactured products. Competently impact web-enabled deliverables without prospective bandwidth. Credibly matrix team building e-markets via B2B alignments.</p>
+                <p class="mt30"><a href="#contact" class="btn btn-primary btn-red page-scroll">Find Out More</a></p>
+            </div>
+        </div>
 
+        <div class="col-sm-6 nopadding-lr dark-wrapper opaqued background-cover" style="background-image: url('/static/images/aboutus_images/bg/bg10.jpg');">
+            <div class="dark-opaqued-half section-inner pad-sides-60 match-height text-right" data-mh="promo-inner">
+                <h3 class="mb50">Global <span class="theme-accent-color">Influence</span></h3>
+                <p class="lead mb50">Conveniently leverage other's distinctive expertise and backend metrics. Progressively harness intuitive systems and ethical niches. Continually drive extensible benefits vis-a-vis leading-edge meta-services. Conveniently leverage existing market-driven outsourcing vis-a-vis e-business process improvements. Intrinsicly extend quality interfaces with intermandated innovation.</p>
+                <p class="mb50">Quickly network web-enabled alignments without bleeding-edge supply chains. Credibly network sticky growth strategies via excellent infomediaries. Dramatically grow prospective core competencies whereas one-to-one manufactured products. Competently impact web-enabled deliverables without prospective bandwidth. Credibly matrix team building e-markets via B2B alignments.</p>
+                <p class="mt30"><a href="#contact" class="btn btn-primary btn-white page-scroll">Find Out More</a></p>
+            </div>
+        </div>
 {#组员介绍#}
         <section id="the-team" class="silver-bg single-page-section">
             <div class="section-inner">
@@ -295,34 +310,7 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <ul class="owl-carousel-paged testimonial-owl wow fadeIn list-unstyled" data-items="3" data-items-tablet="[768,2]" data-items-mobile="[479,1]">
-                                    <li>
-                                        <div class="row hover-item">
-                                            <div class="col-xs-12">
-                                                <img src="/static/images/aboutus_images/team/本届/陈洪刚.jpg" class="img-responsive smoothie" alt="">
-                                            </div>
-                                            <div class="col-xs-12 overlay-item-caption smoothie"></div>
-                                            <div class="col-xs-12 hover-item-caption smoothie">
-                                                <div class="vertical-center">
-                                                    <h3 class="smoothie"><a href="single-portfolio.html" title="view project">陈洪刚</a></h3>
-                                                    <ul class="smoothie list-inline social-links wow fadeIn" data-wow-delay="0.2s">
-                                                        <li>
-                                                            <a href="#"><i class="fa fa-github"></i></a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#"><i class="fa fa-qq"></i></a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#"><i class="fa fa-weixin"></i></a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#"><i class="fa fa-weibo"></i></a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <span class="theme-accent-color-bg hover-bar"></span>
-                                        </div>
-                                    </li>
+
                                     <li>
                                         <div class="row hover-item">
                                             <div class="col-xs-12">
@@ -1083,7 +1071,7 @@
                         </div>
                         <div class="col-sm-4 mb30 match-height">
                             <div class="hover-item">
-                                <img src="/static/images/aboutus_images/news/5.jpg" class="img-responsive smoothie" alt="">
+                                <img src="/static/images/aboutus_images/news/郊游.jpg" class="img-responsive smoothie" alt="">
                                 <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
                                     <div class="vertical-center smoothie">
                                         <strong class="heading-font"><span class="theme-accent-color-bg">郊游</span></strong>
@@ -1107,17 +1095,104 @@
 
 {#右边悬窗#}
         <div id="single-pager-navigation-wrapper"></div>
+{#毕业生寄语#}
+        <section class="dark-wrapper opaqued parallax" data-parallax="scroll" data-image-src="/static/images/aboutus_images/bg/bg6.jpg" data-speed="0.8">
+            <div class="section-inner">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 text-center mb100">
+                            <h2 class="section-heading">Recent <span class="theme-accent-color">Client</span> Feedback</h2>
+                            <hr class="thin-hr">
+                            <h3 class="section-subheading secondary-font">Satisfaction, everytime.</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <ul class="owl-carousel-paged testimonial-owl wow fadeIn list-unstyled" data-items="1" data-items-desktop="[1200,1]" data-items-desktop-small="[980,1]" data-items-tablet="[768,1]" data-items-mobile="[479,1]">
+                                <li>
+                                    <div class="row">
+                                        <div class="col-xs-10 col-xs-offset-1 item-caption">
+                                            <div class="col-sm-2">
+                                                <img src="/static/images/aboutus_images/team/往届/黄彬.jpg" class="img-responsive testimonial-author" alt="">
+                                            </div>
+                                            <div class="col-sm-10">
+                                                <p>Compellingly customize highly efficient outsourcing with premium quality vectors. Conveniently target customer directed relationships after highly efficient process improvements.</p>
+                                                <h4>Charles Davies</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="row">
+                                        <div class="col-xs-10 col-xs-offset-1 item-caption">
+                                            <div class="col-sm-2">
+                                                <img src="/static/images/aboutus_images/team/往届/易国宪.jpg" class="img-responsive testimonial-author" alt="">
+                                            </div>
+                                            <div class="col-sm-10">
+                                                <p>Compellingly customize highly efficient outsourcing with premium quality vectors. Conveniently target customer directed relationships after highly efficient process improvements.</p>
+                                                <h4>Charles Davies</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+{#成果数量#}
+        <section class="opaqued light-opaqued parallax" data-parallax="scroll" data-image-src="/static/images/aboutus_images/bg/bg_bw2.jpg" data-speed="0.8">
+            <div class="section-inner">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 col-xs-12">
+                            <div class="text-center">
+                                <span class="stat-icon"><i class="pe-7s-timer fa-4x"></i></span>
+                                <h2><span class="countup">16</span></h2>
+                                <h6>在读研究生 <span class="theme-accent-color">post-graduates</span></h6>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-xs-12">
+                            <div class="text-center">
+                                <span class="stat-icon"><i class="pe-7s-cloud-upload fa-4x"></i></span>
+                                <h2><span class="countup">201</span></h2>
+                                <h6>论文 <span class="theme-accent-color">papers</span></h6>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-xs-12">
+                            <div class="text-center">
+                                <span class="stat-icon"><i class="pe-7s-tools fa-4x"></i></span>
+                                <h2><span class="countup">24</span></h2>
+                                <h6>专利 <span class="theme-accent-color">patents</span></h6>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-xs-12">
+                            <div class="text-center">
+                                <span class="stat-icon"><i class="pe-7s-like fa-4x"></i></span>
+                                <h2><span class="countup">99</span></h2>
+                                <h6>毕业研究生 <span class="theme-accent-color">Graduates</span></h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
 
         <footer class="white-wrapper">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-6 wow fadeIn" data-wow-delay="0.2s">
-                        <span class="copyright">Copyright 2020. Designed by VSST</span>
+                        <span class="copyright">Copyright © 2019 SCU图像信息研究所614B All rights reserved. 欢迎访问<a href="http://blog.leanote.com/lee-romantic" title="Github" target="_blank">个人博客</a>和<a href ="{% url "app:login" %}">智能监控系统</a>.</span>
                     </div>
                     <div class="col-md-6 text-right">
                         <ul class="list-inline social-links wow fadeIn" data-wow-delay="0.2s">
                             <li>
-                                <a href="#"><i class="fa fa-github"></i></a>
+                                <a href="https://github.com/804463592"><i class="fa fa-github"></i></a>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-qq"></i></a>
