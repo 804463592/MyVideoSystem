@@ -73,14 +73,11 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
                             <a href="{% url "app:aboutus" %}" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">首页 <span class="pe-7s-angle-down"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-{#                                <li><a href="index.html">Fullscreen Slider</a></li>#}
-{#                                <li><a href="index-video.html">Fullscreen Video</a></li>#}
-{#                                <li><a href="index-single-page.html">Single Page</a></li>#}
-{#                                <li><a href="index-landing-page.html">Landing Page</a></li>#}
-{#                                <li><a href="index-minimal.html">Minimal</a></li>#}
-{#                                <li><a href="index-countdown.html">Coming Soon</a></li>#}
-                            </ul>
+                            <ul class="dropdown-menu" role="menu"></ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="{% url "app:videoanalysis" %}" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">智能监控系统 <span class="pe-7s-angle-down"></span></a>
+                            <ul class="dropdown-menu" role="menu"></ul>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">研究方向 <span class="pe-7s-angle-down"></span></a>
@@ -100,6 +97,7 @@
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{% url "aboutus:members" %}">毕业成员</a></li>
                                 <li><a href="{% url "aboutus:members" %}">本届成员</a></li>
+                                <li><a href="{% url "aboutus:members" %}">指导老师</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -148,7 +146,7 @@
             </form>
         </div>
 
-        <section class="dark-wrapper opaqued parallax" data-parallax="scroll" data-image-src="assets/img/bg/bg4.jpg" data-speed="0.8">
+        <section class="dark-wrapper opaqued parallax" data-parallax="scroll" data-image-src="/static/images/aboutus_images/bg/bg4.jpg" data-speed="0.8">
             <div class="section-inner">
                 <div class="container">
                     <div class="row">
@@ -168,26 +166,14 @@
                          <ul class="portfolio-filter mb30 text-center list-inline wow fadeIn" data-wow-delay="0.2s">
                             <li><a class="btn btn-primary btn-transparent active" href="#" data-filter=".now">本届成员</a></li>
                             <li><a class="btn btn-primary btn-transparent" href="#" data-filter=".pre">毕业成员</a></li>
+                            <li><a class="btn btn-primary btn-transparent" href="#" data-filter=".teacher">指导教师</a></li>
 {#                            <li><a class="btn btn-primary btn-transparent" href="#" data-filter=".design">Design</a></li>#}
 {#                            <li><a class="btn btn-primary btn-transparent" href="#" data-filter=".photography">Photography</a></li>#}
 {#                            <li><a class="btn btn-primary btn-transparent" href="#" data-filter=".video">Video</a></li>#}
                         </ul>
 
                         <ul class="portfolio-items nopadding-lr isotope list-unstyled">
-                            <li class="col-sm-4 col-xs-6 portfolio-item now isotope-item">
-                                <div class="col-xs-12 nopadding-lr hover-item">
-                                    <img src="/static/images/aboutus_images/team/本届/陈洪刚.jpg" class="img-responsive smoothie" alt="">
-                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
 
-                                    </div>
-                                    <div class="hover-item-caption smoothie">
-                                        <div class="vertical-center smoothie">
-                                            <a href="/static/images/aboutus_images/team/本届/陈洪刚.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie">陈洪刚</a>
-                                        </div>
-                                        <span class="theme-accent-color-bg hover-bar"></span>
-                                    </div>
-                                </div>
-                            </li>
                             <li class="col-sm-4 col-xs-6 portfolio-item now isotope-item">
                                 <div class="col-xs-12 nopadding-lr hover-item">
                                     <img src="/static/images/aboutus_images/team/本届/刘强.jpg" class="img-responsive smoothie" alt="">
@@ -528,6 +514,64 @@
                             </li>
 
 
+                            <li class="col-sm-4 col-xs-6 portfolio-item teacher isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/team/教师/何小海.png" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/team/教师/何小海.png" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie">何小海</a>
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-4 col-xs-6 portfolio-item teacher isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/team/教师/吴晓红.png" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/team/教师/吴晓红.png" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie">吴晓红</a>
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-4 col-xs-6 portfolio-item teacher isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/team/教师/陈洪刚.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/team/教师/陈洪刚.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie">陈洪刚</a>
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-4 col-xs-6 portfolio-item teacher isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/team/教师/余艳梅.png" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/team/教师/余艳梅.png" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie">余艳梅</a>
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+
+
                         </ul>
                     </div>
                 </div>
@@ -536,18 +580,19 @@
 
 
 
-        
+
+
 
         <footer class="white-wrapper">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-6 wow fadeIn" data-wow-delay="0.2s">
-                        <span class="copyright">Copyright 2020. Designed by VSST</span>
+                        <span class="copyright">Copyright © 2019 SCU图像信息研究所614B All rights reserved. 欢迎访问<a href="http://blog.leanote.com/lee-romantic" title="Github" target="_blank">个人博客</a>和<a href ="{% url "app:login" %}">智能监控系统</a>.</span>
                     </div>
                     <div class="col-md-6 text-right">
                         <ul class="list-inline social-links wow fadeIn" data-wow-delay="0.2s">
                             <li>
-                                <a href="#"><i class="fa fa-github"></i></a>
+                                <a href="https://github.com/804463592"><i class="fa fa-github"></i></a>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-qq"></i></a>
