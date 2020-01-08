@@ -85,14 +85,11 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
                             <a href="{% url "app:aboutus" %}" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">首页 <span class="pe-7s-angle-down"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-{#                                <li><a href="index.html">Fullscreen Slider</a></li>#}
-{#                                <li><a href="index-video.html">Fullscreen Video</a></li>#}
-{#                                <li><a href="index-single-page.html">Single Page</a></li>#}
-{#                                <li><a href="index-landing-page.html">Landing Page</a></li>#}
-{#                                <li><a href="index-minimal.html">Minimal</a></li>#}
-{#                                <li><a href="index-countdown.html">Coming Soon</a></li>#}
-                            </ul>
+                            <ul class="dropdown-menu" role="menu"></ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="{% url "app:videoanalysis" %}" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">智能监控系统 <span class="pe-7s-angle-down"></span></a>
+                            <ul class="dropdown-menu" role="menu"></ul>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">研究方向 <span class="pe-7s-angle-down"></span></a>
@@ -112,6 +109,7 @@
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{% url "aboutus:members" %}">毕业成员</a></li>
                                 <li><a href="{% url "aboutus:members" %}">本届成员</a></li>
+                                <li><a href="{% url "aboutus:members" %}">指导老师</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -258,12 +256,12 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-6 wow fadeIn" data-wow-delay="0.2s">
-                        <span class="copyright">Copyright 2020. Designed by VSST</span>
+                        <span class="copyright">Copyright © 2019 SCU图像信息研究所614B All rights reserved. 欢迎访问<a href="http://blog.leanote.com/lee-romantic" title="Github" target="_blank">个人博客</a>和<a href ="{% url "app:login" %}">智能监控系统</a>.</span>
                     </div>
                     <div class="col-md-6 text-right">
                         <ul class="list-inline social-links wow fadeIn" data-wow-delay="0.2s">
                             <li>
-                                <a href="#"><i class="fa fa-github"></i></a>
+                                <a href="https://github.com/804463592"><i class="fa fa-github"></i></a>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-qq"></i></a>
