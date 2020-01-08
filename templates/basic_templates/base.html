@@ -24,10 +24,11 @@
              </div>
             <div class="site-nav-sign">
 
-                <img src="/static/images/login_images/avtar.png">
+{#                <img src="/static/images/login_images/avtar.png">#}
+                <img src="{{icon_url}}" alt="news image" class="round_icon" >
 
 {#                {% for user in user %}#}
-                <a href="{% url "app:userinfo" %}" id="aboutme">{{ username }},欢迎您!</a>&nbsp;
+                <a href="{% url "app:aboutme" %}" id="aboutme">{{ username }},欢迎您!</a>&nbsp;
 {#                {% endfor %}#}
 
                 <a href="{% url "app:logout" %}" id="signup" class="col-res">退出登录</a>

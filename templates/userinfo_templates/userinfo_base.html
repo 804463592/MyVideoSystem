@@ -11,10 +11,13 @@
         }, false);
 
         function hideURLbar() {
-            window.scrollTo(0, 1);
+            window.scrollTo(0, 0);
         }
     </script>
+
+    <script type="text/javascript" src="/static/javascript/userinfo_js/pwdchange.js"></script>
     <!-- Custom Theme files -->
+
     <link href="/static/css/userinfo_css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
     <link href="/static/css/userinfo_css/style.css" type="text/css" rel="stylesheet" media="all">
     <!-- font-awesome icons -->
@@ -28,16 +31,20 @@
 <body>
 
     <div class="sidenav" >
-
+        <img src="{{icon_url}}" alt="news image" class="round_icon" >
 		<!-- header -->
 		<header>
+
 			<div class="container-fluid px-lg-5 ">
+
+{#                <img src="{{icon_url}}" alt="news image" class="round_icon" >#}
+
 				<nav class="mnu mx-auto">
                     <label for="drop" class="toggle">Menu</label>
                     <input type="checkbox" id="drop">
 						<ul class="menu">
 
-							 <li class="mt-sm-3"><a href="{% url "app:userinfo" %}" class="scroll">个人资料</a></li>
+							 <li class="mt-sm-3"><a href="{% url "app:aboutme" %}" class="scroll">个人资料</a></li>
 							 <li class="mt-sm-3"><a href="{% url "app:infochange" %}" class="scroll">修改资料</a></li>
                              <li class="mt-sm-3"><a href="{% url "app:pwdchange" %}" class="scroll">修改密码</a></li>
                              <li class="mt-sm-3"><a href="{% url "app:myspace" %}" class="scroll">个人空间</a></li>

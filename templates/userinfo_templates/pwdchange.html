@@ -2,19 +2,25 @@
 {% load static %}
 
 {#    {% block title %}title自定义{% endblock %}#}
-
 {% block linkscript %}
-    <script type="text/javascript" src="static/javascript/userinfo_js/pwdchange.js"></script>
+    <script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/javascript/userinfo_js/pwdchange.js"></script>
+    <script>
+        $.ajaxSetup({
+            data:{csrfmiddlewaretoken:'{{ csrf_token }}'}
+        })
+    </script>
+
 {% endblock linkscript %}
 
 {% block infobase %}
-     <form method="post" enctype="multipart/form-data"  >
+     <form method="post" enctype="multipart/form-data"  action="{% url "app:login" %}">
      {% csrf_token %}
      <h3 class="w3_head mb-5">修改密码</h3><br/>
 
      <div class="form-group">
         <label for="password1">原&nbsp;密&nbsp;码:</label>
-        <input name = "password1" type="password" class="form-control" style="width:600px" id="password1" placeholder="请输入原密码" required="">
+        <input name = "password1" type="password" class="form-control" style="width:600px" id="password1" placeholder="请输入原密码" >
       </div>
 
       <div class="form-group">
@@ -27,11 +33,11 @@
         <input name = "password2_confirm" type="password" class="form-control" style="width:600px" id="password2_confirm" placeholder="请再次输入新密码确认" required="">
       </div><br/>
 
-      {% if errmsg %} {# 判断是否有错误信息 #}
-        <div class="error_tip" style="display: block;color: red">{{ errmsg }}</div>
-      {% endif %}
+      <div class="world1" id="error_box1" style="color:red "><br><p></p></div>
+{#      <div class="world1" id="error_box2" style="color:green "><br><p></p></div>#}
+      <button type="button" id="button" class="btn btn-default" onclick="check()">提&nbsp;&nbsp;交</button>
+{#      setTimeout("window.location.url='app:login'",30);#}
 
-      <button type="submit" class="btn btn-default" onclick="check()">提&nbsp;&nbsp;交</button>
     </form>
 
 {% endblock infobase %}

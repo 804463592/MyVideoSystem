@@ -591,7 +591,7 @@ pre code {
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
-  margin-top: 30%;
+  /*margin-top: 30%;*/
 }
 
 .row {
@@ -7782,6 +7782,8 @@ button.bg-dark:focus {
   .mt-sm-3,
   .my-sm-3 {
     margin-top: 1rem !important;
+    /*margin-left: -80%;*/
+
   }
   .mr-sm-3,
   .mx-sm-3 {
@@ -8438,6 +8440,7 @@ button.bg-dark:focus {
   .pr-lg-5,
   .px-lg-5 {
     padding-right: 3rem !important;
+    margin-left: -30%;
   }
   .pb-lg-5,
   .py-lg-5 {

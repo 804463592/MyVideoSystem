@@ -347,7 +347,7 @@ li > a:only-child:after {
 	z-index: 1;
 	top: 0;
 	left: 0;
-	background: url(/static/images/userinfo_images/banner-1.jpg) no-repeat bottom;
+	background: url(/static/images/userinfo_images/background.png) no-repeat bottom;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -1185,11 +1185,22 @@ p.banp {
 }
 
 .round_icon{
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   display: flex;
   border-radius: 80%;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  margin-top: 20%;
+  margin-left: 38%;
+}
+
+.world {
+    font-size: 1.3em;
+    color: #0f081b;
+    /*padding-right:100px;*/
+	/*text-align: center;*/
+	padding: 1.5px;
+	/*margin-top:3%;*/
 }

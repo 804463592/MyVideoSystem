@@ -300,13 +300,6 @@ s, i, em {
 
     }
 
-    /*#footer {*/
-        /*width: 100%;*/
-        /*height: 100%;*/
-        /*text-align: center;*/
-        /*color:white;*/
-    /*}*/
-
     footer p{
         width: 100%;
         height: 100%;
@@ -318,4 +311,12 @@ s, i, em {
         color: #0d8dbf;
     }
 
-
+.round_icon{
+  width: 60px;
+  height: 80px;
+  display: flex;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}

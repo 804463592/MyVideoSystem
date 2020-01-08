@@ -3,89 +3,30 @@
 
 <link href="/static/css/userinfo_css/style.css" type="text/css" rel="stylesheet" media="all">
 
+{#{% block infobase %}#}
+{##}
+{#     <img src="{{icon_url}}" alt="news image" class="round_icon" >#}
+{#     <h5>个性签名{{ user_signature }}</h5>#}
+{#     <p>用户名:{{ username }}</p><br/>#}
+{#     <p>邮&emsp;箱:{{ user_email}}</p><br/>#}
+{##}
+{#{% endblock infobase %}#}
+
+{% load static %}
+
+{% block title %}title自定义{% endblock %}
+
+
 {% block infobase %}
-     <img src="{{icon_url}}" alt="news image" class="round_icon" >
-     <h5>个性签名{{ user_signature }}</h5>
-     <p>用户名:{{ username }}</p><br/>
-     <p>邮&emsp;箱:{{ user_email}}</p><br/>
+    <h3 class="w3_head mb-5">个人资料</h3><br/><br/><br/>
+
+{#     <img src="{{icon_url}}" alt="news image" class="round_icon" >#}
+     <p class="world">个性签名:{{ user_signature }}</p><br/>
+     <p class="world">用&ensp;户&ensp;名:{{ username }}</p><br/>
+     <p class="world">邮&emsp;&emsp;箱:{{ user_email}}</p><br/>
+     <p class="world">性&emsp;&emsp;别:</p><br/>
+     <p class="world">职&emsp;&emsp;业:</p><br/>
+     <p class="world">居&ensp;住&ensp;地:</p><br/>
 
 
 {% endblock infobase %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{#<!DOCTYPE html>#}
-{#<html lang="zxx">#}
-{#<head>#}
-{#    <title>Home</title>#}
-{#    <meta name="viewport" content="width=device-width, initial-scale=1">#}
-{#    <meta charset="utf-8" />#}
-{#    <meta name="keywords" content="" />#}
-{#    <script>#}
-{#        addEventListener("load", function () {#}
-{#            setTimeout(hideURLbar, 0);#}
-{#        }, false);#}
-{##}
-{#        function hideURLbar() {#}
-{#            window.scrollTo(0, 1);#}
-{#        }#}
-{#    </script>#}
-{#    <!-- Custom Theme files -->#}
-{#    <link href="/static/css/userinfo_css/bootstrap.css" type="text/css" rel="stylesheet" media="all">#}
-{#    <link href="/static/css/userinfo_css/style.css" type="text/css" rel="stylesheet" media="all">#}
-{#    <!-- font-awesome icons -->#}
-{#    <link href="/static/css/userinfo_css/fontawesome-all.min.css" rel="stylesheet">#}
-{#    <!-- //Custom Theme files -->#}
-{#    <!-- online-fonts -->#}
-{#    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet">#}
-{#    <!-- //online-fonts -->#}
-{#</head>#}
-{##}
-{#<body>#}
-{##}
-{#    <form>#}
-{#      <div class="form-group">#}
-{#        <label for="exampleInputEmail1">Email address</label>#}
-{#        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">#}
-{#      </div>#}
-{##}
-{#      <div class="form-group">#}
-{#        <label for="exampleInputPassword1">Password</label>#}
-{#        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">#}
-{#      </div>#}
-{##}
-{#      <div class="form-group">#}
-{#        <label for="exampleInputFile">File input</label>#}
-{#        <input type="file" id="exampleInputFile">#}
-{#        <p class="help-block">Example block-level help text here.</p>#}
-{#      </div>#}
-{##}
-{#      <div class="checkbox">#}
-{#        <label>#}
-{#          <input type="checkbox"> Check me out#}
-{#        </label>#}
-{#      </div>#}
-{##}
-{#      <button type="submit" class="btn btn-default">Submit</button>#}
-{#    </form>#}
-{##}
-{#</body>#}
-{#</html>#}
-
-
