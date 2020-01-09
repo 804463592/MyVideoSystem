@@ -24,33 +24,37 @@ $(function () {
                 if(data['status'] ==200) //当用户名唯一
                 {
                     oError.innerHTML = " ";
+                    var re =  /^[0-9a-zA-Z]*$/g;
 
                     //当用户名满足唯一,先判断长度
-                    if (username.length<5||username.length>10) {
-                        oError.innerHTML = "用户名要5-10位字符或数字";
-                        isusername = false
+                    if (username.length<5||username.length>15||username.length==5||username.length==15) {
+                        oError.innerHTML = "用户名要大于5位小于15位";
+                        isusername = false;
                     }
 
                     //判断首字母是否为数字
-                    if (username.charCodeAt(0) >= 48 && (username.charCodeAt(0) <= 57)) {
+                    else if (username.charCodeAt(0) >= 48 && (username.charCodeAt(0) <= 57)) {
                         oError.innerHTML = "用户名首位不能为数字";
-                        isusername = false
+                        isusername = false;
                     }
 
                     //判断是不是只有数字和字母
-                    for (var i = 0; i < username.length; i++)
+                    else if (!re.test(username))
                     {
-                        if ((username.charCodeAt(i) < 48) || (username.charCodeAt(i) > 57) && (username.charCodeAt(i) < 58) && (username.charCodeAt(i) > 97))
-                        {
-                            oError.innerHTML = "用户名只能为数字和字母";
-                            isusername = false
-                        }
+                       oError.innerHTML = "用户名只能为数字和字母";
+                       isusername = false;
                     }
+
+                    else
+                    {
+                        isusername = true;
+                    }
+
                 }
 
                 if(data['status'] ==901){
                     oError.innerHTML = "用户名已存在";
-                    isusername = false
+                    isusername = false;
                 }
             })
         }
@@ -79,7 +83,13 @@ $(function () {
                        console.log("邮箱不正确");
                        oError.innerHTML = "邮箱格式不正确";
                        isemail = false;
+                       return
                     }
+                    else
+                    {
+                        isemail = true;
+                    }
+
                 }
 
                 if(data['status'] == 901)
@@ -94,26 +104,30 @@ $(function () {
     //密码的格式是否符合要求
     var $password = $("#password_input");
     $password.change(function () {
+
         var password = $password.val().trim();
 
-        if (password.length<3||password.length>15)
+        if (password.length<5||password.length>15||password.length==5||password.length==15)
         {
             console.log(password);
-            oError.innerHTML = "密码要大于3位小于15位";
+            oError.innerHTML = "密码要大于5位小于15位";
             ispassword = false;
         }
-         else
+
+        else if(password.length>5&&password.length<15)
         {
             console.log(password);
             oError.innerHTML = " ";
-        }
 
-        for (var i = 0; i < password.length; i++)
-        {
-            if ((password.charCodeAt(i) < 48) || (password.charCodeAt(i) > 57) && (password.charCodeAt(i) < 58) && (password.charCodeAt(i) > 97))
+            var re =  /^[0-9a-zA-Z]*$/g;
+            if (!re.test(password))
             {
-                oError.innerHTML = "密码只能为数字和字母";
-                ispassword = false
+               oError.innerHTML = "用户名只能为数字和字母";
+               ispassword = false;
+            }
+            else
+            {
+                ispassword = true;
             }
         }
     })
@@ -134,12 +148,11 @@ $(function () {
         }
         else
         {
-            // oError.innerHTML = "设置密码和验证密码一致";
+            oError.innerHTML = " ";
             console.log("验证密码",password_confirm);
             ispassword_confirm = true;
         }
     })
-
 })
 
 function check() {
@@ -152,7 +165,6 @@ function check() {
     {
        isusername = false
     }
-
 
     if(isusername == false||isemail == false||ispassword == false || ispassword_confirm == false)
     {
