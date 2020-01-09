@@ -96,12 +96,18 @@ $(function () {
     $password.change(function () {
         var password = $password.val().trim();
 
-        if (password.length<3)
+        if (password.length<3||password.length>15)
         {
             console.log(password);
             oError.innerHTML = "密码要大于3位小于15位";
             ispassword = false;
         }
+         else
+        {
+            console.log(password);
+            oError.innerHTML = " ";
+        }
+
         for (var i = 0; i < password.length; i++)
         {
             if ((password.charCodeAt(i) < 48) || (password.charCodeAt(i) > 57) && (password.charCodeAt(i) < 58) && (password.charCodeAt(i) > 97))
@@ -128,6 +134,8 @@ $(function () {
         }
         else
         {
+            // oError.innerHTML = "设置密码和验证密码一致";
+            console.log("验证密码",password_confirm);
             ispassword_confirm = true;
         }
     })
@@ -144,6 +152,7 @@ function check() {
     {
        isusername = false
     }
+
 
     if(isusername == false||isemail == false||ispassword == false || ispassword_confirm == false)
     {
