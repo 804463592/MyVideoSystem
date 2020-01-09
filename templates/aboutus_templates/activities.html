@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+<link rel="shortcut icon" href="/static/images/aboutus_images/ico/favicon.ico">
+    <link rel="apple-touch-icon" sizes="144x144" href="/static/images/aboutus_images/ico/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/static/images/aboutus_images/ico/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/static/images/aboutus_images/ico/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" href="/static/images/aboutus_images/ico/apple-touch-icon-57x57.png">
+
+    <title>智能监控组 </title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/static/css/aboutus_css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/aboutus_css/animate.css" rel="stylesheet">
+    <link href="/static/css/aboutus_css/plugins.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/static/css/aboutus_css/style.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="/static/css/aboutus_css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/aboutus_css/pe-icons.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top" class="animated-navigation">
+
+
+    <div class="master-wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-fixed-top fadeInDown" data-wow-delay="0.2s">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+            {#VSST#}
+                <div class="navbar-header page-scroll">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navigation">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand smoothie" href="{% url "app:aboutus" %}">V<span class="theme-accent-color">S</span>ST</a>
+                </div>
+            {#悬窗左边几个社交app#}
+                <div id="navbar-social">
+                    <ul class="smoothie list-inline social-links">
+                        <li>
+                            <a href="#"><i class="fa fa-github"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-qq"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-wechat"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-weibo"></i></a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+            {#悬窗右上角下拉框内容#}
+                <div class="collapse navbar-collapse" id="main-navigation">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="{% url "app:aboutus" %}" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">首页 <span class="pe-7s-angle-down"></span></a>
+                            <ul class="dropdown-menu" role="menu"></ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="{% url "app:videoanalysis" %}" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">智能监控系统 <span class="pe-7s-angle-down"></span></a>
+                            <ul class="dropdown-menu" role="menu"></ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">研究方向 <span class="pe-7s-angle-down"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{% url "aboutus:object_detection" %}">目标检测</a></li>
+                                <li><a href="{% url "aboutus:target_tracking" %}">目标跟踪</a></li>
+                                <li><a href="{% url "aboutus:re_identification" %}">重识别</a></li>
+                                <li><a href="{% url "aboutus:abnormal_detection" %}">异常行为检测</a></li>
+                                <li><a href="{% url "aboutus:density_estimation" %}">人群密度估计</a></li>
+                                <li><a href="{% url "aboutus:video_defog" %}">视频去雾</a></li>
+{#                                <li><a href="single-portfolio-fullscreen-video.html">Project Fullscreen Video</a></li>#}
+{#                                <li><a href="single-portfolio-image-list.html">Project Image List</a></li>#}
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">成员介绍 <span class="pe-7s-angle-down"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{% url "aboutus:members" %}">毕业成员</a></li>
+                                <li><a href="{% url "aboutus:members" %}">本届成员</a></li>
+                                <li><a href="{% url "aboutus:members" %}">指导老师</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">项目介绍 <span class="pe-7s-angle-down"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{% url "aboutus:project_1" %}">国家自然科学基金</a></li>
+                                <li><a href="{% url "aboutus:project_2" %}">深圳光启</a></li>
+                                <li><a href="{% url "aboutus:project_3" %}">惠民技术研发项目</a></li>
+                                <li><a href="{% url "aboutus:project_4" %}">民航二所</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">组内活动 <span class="pe-7s-angle-down"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{% url "aboutus:activities" %}">组会</a></li>
+                                <li><a href="{% url "aboutus:activities" %}">答辩</a></li>
+                                <li><a href="{% url "aboutus:activities" %}">聚餐</a></li>
+                                <li><a href="{% url "aboutus:activities" %}">毕业</a></li>
+                                <li><a href="{% url "aboutus:activities" %}">球赛</a></li>
+                                <li><a href="{% url "aboutus:activities" %}">郊游</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#search"><i class="pe-7s-search"></i></a></li>
+                        <li id="menu-trigger-wrapper">
+                            <div class="pull-right">
+                                <button type="button" id="menu-toggle" class="tcon tcon-menu--xcross" aria-label="toggle menu">
+                                  <span class="tcon-menu__lines" aria-hidden="true"></span>
+                                  <span class="tcon-visuallyhidden">toggle menu</span>
+                                </button>
+                            </div>
+                        </li>
+                    </ul>
+
+                </div>
+                <!-- /.navbar-collapse -->
+
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+
+        <div id="search-wrapper">
+            <button type="button" class="close">×</button>
+            <form>
+                <input type="search" value="" placeholder="Enter Search Term" />
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+        </div>
+
+        <section class="dark-wrapper opaqued parallax" data-parallax="scroll" data-image-src="assets/img/bg/bg4.jpg" data-speed="0.8">
+            <div class="section-inner">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 mt30 text-center wow fadeIn" data-wow-delay="0.2s">
+                            <h2 class="section-heading">我们的<span class="theme-accent-color">活动</span></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-inner">
+
+                <div class="container">
+                    <div class="wow fadeIn" data-wow-delay="0.2s">
+                         <ul class="portfolio-filter mb30 text-center list-inline wow fadeIn" data-wow-delay="0.2s">
+                            <li><a class="btn btn-primary btn-transparent active" href="#" data-filter=".meeting">组会</a></li>
+                            <li><a class="btn btn-primary btn-transparent" href="#" data-filter=".defense">答辩</a></li>
+                            <li><a class="btn btn-primary btn-transparent" href="#" data-filter=".party">聚餐</a></li>
+                            <li><a class="btn btn-primary btn-transparent" href="#" data-filter=".graduation">毕业</a></li>
+                            <li><a class="btn btn-primary btn-transparent" href="#" data-filter=".game">球赛</a></li>
+                            <li><a class="btn btn-primary btn-transparent" href="#" data-filter=".outing">郊游</a></li>
+                        </ul>
+
+                        <ul class="portfolio-items nopadding-lr isotope list-unstyled">
+                            <li class="col-sm-4 col-xs-6 portfolio-item meeting isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/组会/组会_1.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/news/组会/组会_1.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-4 col-xs-6 portfolio-item meeting isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/组会/组会_2.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/news/组会/组会_2.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>
+
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-4 col-xs-6 portfolio-item meeting isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/组会/组会_3.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/news/组会/组会_3.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-4 col-xs-6 portfolio-item meeting isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/组会/组会_4.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/news/组会/组会_4.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-4 col-xs-6 portfolio-item meeting isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/组会/组会_5.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/news/组会/组会_5.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-4 col-xs-6 portfolio-item meeting isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/组会/组会_6.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/news/组会/组会_6.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+
+
+                            <li class="col-sm-4 col-xs-6 portfolio-item defense isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/答辩/答辩_1.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/news/答辩/答辩_1.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-4 col-xs-6 portfolio-item defense isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/答辩/答辩_2.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/news/答辩/答辩_2.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-4 col-xs-6 portfolio-item defense isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/答辩/答辩_3.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/news/答辩/答辩_3.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-4 col-xs-6 portfolio-item defense isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/答辩/答辩_4.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/news/答辩/答辩_4.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-4 col-xs-6 portfolio-item defense isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/答辩/答辩_5.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/news/答辩/答辩_5.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-4 col-xs-6 portfolio-item defense isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/答辩/答辩_6.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/news/答辩/答辩_6.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="col-sm-4 col-xs-6 portfolio-item party isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/聚餐/聚餐_1.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/news/聚餐/聚餐_1.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-4 col-xs-6 portfolio-item party isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/聚餐/聚餐_2.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/news/聚餐/聚餐_2.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-4 col-xs-6 portfolio-item party isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/聚餐/聚餐_3.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/news/聚餐/聚餐_3.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-4 col-xs-6 portfolio-item party isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/聚餐/聚餐_4.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/news/聚餐/聚餐_4.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-4 col-xs-6 portfolio-item party isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/聚餐/聚餐_5.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/news/聚餐/聚餐_5.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-4 col-xs-6 portfolio-item party isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/聚餐/聚餐_6.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/news/聚餐/聚餐_6.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-4 col-xs-6 portfolio-item party isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/聚餐/聚餐_7.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/news/聚餐/聚餐_7.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-4 col-xs-6 portfolio-item party isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/聚餐/聚餐_8.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/news/聚餐/聚餐_8.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-4 col-xs-6 portfolio-item party isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/聚餐/聚餐_9.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/news/聚餐/聚餐_9.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-4 col-xs-6 portfolio-item party isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/聚餐/聚餐_10.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/news/聚餐/聚餐_10.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-4 col-xs-6 portfolio-item party isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/聚餐/聚餐_11.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/news/聚餐/聚餐_11.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-4 col-xs-6 portfolio-item party isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/聚餐/聚餐_12.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/news/聚餐/聚餐_12.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-4 col-xs-6 portfolio-item party isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/聚餐/聚餐_13.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/news/聚餐/聚餐_13.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-4 col-xs-6 portfolio-item party isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/聚餐/聚餐_14.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/news/聚餐/聚餐_14.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>
+
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-4 col-xs-6 portfolio-item party isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/聚餐/聚餐_15.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/news/聚餐/聚餐_15.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>
+
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="col-sm-4 col-xs-6 portfolio-item graduation isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/毕业/毕业_1.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/news/毕业/毕业_1.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-4 col-xs-6 portfolio-item graduation isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/毕业/毕业_2.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/news/毕业/毕业_2.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+{#                            <li class="col-sm-4 col-xs-6 portfolio-item graduation isotope-item">#}
+{#                                <div class="col-xs-12 nopadding-lr hover-item">#}
+{#                                    <img src="/static/images/aboutus_images/news/毕业/毕业_3.jpg" class="img-responsive smoothie" alt="">#}
+{#                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">#}
+{#                                    </div>#}
+{#                                    <div class="hover-item-caption smoothie">#}
+{#                                        <div class="vertical-center smoothie">#}
+{#                                            <a href="/static/images/aboutus_images/news/毕业/毕业_3.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>#}
+{#                                        </div>#}
+{#                                        <span class="theme-accent-color-bg hover-bar"></span>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </li>#}
+                            <li class="col-sm-4 col-xs-6 portfolio-item graduation isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/毕业/毕业_4.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/news/毕业/毕业_4.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-4 col-xs-6 portfolio-item graduation isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/毕业/毕业_5.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/news/毕业/毕业_5.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-4 col-xs-6 portfolio-item graduation isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/毕业/毕业_6.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/news/毕业/毕业_6.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-4 col-xs-6 portfolio-item graduation isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/毕业/毕业_7.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/news/毕业/毕业_7.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-4 col-xs-6 portfolio-item graduation isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/毕业/毕业_8.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/news/毕业/毕业_8.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-4 col-xs-6 portfolio-item graduation isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/毕业/毕业_9.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/news/毕业/毕业_9.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-4 col-xs-6 portfolio-item graduation isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/毕业/毕业_10.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/news/毕业/毕业_10.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-4 col-xs-6 portfolio-item graduation isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/毕业/毕业_11.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/news/毕业/毕业_11.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-4 col-xs-6 portfolio-item graduation isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/毕业/毕业_12.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/news/毕业/毕业_12.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-4 col-xs-6 portfolio-item graduation isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/毕业/毕业_13.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/news/毕业/毕业_13.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-4 col-xs-6 portfolio-item graduation isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/毕业/毕业_14.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/news/毕业/毕业_14.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-4 col-xs-6 portfolio-item graduation isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/毕业/毕业_15.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/news/毕业/毕业_15.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="col-sm-4 col-xs-6 portfolio-item game isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/球赛/球赛_1.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/news/球赛/球赛_1.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-4 col-xs-6 portfolio-item game isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/球赛/球赛_2.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/news/球赛/球赛_2.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-4 col-xs-6 portfolio-item game isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/球赛/球赛_3.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/news/球赛/球赛_3.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="col-sm-4 col-xs-6 portfolio-item outing isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/郊游/郊游_1.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/news/郊游/郊游_1.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>
+                                         </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-sm-4 col-xs-6 portfolio-item outing isotope-item">
+                                <div class="col-xs-12 nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/郊游/郊游_2.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <div class="vertical-center smoothie">
+                                            <a href="/static/images/aboutus_images/news/郊游/郊游_2.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa fa-plus"></i></a>
+                                         </div>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+        <footer class="white-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6 wow fadeIn" data-wow-delay="0.2s">
+                        <span class="copyright">Copyright © 2019 SCU图像信息研究所614B All rights reserved. 欢迎访问<a href="http://blog.leanote.com/lee-romantic" title="Github" target="_blank">个人博客</a>和<a href ="{% url "app:login" %}">智能监控系统</a>.</span>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <ul class="list-inline social-links wow fadeIn" data-wow-delay="0.2s">
+                            <li>
+                                <a href="https://github.com/804463592"><i class="fa fa-github"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-qq"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-weixin"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-weibo"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <div id="bottom-frame"></div>
+
+        <a href="#" id="back-to-top"><i class="fa fa-long-arrow-up"></i></a>
+
+    </div>
+
+    <script src="/static/javascript/aboutus_js/jquery.js"></script>
+    <script src="/static/javascript/aboutus_js/bootstrap.min.js"></script>
+    <script src="/static/javascript/aboutus_js/plugins.js"></script>
+
+    <script src="/static/javascript/aboutus_js/init.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">
+
+    </script><script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</body>
+
+</html>

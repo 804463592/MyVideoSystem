@@ -15,6 +15,8 @@ from queue import Queue
 from queue import Empty
 
 
+#from opencv_yolov3.yolo import yolov3_detect
+
 class VideoProcesser(object):
 
     def __init__(self,video_path="./static/transferStation",system_info=None,**kargs):
@@ -490,6 +492,7 @@ class VideoManager(VideoCamera,threading.Thread):
                     #采用队列看起来是比上面共用帧更好的方式,但是要注意这里的put是可以阻塞的，
                     #也就是说,当你忘了开启消费者线程的时候,队列满了的时候,代码会阻塞在这里,导致后面的队列里面没有视频
                     #所以在这里不一定是更好的方式！！！
+
                     #self.save_frame_queue.put(FrameInfo(frame,current_datetime))
 
                     #因为前端处理视频帧的能力比较有限,所以放入帧的时候抽帧处理,这里也有可能阻塞？？？那怎么办,
@@ -516,13 +519,15 @@ class VideoManager(VideoCamera,threading.Thread):
         while self.cap.isOpened() and self.is_running:
             #该while true循环,仅仅在调用videoStream时循环
 
-            time.sleep(0.01) #处理延迟时长至少在0.005秒以上
+            #time.sleep(0.01) #处理延迟时长至少在0.005秒以上
 
             #frame =self.frame
             try:
                 frame_info =self.play_frame_queue.get()
                 if frame_info:
                     frame =frame_info.getFrame()
+
+                    #frame =yolov3_detect(frame)
 
                     ret, jpeg = cv2.imencode('.jpg',frame)
                     if ret:

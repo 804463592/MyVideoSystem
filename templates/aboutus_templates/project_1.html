@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="/static/images/aboutus_images/ico/favicon.ico">
+    <link rel="apple-touch-icon" sizes="144x144" href="/static/images/aboutus_images/ico/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/static/images/aboutus_images/ico/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/static/images/aboutus_images/ico/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" href="/static/images/aboutus_images/ico/apple-touch-icon-57x57.png">
+
+    <title>智能监控组 </title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/static/css/aboutus_css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/aboutus_css/animate.css" rel="stylesheet">
+    <link href="/static/css/aboutus_css/plugins.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/static/css/aboutus_css/style.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="/static/css/aboutus_css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/aboutus_css/pe-icons.css" rel="stylesheet">
+
+    <script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+    <link href="http://vjs.zencdn.net/6.6.3/video-js.css" rel="stylesheet">
+
+    <!-- If you'd like to support IE8 -->
+    <script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+
+    <script src="http://vjs.zencdn.net/6.6.3/video.js"></script>
+
+</head>
+
+<body id="page-top" class="animated-navigation">
+
+
+    <div class="master-wrapper">
+
+
+
+        <!-- Navigation -->
+{#整个悬窗#}
+        <nav class="navbar navbar-default navbar-fixed-top fadeInDown" data-wow-delay="0.2s">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+            {#VSST#}
+                <div class="navbar-header page-scroll">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navigation">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand smoothie" href="{% url "app:aboutus" %}">V<span class="theme-accent-color">S</span>ST</a>
+                </div>
+            {#悬窗左边几个社交app#}
+                <div id="navbar-social">
+                    <ul class="smoothie list-inline social-links">
+                        <li>
+                            <a href="#"><i class="fa fa-github"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-qq"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-wechat"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-weibo"></i></a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+            {#悬窗右上角下拉框内容#}
+                <div class="collapse navbar-collapse" id="main-navigation">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="{% url "app:aboutus" %}" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">首页 <span class="pe-7s-angle-down"></span></a>
+                            <ul class="dropdown-menu" role="menu"></ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="{% url "app:videoanalysis" %}" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">智能监控系统 <span class="pe-7s-angle-down"></span></a>
+                            <ul class="dropdown-menu" role="menu"></ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">研究方向 <span class="pe-7s-angle-down"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{% url "aboutus:object_detection" %}">目标检测</a></li>
+                                <li><a href="{% url "aboutus:target_tracking" %}">目标跟踪</a></li>
+                                <li><a href="{% url "aboutus:re_identification" %}">重识别</a></li>
+                                <li><a href="{% url "aboutus:abnormal_detection" %}">异常行为检测</a></li>
+                                <li><a href="{% url "aboutus:density_estimation" %}">人群密度估计</a></li>
+                                <li><a href="{% url "aboutus:video_defog" %}">视频去雾</a></li>
+{#                                <li><a href="single-portfolio-fullscreen-video.html">Project Fullscreen Video</a></li>#}
+{#                                <li><a href="single-portfolio-image-list.html">Project Image List</a></li>#}
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">成员介绍 <span class="pe-7s-angle-down"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{% url "aboutus:members" %}">毕业成员</a></li>
+                                <li><a href="{% url "aboutus:members" %}">本届成员</a></li>
+                                <li><a href="{% url "aboutus:members" %}">指导老师</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">项目介绍 <span class="pe-7s-angle-down"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{% url "aboutus:project_1" %}">国家自然科学基金</a></li>
+                                <li><a href="{% url "aboutus:project_2" %}">深圳光启</a></li>
+                                <li><a href="{% url "aboutus:project_3" %}">惠民技术研发项目</a></li>
+                                <li><a href="{% url "aboutus:project_4" %}">民航二所</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">组内活动 <span class="pe-7s-angle-down"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{% url "aboutus:activities" %}">组会</a></li>
+                                <li><a href="{% url "aboutus:activities" %}">答辩</a></li>
+                                <li><a href="{% url "aboutus:activities" %}">聚餐</a></li>
+                                <li><a href="{% url "aboutus:activities" %}">毕业</a></li>
+                                <li><a href="{% url "aboutus:activities" %}">球赛</a></li>
+                                <li><a href="{% url "aboutus:activities" %}">郊游</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#search"><i class="pe-7s-search"></i></a></li>
+                        <li id="menu-trigger-wrapper">
+                            <div class="pull-right">
+                                <button type="button" id="menu-toggle" class="tcon tcon-menu--xcross" aria-label="toggle menu">
+                                  <span class="tcon-menu__lines" aria-hidden="true"></span>
+                                  <span class="tcon-visuallyhidden">toggle menu</span>
+                                </button>
+                            </div>
+                        </li>
+                    </ul>
+
+                </div>
+                <!-- /.navbar-collapse -->
+
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+{#整个查找界面#}
+        <div id="search-wrapper">
+            <button type="button" class="close">×</button>
+            <form>
+                <input type="search" value="" placeholder="Enter Search Term" />
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+        </div>
+{#整个封面#}
+        <section class="dark-wrapper opaqued parallax" data-parallax="scroll" data-image-src="assets/img/bg/bg4.jpg" data-speed="0.8">
+            <div class="section-inner">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 mt30 text-center wow fadeIn" data-wow-delay="0.2s">
+                            <h2 class="section-heading">我们的<span class="theme-accent-color">项目</span></h2>
+                            <h3 class="section-subheading text-muted secondary-font">Our project.</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+{#整个内容部分#}
+        <section>
+            <div class="section-inner">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-sm-12 blog-item mb100 wow fadeIn" data-wow-delay="0.2s">
+                            <div class="row">
+                                <div class="col-xs-2">
+                                    <div class="post-date heading-font">
+                                        <span class="the-date">19</span>
+                                        <span class="the-month">April, 2014</span>
+                                    </div>
+                                </div>
+                                <div class="col-xs-10">
+                                    <h2 class="post-title">基于深度学习的跨域视频目标检测与识别（国家自然科学基金）</h2>
+                                    <div class="item-metas text-muted mb30">
+                                        <span class="meta-item"><i class="pe-icon pe-7s-folder"></i> POSTED IN <span class="secondary-font">News</span></span>
+                                        <span class="meta-item"><i class="pe-icon pe-7s-ticket"></i> TAGS <span class="secondary-font">Photography</span></span>
+                                        <span class="meta-item"><i class="pe-icon pe-7s-user"></i> AUTHOR <span class="secondary-font">Danny Jones</span></span>
+                                        <span class="meta-item"><i class="pe-icon pe-7s-comment"></i> COMMENTS <span class="secondary-font">3</span></span>
+                                    </div>
+                                    <div class="hover-item mb30">
+                                        <img src="/static/images/aboutus_images/news/1.jpg" class="img-responsive smoothie wow fadeIn" data-wow-delay="0.2s" alt="title">
+                                        <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s"></div>
+                                        <div class="hover-item-caption smoothie">
+                                            <h3 class="vertical-center smoothie"><a href="single-post.html" class="smoothie btn btn-primary btn-white page-scroll" title="view article">View</a></h3>
+                                        </div>
+{#                                        <img src="assets/img/news/1.jpg" class="img-responsive smoothie wow fadeIn" data-wow-delay="0.2s" alt="title">#}
+{#                                        <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s"></div>#}
+{#                                        <div class="hover-item-caption smoothie">#}
+{#                                            <h3 class="vertical-center smoothie"><a href="single-post.html" class="smoothie btn btn-primary btn-white page-scroll" title="view article">View</a></h3>#}
+{#                                        </div>#}
+                                    </div>
+                                    <p>Behind sooner dining so window excuse he summer. Breakfast met certainty and fulfilled propriety led. Waited get either are wooded little her. Contrasted unreserved as mr particular collecting it everything as indulgence. Seems ask meant merry could put. Age old begin had boy noisy table front whole given.</p>
+                                    <a class="btn btn-primary mt30" href="single-post.html"><i class="fa fa-long-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+{#                        <div class="col-sm-12 blog-item mb100 wow fadeIn" data-wow-delay="0.2s">#}
+{#                            <div class="row">#}
+{#                                <div class="col-xs-2">#}
+{#                                    <div class="post-date heading-font">#}
+{#                                        <span class="the-date">19</span>#}
+{#                                        <span class="the-month">April, 2014</span>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                                <div class="col-xs-10">#}
+{#                                    <h2 class="post-title">The Ultimate Experience</h2>#}
+{#                                    <div class="item-metas text-muted mb30">#}
+{#                                        <span class="meta-item"><i class="pe-icon pe-7s-folder"></i> POSTED IN <span class="secondary-font">News</span></span>#}
+{#                                        <span class="meta-item"><i class="pe-icon pe-7s-ticket"></i> TAGS <span class="secondary-font">Photography</span></span>#}
+{#                                        <span class="meta-item"><i class="pe-icon pe-7s-user"></i> AUTHOR <span class="secondary-font">Danny Jones</span></span>#}
+{#                                        <span class="meta-item"><i class="pe-icon pe-7s-comment"></i> COMMENTS <span class="secondary-font">3</span></span>#}
+{#                                    </div>#}
+{#                                    <div class="hover-item mb30">#}
+{#                                        <img src="/static/images/aboutus_images/news/2.jpg" class="img-responsive smoothie wow fadeIn" data-wow-delay="0.2s" alt="title">#}
+{#                                        <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s"></div>#}
+{#                                        <div class="hover-item-caption smoothie">#}
+{#                                            <h3 class="vertical-center smoothie"><a href="single-post.html" class="smoothie btn btn-primary btn-white page-scroll" title="view article">View</a></h3>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                    <p>Behind sooner dining so window excuse he summer. Breakfast met certainty and fulfilled propriety led. Waited get either are wooded little her. Contrasted unreserved as mr particular collecting it everything as indulgence. Seems ask meant merry could put. Age old begin had boy noisy table front whole given.</p>#}
+{#                                    <a class="btn btn-primary mt30" href="single-post.html"><i class="fa fa-long-arrow-right"></i></a>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+
+                    </div>
+
+                    <div class="row paging text-center">
+                        <a class="btn btn-primary mt30" href="#">Older Posts</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+{#整个页脚#}
+        <footer class="white-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6 wow fadeIn" data-wow-delay="0.2s">
+                        <span class="copyright">Copyright © 2019 SCU图像信息研究所614B All rights reserved. 欢迎访问<a href="http://blog.leanote.com/lee-romantic" title="Github" target="_blank">个人博客</a>和<a href ="{% url "app:login" %}">智能监控系统</a>.</span>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <ul class="list-inline social-links wow fadeIn" data-wow-delay="0.2s">
+                            <li>
+                                <a href="https://github.com/804463592"><i class="fa fa-github"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-qq"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-weixin"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-weibo"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <div id="bottom-frame"></div>
+
+        <a href="#" id="back-to-top"><i class="fa fa-long-arrow-up"></i></a>
+
+    </div>
+
+    <script src="/static/javascript/aboutus_js/jquery.js"></script>
+    <script src="/static/javascript/aboutus_js/bootstrap.min.js"></script>
+    <script src="/static/javascript/aboutus_js/plugins.js"></script>
+
+    <script src="/static/javascript/aboutus_js/init.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">
+
+    </script><script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
+</body>
+
+</html>

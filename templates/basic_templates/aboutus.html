@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="/static/images/aboutus_images/ico/favicon.ico">
+    <link rel="apple-touch-icon" sizes="144x144" href="/static/images/aboutus_images/ico/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/static/images/aboutus_images/ico/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/static/images/aboutus_images/ico/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" href="/static/images/aboutus_images/ico/apple-touch-icon-57x57.png">
+
+    <title>智能监控组 </title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/static/css/aboutus_css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/aboutus_css/animate.css" rel="stylesheet">
+    <link href="/static/css/aboutus_css/plugins.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/static/css/aboutus_css/style.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="/static/css/aboutus_css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/aboutus_css/pe-icons.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top" class="animated-navigation">
+
+
+    <div class="master-wrapper">
+
+{#        <div class="preloader">#}
+{#            <div class="preloader-img">#}
+{#            	<span class="loading-animation animate-flicker"><img src="/static/images/aboutus_images/loading.GIF" alt="loading" /></span>#}
+{#            </div>#}
+{#        </div>#}
+
+        <!-- Navigation -->
+{#整个悬窗#}
+        <nav class="navbar navbar-default navbar-fixed-top fadeInDown" data-wow-delay="0.2s">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+            {#VSST#}
+                <div class="navbar-header page-scroll">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navigation">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand smoothie" href="{% url "app:aboutus" %}">V<span class="theme-accent-color">S</span>ST</a>
+                </div>
+            {#悬窗左边几个社交app#}
+                <div id="navbar-social">
+                    <ul class="smoothie list-inline social-links">
+                        <li>
+                            <a href="#"><i class="fa fa-github"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-qq"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-wechat"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-weibo"></i></a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+            {#悬窗右上角下拉框内容#}
+                <div class="collapse navbar-collapse" id="main-navigation">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="{% url "app:aboutus" %}" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">首页 <span class="pe-7s-angle-down"></span></a>
+                            <ul class="dropdown-menu" role="menu"></ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="{% url "app:videoanalysis" %}" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">智能监控系统 <span class="pe-7s-angle-down"></span></a>
+                            <ul class="dropdown-menu" role="menu"></ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">研究方向 <span class="pe-7s-angle-down"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{% url "aboutus:object_detection" %}">目标检测</a></li>
+                                <li><a href="{% url "aboutus:target_tracking" %}">目标跟踪</a></li>
+                                <li><a href="{% url "aboutus:re_identification" %}">重识别</a></li>
+                                <li><a href="{% url "aboutus:abnormal_detection" %}">异常行为检测</a></li>
+                                <li><a href="{% url "aboutus:density_estimation" %}">人群密度估计</a></li>
+                                <li><a href="{% url "aboutus:video_defog" %}">视频去雾</a></li>
+{#                                <li><a href="single-portfolio-fullscreen-video.html">Project Fullscreen Video</a></li>#}
+{#                                <li><a href="single-portfolio-image-list.html">Project Image List</a></li>#}
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">成员介绍 <span class="pe-7s-angle-down"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{% url "aboutus:members" %}">毕业成员</a></li>
+                                <li><a href="{% url "aboutus:members" %}">本届成员</a></li>
+                                <li><a href="{% url "aboutus:members" %}">指导老师</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">项目介绍 <span class="pe-7s-angle-down"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{% url "aboutus:project_1" %}">国家自然科学基金</a></li>
+                                <li><a href="{% url "aboutus:project_2" %}">深圳光启</a></li>
+                                <li><a href="{% url "aboutus:project_3" %}">惠民技术研发项目</a></li>
+                                <li><a href="{% url "aboutus:project_4" %}">民航二所</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">组内活动 <span class="pe-7s-angle-down"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{% url "aboutus:activities" %}">组会</a></li>
+                                <li><a href="{% url "aboutus:activities" %}">答辩</a></li>
+                                <li><a href="{% url "aboutus:activities" %}">聚餐</a></li>
+                                <li><a href="{% url "aboutus:activities" %}">毕业</a></li>
+                                <li><a href="{% url "aboutus:activities" %}">球赛</a></li>
+                                <li><a href="{% url "aboutus:activities" %}">郊游</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#search"><i class="pe-7s-search"></i></a></li>
+                        <li id="menu-trigger-wrapper">
+                            <div class="pull-right">
+                                <button type="button" id="menu-toggle" class="tcon tcon-menu--xcross" aria-label="toggle menu">
+                                  <span class="tcon-menu__lines" aria-hidden="true"></span>
+                                  <span class="tcon-visuallyhidden">toggle menu</span>
+                                </button>
+                            </div>  
+                        </li>
+                    </ul>
+
+                </div>
+                <!-- /.navbar-collapse -->         
+
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+
+{#查找界面#}
+        <div id="search-wrapper">
+            <button type="button" class="close">×</button>
+            <form>
+                <input type="search" value="" placeholder="请输入关键词" />
+                <button type="submit" class="btn btn-primary">搜索</button>
+            </form>
+        </div>
+
+        <!-- Header -->
+{#整个封面轮播效果#}
+        <header id="headerwrap" class="backstretched fullheight">
+            <div class="vertical-center">
+                <div class="col-sm-1 pull-left text-center slider-control match-height">
+                    <a href="#" class="prev-bs-slide vertical-center wow fadeInLeft" data-wow-delay="0.8s"><i class="fa fa-long-arrow-left"></i></a>
+                </div>
+                <div class="intro-text text-center smoothie col-sm-10 match-height">                    
+                    <div class="intro-heading wow fadeIn heading-font" data-wow-delay="0.8s">智能<span class="theme-accent-color">监控</span>小组</div>
+                </div>
+                <div class="col-sm-1 pull-right text-center slider-control match-height">
+                    <a href="#" class="next-bs-slide vertical-center wow fadeInRight" data-wow-delay="0.8s"><i class="fa fa-long-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="header-scroll-wrapper">
+                <a href="#welcome" class="mouse page-scroll wow fadeInDown" data-wow-delay="0.8s"><div class="wheel"></div></a>
+            </div>
+        </header>
+
+{#小组介绍部分#}
+        <section id="welcome" class="single-page-section">
+            <div class="section-inner">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 text-center mb100">                        
+                            <h2 class="section-heading">欢迎来到<span class="theme-accent-color">智能监控组</span></h2>
+                            <hr class="thin-hr">
+                            <h3 class="section-subheading secondary-font">Welcome to VSST.</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="container">
+
+                        <div class="col-md-3">
+                            <h2 class="mb50">小组介绍<span class="theme-accent-color"> </span></h2>
+                            <p class="lead">智能监控组位于四川大学电子信息学院图像信息研究所614B，主要研究目标检测，目标跟踪，重识别，异常行为检测，人群密度估计和视频去雾等领域。</p>
+                            <p>The intelligent monitoring group is located in 614b, Institute of image information, College of electronic information, Sichuan University. We mainly studies target detection, target tracking, re recognition, abnormal behavior detection, population density estimation and video defogging.</p>
+                            <p class="mt30"><a href="#contact" class="btn btn-primary btn-theme page-scroll">联系我们</a></p>
+                        </div>
+
+                        <div class="col-md-8 col-md-offset-1">
+                            <div class="row">
+                                <div class="col-sm-6 wow fadeInUp" data-wow-delay="0.2s">
+                                    <div class="icon-box-1 match-height mb30">
+                                        <i class="fa-4x pe-7s-camera"></i>
+                                        <div class="content-area">
+                                            <a href="{% url "aboutus:object_detection" %}">
+                                                <h3 class="title">目标检测</h3>
+                                                <div class="content">目标检测也叫目标提取，是一种基于目标几何和统计特征的图像分割，它将目标的分割和识别合二为一，其准确性和实时性是整个系统的一项重要能力。尤其是在复杂场景中，需要对多个目标进行实时处理时，目标自动提取和识别就显得特别重要。</div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 wow fadeInUp" data-wow-delay="0.2s">
+                                    <div class="icon-box-1 match-height mb30">
+                                        <i class="fa-4x pe-7s-chat"></i>
+                                        <div class="content-area">
+                                            <a href="{% url "aboutus:target_tracking" %}">
+                                                <h3 class="title">目标跟踪</h3>
+                                                <div class="content">目标跟踪就是在连续的视频序列中，建立所要跟踪物体的位置关系，得到物体完整的运动轨迹。</div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 wow fadeInUp" data-wow-delay="0.2s">
+                                    <div class="icon-box-1 match-height mb30">
+                                        <i class="fa-4x pe-7s-film"></i>
+                                        <div class="content-area">
+                                            <a href="{% url "aboutus:re_identification" %}">
+                                                <h3 class="title">重识别</h3>
+                                                <div class="content">行人重识别也称行人再识别，是利用计算机视觉技术判断图像或者视频序列中是否存在特定行人的技术。</div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 wow fadeInUp" data-wow-delay="0.2s">
+                                    <div class="icon-box-1 match-height mb30">
+                                        <i class="fa-4x pe-7s-attention"></i>
+                                        <div class="content-area">
+                                            <a href="{% url "aboutus:abnormal_detection" %}">
+                                                <h3 class="title">异常行为检测</h3>
+                                                <div class="content">异常检测是指利用定量的方式来描述可接受的行为特征,以区分和正常行为相违背的、非正常的行为特征来检测入侵。</div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 wow fadeInUp" data-wow-delay="0.2s">
+                                    <div class="icon-box-1 match-height">
+                                        <i class="fa-4x pe-7s-users"></i>
+                                        <div class="content-area">
+                                            <a href="{% url "aboutus:density_estimation" %}">
+                                                <h3 class="title">人群密度估计</h3>
+                                                <div class="content">人群密度估计是指识别图像中的人群密度。</div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 wow fadeInUp" data-wow-delay="0.2s">
+                                    <div class="icon-box-1 match-height">
+                                        <i class="fa fa-4x fa-code-fork"></i>
+                                        <div class="content-area">
+                                            <a href="{% url "aboutus:video_defog" %}">
+                                                <h3 class="title">视频去雾</h3>
+                                                <div class="content">视频去雾是通过一定技术处理，去除雾霾的干扰，恢复视频的细节信息，得到具有良好视觉效果的视频。</div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+{#我们的理念#}
+        <div class="col-sm-6 nopadding-lr silver-bg">
+            <div class="section-inner pad-sides-60 match-height" data-mh="promo-inner">
+                <h3 class="mb50">Experience <span class="theme-accent-color">Piper</span></h3>
+                <p class="lead mb50">Conveniently leverage other's distinctive expertise and backend metrics. Progressively harness intuitive systems and ethical niches. Continually drive extensible benefits vis-a-vis leading-edge meta-services. Conveniently leverage existing market-driven outsourcing vis-a-vis e-business process improvements. Intrinsicly extend quality interfaces with intermandated innovation.</p>
+                <p class="mb50">Quickly network web-enabled alignments without bleeding-edge supply chains. Credibly network sticky growth strategies via excellent infomediaries. Dramatically grow prospective core competencies whereas one-to-one manufactured products. Competently impact web-enabled deliverables without prospective bandwidth. Credibly matrix team building e-markets via B2B alignments.</p>
+                <p class="mt30"><a href="#contact" class="btn btn-primary btn-red page-scroll">Find Out More</a></p>
+            </div>
+        </div>
+
+        <div class="col-sm-6 nopadding-lr dark-wrapper opaqued background-cover" style="background-image: url('/static/images/aboutus_images/bg/bg10.jpg');">
+            <div class="dark-opaqued-half section-inner pad-sides-60 match-height text-right" data-mh="promo-inner">
+                <h3 class="mb50">Global <span class="theme-accent-color">Influence</span></h3>
+                <p class="lead mb50">Conveniently leverage other's distinctive expertise and backend metrics. Progressively harness intuitive systems and ethical niches. Continually drive extensible benefits vis-a-vis leading-edge meta-services. Conveniently leverage existing market-driven outsourcing vis-a-vis e-business process improvements. Intrinsicly extend quality interfaces with intermandated innovation.</p>
+                <p class="mb50">Quickly network web-enabled alignments without bleeding-edge supply chains. Credibly network sticky growth strategies via excellent infomediaries. Dramatically grow prospective core competencies whereas one-to-one manufactured products. Competently impact web-enabled deliverables without prospective bandwidth. Credibly matrix team building e-markets via B2B alignments.</p>
+                <p class="mt30"><a href="#contact" class="btn btn-primary btn-white page-scroll">Find Out More</a></p>
+            </div>
+        </div>
+{#组员介绍#}
+        <section id="the-team" class="silver-bg single-page-section">
+            <div class="section-inner">
+                 <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 text-center mb100">
+                            <h2 class="section-heading">我们的<span class="theme-accent-color">成员</span></h2>
+                            <hr class="thin-hr">
+                            <h3 class="section-subheading secondary-font">Our team.</h3>
+                        </div>
+                    </div>
+                </div>
+            {#成员照片#}
+                <div class="wow fadeIn" data-wow-delay="0.2s">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <ul class="owl-carousel-paged testimonial-owl wow fadeIn list-unstyled" data-items="3" data-items-tablet="[768,2]" data-items-mobile="[479,1]">
+
+                                    <li>
+                                        <div class="row hover-item">
+                                            <div class="col-xs-12">
+                                                <img src="/static/images/aboutus_images/team/本届/刘强.jpg" class="img-responsive smoothie" alt="">
+                                            </div>
+                                            <div class="col-xs-12 overlay-item-caption smoothie"></div>
+                                            <div class="col-xs-12 hover-item-caption smoothie">
+                                                <div class="vertical-center">
+                                                    <h3 class="smoothie"><a href="single-portfolio.html" title="view project">刘强</a></h3>
+                                                    <ul class="smoothie list-inline social-links wow fadeIn" data-wow-delay="0.2s">
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-github"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-qq"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-weixin"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-weibo"></i></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <span class="theme-accent-color-bg hover-bar"></span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="row hover-item">
+                                            <div class="col-xs-12">
+                                                <img src="/static/images/aboutus_images/team/本届/刘文璨.jpg" class="img-responsive smoothie" alt="">
+                                            </div>
+                                            <div class="col-xs-12 overlay-item-caption smoothie"></div>
+                                            <div class="col-xs-12 hover-item-caption smoothie">
+                                                <div class="vertical-center">
+                                                    <h3 class="smoothie"><a href="single-portfolio.html" title="view project">刘文璨</a></h3>
+                                                    <ul class="smoothie list-inline social-links wow fadeIn" data-wow-delay="0.2s">
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-github"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-qq"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-weixin"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-weibo"></i></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <span class="theme-accent-color-bg hover-bar"></span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="row hover-item">
+                                            <div class="col-xs-12">
+                                                <img src="/static/images/aboutus_images/team/本届/段康容.jpg" class="img-responsive smoothie" alt="">
+                                            </div>
+                                            <div class="col-xs-12 overlay-item-caption smoothie"></div>
+                                            <div class="col-xs-12 hover-item-caption smoothie">
+                                                <div class="vertical-center">
+                                                    <h3 class="smoothie"><a href="single-portfolio.html" title="view project">段康容</a></h3>
+                                                    <ul class="smoothie list-inline social-links wow fadeIn" data-wow-delay="0.2s">
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-github"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-qq"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-weixin"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-weibo"></i></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <span class="theme-accent-color-bg hover-bar"></span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="row hover-item">
+                                            <div class="col-xs-12">
+                                                <img src="/static/images/aboutus_images/team/本届/赵威.jpg" class="img-responsive smoothie" alt="">
+                                            </div>
+                                            <div class="col-xs-12 overlay-item-caption smoothie"></div>
+                                            <div class="col-xs-12 hover-item-caption smoothie">
+                                                <div class="vertical-center">
+                                                    <h3 class="smoothie"><a href="single-portfolio.html" title="view project">赵威</a></h3>
+                                                    <ul class="smoothie list-inline social-links wow fadeIn" data-wow-delay="0.2s">
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-github"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-qq"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-weixin"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-weibo"></i></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <span class="theme-accent-color-bg hover-bar"></span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="row hover-item">
+                                            <div class="col-xs-12">
+                                                <img src="/static/images/aboutus_images/team/本届/王昆仑.jpg" class="img-responsive smoothie" alt="">
+                                            </div>
+                                            <div class="col-xs-12 overlay-item-caption smoothie"></div>
+                                            <div class="col-xs-12 hover-item-caption smoothie">
+                                                <div class="vertical-center">
+                                                    <h3 class="smoothie"><a href="single-portfolio.html" title="view project">王昆仑</a></h3>
+                                                    <ul class="smoothie list-inline social-links wow fadeIn" data-wow-delay="0.2s">
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-github"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-qq"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-weixin"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-weibo"></i></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <span class="theme-accent-color-bg hover-bar"></span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="row hover-item">
+                                            <div class="col-xs-12">
+                                                <img src="/static/images/aboutus_images/team/本届/刘康凝.jpg" class="img-responsive smoothie" alt="">
+                                            </div>
+                                            <div class="col-xs-12 overlay-item-caption smoothie"></div>
+                                            <div class="col-xs-12 hover-item-caption smoothie">
+                                                <div class="vertical-center">
+                                                    <h3 class="smoothie"><a href="single-portfolio.html" title="view project">刘康凝</a></h3>
+                                                    <ul class="smoothie list-inline social-links wow fadeIn" data-wow-delay="0.2s">
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-github"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-qq"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-weixin"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-weibo"></i></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <span class="theme-accent-color-bg hover-bar"></span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="row hover-item">
+                                            <div class="col-xs-12">
+                                                <img src="/static/images/aboutus_images/team/本届/程玉.jpg" class="img-responsive smoothie" alt="">
+                                            </div>
+                                            <div class="col-xs-12 overlay-item-caption smoothie"></div>
+                                            <div class="col-xs-12 hover-item-caption smoothie">
+                                                <div class="vertical-center">
+                                                    <h3 class="smoothie"><a href="single-portfolio.html" title="view project">程玉</a></h3>
+                                                    <ul class="smoothie list-inline social-links wow fadeIn" data-wow-delay="0.2s">
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-github"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-qq"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-weixin"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-weibo"></i></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <span class="theme-accent-color-bg hover-bar"></span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="row hover-item">
+                                            <div class="col-xs-12">
+                                                <img src="/static/images/aboutus_images/team/本届/董潇潇.jpg" class="img-responsive smoothie" alt="">
+                                            </div>
+                                            <div class="col-xs-12 overlay-item-caption smoothie"></div>
+                                            <div class="col-xs-12 hover-item-caption smoothie">
+                                                <div class="vertical-center">
+                                                    <h3 class="smoothie"><a href="single-portfolio.html" title="view project">董潇潇</a></h3>
+                                                    <ul class="smoothie list-inline social-links wow fadeIn" data-wow-delay="0.2s">
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-github"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-qq"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-weixin"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-weibo"></i></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <span class="theme-accent-color-bg hover-bar"></span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="row hover-item">
+                                            <div class="col-xs-12">
+                                                <img src="/static/images/aboutus_images/team/本届/李波.jpg" class="img-responsive smoothie" alt="">
+                                            </div>
+                                            <div class="col-xs-12 overlay-item-caption smoothie"></div>
+                                            <div class="col-xs-12 hover-item-caption smoothie">
+                                                <div class="vertical-center">
+                                                    <h3 class="smoothie"><a href="single-portfolio.html" title="view project">李波</a></h3>
+                                                    <ul class="smoothie list-inline social-links wow fadeIn" data-wow-delay="0.2s">
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-github"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-qq"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-weixin"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-weibo"></i></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <span class="theme-accent-color-bg hover-bar"></span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="row hover-item">
+                                            <div class="col-xs-12">
+                                                <img src="/static/images/aboutus_images/team/本届/王叶.jpg" class="img-responsive smoothie" alt="">
+                                            </div>
+                                            <div class="col-xs-12 overlay-item-caption smoothie"></div>
+                                            <div class="col-xs-12 hover-item-caption smoothie">
+                                                <div class="vertical-center">
+                                                    <h3 class="smoothie"><a href="single-portfolio.html" title="view project">王叶</a></h3>
+                                                    <ul class="smoothie list-inline social-links wow fadeIn" data-wow-delay="0.2s">
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-github"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-qq"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-weixin"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-weibo"></i></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <span class="theme-accent-color-bg hover-bar"></span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="row hover-item">
+                                            <div class="col-xs-12">
+                                                <img src="/static/images/aboutus_images/team/本届/吴稳稳.jpg" class="img-responsive smoothie" alt="">
+                                            </div>
+                                            <div class="col-xs-12 overlay-item-caption smoothie"></div>
+                                            <div class="col-xs-12 hover-item-caption smoothie">
+                                                <div class="vertical-center">
+                                                    <h3 class="smoothie"><a href="single-portfolio.html" title="view project">吴稳稳</a></h3>
+                                                    <ul class="smoothie list-inline social-links wow fadeIn" data-wow-delay="0.2s">
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-github"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-qq"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-weixin"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-weibo"></i></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <span class="theme-accent-color-bg hover-bar"></span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="row hover-item">
+                                            <div class="col-xs-12">
+                                                <img src="/static/images/aboutus_images/team/本届/邓描.jpg" class="img-responsive smoothie" alt="">
+                                            </div>
+                                            <div class="col-xs-12 overlay-item-caption smoothie"></div>
+                                            <div class="col-xs-12 hover-item-caption smoothie">
+                                                <div class="vertical-center">
+                                                    <h3 class="smoothie"><a href="single-portfolio.html" title="view project">邓描</a></h3>
+                                                    <ul class="smoothie list-inline social-links wow fadeIn" data-wow-delay="0.2s">
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-github"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-qq"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-weixin"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-weibo"></i></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <span class="theme-accent-color-bg hover-bar"></span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="row hover-item">
+                                            <div class="col-xs-12">
+                                                <img src="/static/images/aboutus_images/team/本届/熊书琪.jpg" class="img-responsive smoothie" alt="">
+                                            </div>
+                                            <div class="col-xs-12 overlay-item-caption smoothie"></div>
+                                            <div class="col-xs-12 hover-item-caption smoothie">
+                                                <div class="vertical-center">
+                                                    <h3 class="smoothie"><a href="single-portfolio.html" title="view project">熊书琪</a></h3>
+                                                    <ul class="smoothie list-inline social-links wow fadeIn" data-wow-delay="0.2s">
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-github"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-qq"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-weixin"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-weibo"></i></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <span class="theme-accent-color-bg hover-bar"></span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="row hover-item">
+                                            <div class="col-xs-12">
+                                                <img src="/static/images/aboutus_images/team/本届/李自强.jpg" class="img-responsive smoothie" alt="">
+                                            </div>
+                                            <div class="col-xs-12 overlay-item-caption smoothie"></div>
+                                            <div class="col-xs-12 hover-item-caption smoothie">
+                                                <div class="vertical-center">
+                                                    <h3 class="smoothie"><a href="single-portfolio.html" title="view project">李自强</a></h3>
+                                                    <ul class="smoothie list-inline social-links wow fadeIn" data-wow-delay="0.2s">
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-github"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-qq"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-weixin"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-weibo"></i></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <span class="theme-accent-color-bg hover-bar"></span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="row hover-item">
+                                            <div class="col-xs-12">
+                                                <img src="/static/images/aboutus_images/team/本届/齐宝光.jpg" class="img-responsive smoothie" alt="">
+                                            </div>
+                                            <div class="col-xs-12 overlay-item-caption smoothie"></div>
+                                            <div class="col-xs-12 hover-item-caption smoothie">
+                                                <div class="vertical-center">
+                                                    <h3 class="smoothie"><a href="single-portfolio.html" title="view project">齐宝光</a></h3>
+                                                    <ul class="smoothie list-inline social-links wow fadeIn" data-wow-delay="0.2s">
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-github"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-qq"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-weixin"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-weibo"></i></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <span class="theme-accent-color-bg hover-bar"></span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="row hover-item">
+                                            <div class="col-xs-12">
+                                                <img src="/static/images/aboutus_images/team/本届/崔珂璠.jpg" class="img-responsive smoothie" alt="">
+                                            </div>
+                                            <div class="col-xs-12 overlay-item-caption smoothie"></div>
+                                            <div class="col-xs-12 hover-item-caption smoothie">
+                                                <div class="vertical-center">
+                                                    <h3 class="smoothie"><a href="single-portfolio.html" title="view project">崔珂璠</a></h3>
+                                                    <ul class="smoothie list-inline social-links wow fadeIn" data-wow-delay="0.2s">
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-github"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-qq"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-weixin"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-weibo"></i></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <span class="theme-accent-color-bg hover-bar"></span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="row hover-item">
+                                            <div class="col-xs-12">
+                                                <img src="/static/images/aboutus_images/team/本届/王良聪.jpg" class="img-responsive smoothie" alt="">
+                                            </div>
+                                            <div class="col-xs-12 overlay-item-caption smoothie"></div>
+                                            <div class="col-xs-12 hover-item-caption smoothie">
+                                                <div class="vertical-center">
+                                                    <h3 class="smoothie"><a href="single-portfolio.html" title="view project">王良聪</a></h3>
+                                                    <ul class="smoothie list-inline social-links wow fadeIn" data-wow-delay="0.2s">
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-github"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-qq"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-weixin"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-weibo"></i></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <span class="theme-accent-color-bg hover-bar"></span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pad-top-bottom-50 text-center">
+                        <a href="{% url "aboutus:members" %}" class="btn btn-primary btn-red page-scroll">查看所有照片</a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+{#我们的项目#}
+        <section class="dark-wrapper">
+            <div class="section-inner">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 text-center mb100">                        
+                            <h2 class="section-heading">我们的<span class="theme-accent-color">项目</span></h2>
+                            <hr class="thin-hr">
+                            <h3 class="section-subheading secondary-font">Our project.</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wow fadeIn" data-wow-delay="0.2s">
+                    <div class="container text-center">
+                        <div class="row">
+                            <div class="col-xs-12" role="tabpanel">
+                                <div class="col-sm-12">
+                                    <!-- Nav tabs -->
+                                    <ul class="nav nav-justified icon-tabs" id="nav-tabs" role="tablist">
+                                        <li role="presentation" class="active">
+                                            <a href="#dustin" aria-controls="dustin" role="tab" data-toggle="tab">
+                                                <span class="fa-4x pe-7s-bell"></span>
+                                                <span class="tabtitle heading-font">基于深度学习的跨域视频目标检测与识别（国家自然科学基金）</span>
+                                            </a>
+                                        </li>
+                                        <li role="presentation" class="">
+                                            <a href="#daksh" aria-controls="daksh" role="tab" data-toggle="tab">
+                                               <span class="fa-4x pe-7s-airplay"></span>
+                                               <span class="tabtitle heading-font">群体聚集和异常行为检测（深圳光启）</span>
+                                            </a>
+                                        </li>
+                                        <li role="presentation" class="">
+                                            <a href="#anna" aria-controls="anna" role="tab" data-toggle="tab">
+                                                <span class="fa-4x pe-7s-plugin"></span>
+                                                <span class="tabtitle heading-font">群体异常行为自动识别（成都市科技惠民技术研发项目）</span>
+                                            </a>
+                                        </li>
+                                        <li role="presentation" class="">
+                                            <a href="#wafer" aria-controls="wafer" role="tab" data-toggle="tab">
+                                                <span class="fa-4x pe-7s-plane"></span>
+                                                <span class="tabtitle heading-font">特定场景下的目标检测跟踪技术（民航二所）</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-sm-12 mt60">
+                                    <!-- Tab panes -->
+                                    <div class="tab-content" id="tabs-collapse">            
+                                        <div role="tabpanel" class="tab-pane fade in active" id="dustin">
+                                            <div class="tab-inner pad-sides-60">                   
+                                                <p class="lead mb30">本项目以特殊区域目标为研究对象，研究基于深度学习的理论与技术，构建跨域视频目标检测与识别系统。为了提高视频目标检测与识别系统在实际应用中的适应能力，本项目主要研究工作包括：结合半监督学习来扩充视频训练数据，采用时空信息感知的方法进行视频目标检测；结合注意机制和深度流特征传播，实现目标的准确跟踪；融合姿态特征和动量特征来进行目标行为分析；研究基于迁移学习和一致性局部特征对齐的跨域视频目标再识别。本项目的研究有利于推动目标再识别技术及其相关应用领域的发展，对于社会经济发展和公共安全有着重要的意义。</p>
+                                                <a href="{% url "aboutus:project_1" %}" class="btn btn-primary btn-red page-scroll">Find out More</a>
+                                            </div>
+                                        </div>
+                                        
+                                        <div role="tabpanel" class="tab-pane fade" id="daksh">
+                                            <div class="tab-inner pad-sides-60">
+                                                <p class="lead mb30">对从高空相机所获得的实时视频和图像数据进行处理。通过对指定区域内异常人群的行为进行分析，从视频中标记出异常人群并进行提前预警。
+                                                    指标分析：1、在视频中实时显示监测区域内的人群数量。对监视区域的人群信息进行人群数量进行统计，统计的误差控制在0.3左右（比如：100人误差控制在30个人内）。 2、统计区域内的人群密度，对监视区域的人群信息进行人群密度分类：建立不低于3级的人群密度分级标准，密度分级准确率>=75%，列表说明分类的人群数量映射关系，报告里体现。 3、对监视区域的人群行为进行简单分类，例如正常、异常（打架斗殴、异常分散等），分类精度在60%~70%之间。 4、对异常人群区域形成唯一的标识符，标识符由数字英文组合而成。对监测区域进行异常人群检测，并且对所检测出来的区域进行标记，并且对于某一程度的异常人群大于某一阈值时发出报警信息，并自动保存截图。 5、对于第二阶段采用有规律地缓慢移动的定焦摄像头的情况，以上指标可以降低，但能反映出趋势。</p>
+                                                <a href="{% url "aboutus:project_2" %}" class="btn btn-primary btn-red page-scroll">Find out More</a>
+                                            </div>
+                                        </div>
+                                        
+                                        <div role="tabpanel" class="tab-pane fade" id="anna">
+                                            <div class="tab-inner pad-sides-60">
+                                                <p class="lead mb30">本项目针对成都市科学技术局2015年成都市科技惠民项目中涉及的公共安全领域提出。主要对相关监控视频进行智能分析，对监控视频进行智能分析并建立预警机制，为政府部门建立城市安全体系的规划和实施提供决策依据，最终提高城市安全管理水平，防控城市重大公共安全事故的发生，对促进经济可持续发展和社会稳定起重要作用，具有较大的经济效益和显著的社会效益。</p>
+                                                <a href="{% url "aboutus:project_3" %}" class="btn btn-primary btn-red page-scroll">Find out More</a>
+                                            </div> 
+                                        </div>
+                                        
+                                        <div role="tabpanel" class="tab-pane fade" id="wafer">
+                                            <div class="tab-inner pad-sides-60">
+                                                <p class="lead mb30">由于机场场面目标种类繁多，容易发生碰撞等安全事故。据有关统计，全球航空业每年损失达110亿美元。其中90%的损失是因为飞机与飞机、飞机与工作人员或机场内其它移动物体发生碰撞造成的。为解决日益增加的交通流量给机场场面运行管理带来的挑战，保障机场场面运行安全、提高机场运行效率，实现对机场场面重要目标的监控和跟踪，从而有效地避免场面目标冲突的发生，显著地增强机场安全保障能力。</p>
+                                                <a href="{% url "aboutus:project_4" %}" class="btn btn-primary btn-red page-scroll">Find out More</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>        
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+{#我们的活动#}
+        <section id="the-blog" class="white-bg single-page-section">
+            <div class="section-inner">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 text-center mb100">                        
+                            <h2 class="section-heading">我们的<span class="theme-accent-color">活动</span></h2>
+                            <hr class="thin-hr">
+                            <h3 class="section-subheading secondary-font">Our activity.</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="overlay-layer mb30">
+                    <div class="container">
+                        <div class="row">
+                            <ul class="owl-carousel-highlighted news-carousel fw-carousel list-unstyled" data-items="3" data-items-tablet="[768,2]"  data-items-mobile="[479,1]">
+                                <li class="nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/组会.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                        <div class="vertical-center smoothie">
+                                            <strong class="heading-font"><span class="theme-accent-color-bg">组会</span></strong>
+                                            <h3><a href="single-post.html" title="view project">Team Meeting</a></h3>
+                                        </div>
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <h3 class="vertical-center smoothie"><a href="single-post.html" class="smoothie btn btn-primary btn-white page-scroll" title="view article"><i class="fa fa-long-arrow-right"></i></a></h3>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </li>
+                                <li class="nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/答辩.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                        <div class="vertical-center smoothie">
+                                            <strong class="heading-font"><span class="theme-accent-color-bg">答辩</span></strong>
+                                            <h3><a href="single-post.html" title="view project">Defense</a></h3>
+                                        </div>
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <h3 class="vertical-center smoothie"><a href="single-post.html" class="smoothie btn btn-primary btn-white page-scroll" title="view article"><i class="fa fa-long-arrow-right"></i></a></h3>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+
+                                </li>
+                                <li class="nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/聚餐.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                        <div class="vertical-center smoothie">
+                                            <strong class="heading-font"><span class="theme-accent-color-bg">聚餐</span></strong>
+                                            <h3><a href="single-post.html" title="view project">Dinner Party</a></h3>
+                                        </div>
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <h3 class="vertical-center smoothie"><a href="single-post.html" class="smoothie btn btn-primary btn-white page-scroll" title="view article"><i class="fa fa-long-arrow-right"></i></a></h3>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+
+                                </li>
+                                <li class="nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/毕业.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                        <div class="vertical-center smoothie">
+                                            <strong class="heading-font"><span class="theme-accent-color-bg">毕业</span></strong>
+                                            <h3><a href="single-post.html" title="view project">Graduation</a></h3>
+                                        </div>
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <h3 class="vertical-center smoothie"><a href="single-post.html" class="smoothie btn btn-primary btn-white page-scroll" title="view article"><i class="fa fa-long-arrow-right"></i></a></h3>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+
+                                </li>
+                                <li class="nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/球赛.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                        <div class="vertical-center smoothie">
+                                            <strong class="heading-font"><span class="theme-accent-color-bg">球赛</span></strong>
+                                            <h3><a href="single-post.html" title="view project">Ball Game</a></h3>
+                                        </div>
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <h3 class="vertical-center smoothie"><a href="single-post.html" class="smoothie btn btn-primary btn-white page-scroll" title="view article"><i class="fa fa-long-arrow-right"></i></a></h3>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </li>
+                                <li class="nopadding-lr hover-item">
+                                    <img src="/static/images/aboutus_images/news/郊游.jpg" class="img-responsive smoothie" alt="">
+                                    <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                        <div class="vertical-center smoothie">
+                                            <strong class="heading-font"><span class="theme-accent-color-bg">郊游</span></strong>
+                                            <h3><a href="single-post.html" title="view project">travel</a></h3>
+                                        </div>
+                                    </div>
+                                    <div class="hover-item-caption smoothie">
+                                        <h3 class="vertical-center smoothie"><a href="single-post.html" class="smoothie btn btn-primary btn-white page-scroll" title="view article"><i class="fa fa-long-arrow-right"></i></a></h3>
+                                        <span class="theme-accent-color-bg hover-bar"></span>
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4 mb30 match-height">
+                            <div class="hover-item">
+                                <img src="/static/images/aboutus_images/news/组会.jpg" class="img-responsive smoothie" alt="">
+                                <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    <div class="vertical-center smoothie">
+                                        <strong class="heading-font"><span class="theme-accent-color-bg">组会</span></strong>
+                                        <h3><a href="single-post.html" title="view project">Team Meeting</a></h3>
+                                    </div>
+                                </div>
+                                <div class="hover-item-caption smoothie">
+                                    <h3 class="vertical-center smoothie"><a href="single-post.html" class="smoothie btn btn-primary btn-white page-scroll" title="view article"><i class="fa fa-long-arrow-right"></i></a></h3>
+                                    <span class="theme-accent-color-bg hover-bar"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 mb30 match-height">
+                            <div class="hover-item">
+                                <img src="/static/images/aboutus_images/news/答辩.jpg" class="img-responsive smoothie" alt="">
+                                <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    <div class="vertical-center smoothie">
+                                        <strong class="heading-font"><span class="theme-accent-color-bg">答辩</span></strong>
+                                        <h3><a href="single-post.html" title="view project">Defense</a></h3>
+                                    </div>
+                                </div>
+                                <div class="hover-item-caption smoothie">
+                                    <h3 class="vertical-center smoothie"><a href="single-post.html" class="smoothie btn btn-primary btn-white page-scroll" title="view article"><i class="fa fa-long-arrow-right"></i></a></h3>
+                                    <span class="theme-accent-color-bg hover-bar"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 mb30 match-height">
+                            <div class="hover-item">
+                                <img src="/static/images/aboutus_images/news/聚餐.jpg" class="img-responsive smoothie" alt="">
+                                <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    <div class="vertical-center smoothie">
+                                        <strong class="heading-font"><span class="theme-accent-color-bg">聚餐</span></strong>
+                                        <h3><a href="single-post.html" title="view project">Dinner Party</a></h3>
+                                    </div>
+                                </div>
+                                <div class="hover-item-caption smoothie">
+                                    <h3 class="vertical-center smoothie"><a href="single-post.html" class="smoothie btn btn-primary btn-white page-scroll" title="view article"><i class="fa fa-long-arrow-right"></i></a></h3>
+                                    <span class="theme-accent-color-bg hover-bar"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 mb30 match-height">
+                            <div class="hover-item">
+                                <img src="/static/images/aboutus_images/news/毕业.jpg" class="img-responsive smoothie" alt="">
+                                <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    <div class="vertical-center smoothie">
+                                        <strong class="heading-font"><span class="theme-accent-color-bg">毕业</span></strong>
+                                        <h3><a href="single-post.html" title="view project">Graduation</a></h3>
+                                    </div>
+                                </div>
+                                <div class="hover-item-caption smoothie">
+                                    <h3 class="vertical-center smoothie"><a href="single-post.html" class="smoothie btn btn-primary btn-white page-scroll" title="view article"><i class="fa fa-long-arrow-right"></i></a></h3>
+                                    <span class="theme-accent-color-bg hover-bar"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 mb30 match-height">
+                            <div class="hover-item">
+                                <img src="/static/images/aboutus_images/news/球赛.jpg" class="img-responsive smoothie" alt="">
+                                <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    <div class="vertical-center smoothie">
+                                        <strong class="heading-font"><span class="theme-accent-color-bg">球赛</span></strong>
+                                        <h3><a href="single-post.html" title="view project">Ball Game</a></h3>
+                                    </div>
+                                </div>
+                                <div class="hover-item-caption smoothie">
+                                    <h3 class="vertical-center smoothie"><a href="single-post.html" class="smoothie btn btn-primary btn-white page-scroll" title="view article"><i class="fa fa-long-arrow-right"></i></a></h3>
+                                    <span class="theme-accent-color-bg hover-bar"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 mb30 match-height">
+                            <div class="hover-item">
+                                <img src="/static/images/aboutus_images/news/郊游.jpg" class="img-responsive smoothie" alt="">
+                                <div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+                                    <div class="vertical-center smoothie">
+                                        <strong class="heading-font"><span class="theme-accent-color-bg">郊游</span></strong>
+                                        <h3><a href="single-post.html" title="view project">Outing</a></h3>
+                                    </div>
+                                </div>
+                                <div class="hover-item-caption smoothie">
+                                    <h3 class="vertical-center smoothie"><a href="single-post.html" class="smoothie btn btn-primary btn-white page-scroll" title="view article"><i class="fa fa-long-arrow-right"></i></a></h3>
+                                    <span class="theme-accent-color-bg hover-bar"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pad-top-bottom-50 text-center">
+                        <a href="{% url "aboutus:activities" %}" class="btn btn-primary btn-red page-scroll">查看所有照片</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+{#右边悬窗#}
+        <div id="single-pager-navigation-wrapper"></div>
+{#毕业生寄语#}
+        <section class="dark-wrapper opaqued parallax" data-parallax="scroll" data-image-src="/static/images/aboutus_images/bg/bg6.jpg" data-speed="0.8">
+            <div class="section-inner">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 text-center mb100">
+                            <h2 class="section-heading">Recent <span class="theme-accent-color">Client</span> Feedback</h2>
+                            <hr class="thin-hr">
+                            <h3 class="section-subheading secondary-font">Satisfaction, everytime.</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <ul class="owl-carousel-paged testimonial-owl wow fadeIn list-unstyled" data-items="1" data-items-desktop="[1200,1]" data-items-desktop-small="[980,1]" data-items-tablet="[768,1]" data-items-mobile="[479,1]">
+                                <li>
+                                    <div class="row">
+                                        <div class="col-xs-10 col-xs-offset-1 item-caption">
+                                            <div class="col-sm-2">
+                                                <img src="/static/images/aboutus_images/team/往届/黄彬.jpg" class="img-responsive testimonial-author" alt="">
+                                            </div>
+                                            <div class="col-sm-10">
+                                                <p>Compellingly customize highly efficient outsourcing with premium quality vectors. Conveniently target customer directed relationships after highly efficient process improvements.</p>
+                                                <h4>Charles Davies</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="row">
+                                        <div class="col-xs-10 col-xs-offset-1 item-caption">
+                                            <div class="col-sm-2">
+                                                <img src="/static/images/aboutus_images/team/往届/易国宪.jpg" class="img-responsive testimonial-author" alt="">
+                                            </div>
+                                            <div class="col-sm-10">
+                                                <p>Compellingly customize highly efficient outsourcing with premium quality vectors. Conveniently target customer directed relationships after highly efficient process improvements.</p>
+                                                <h4>Charles Davies</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+{#成果数量#}
+        <section class="opaqued light-opaqued parallax" data-parallax="scroll" data-image-src="/static/images/aboutus_images/bg/bg_bw2.jpg" data-speed="0.8">
+            <div class="section-inner">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 col-xs-12">
+                            <div class="text-center">
+                                <span class="stat-icon"><i class="pe-7s-timer fa-4x"></i></span>
+                                <h2><span class="countup">16</span></h2>
+                                <h6>在读研究生 <span class="theme-accent-color">post-graduates</span></h6>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-xs-12">
+                            <div class="text-center">
+                                <span class="stat-icon"><i class="pe-7s-cloud-upload fa-4x"></i></span>
+                                <h2><span class="countup">201</span></h2>
+                                <h6>论文 <span class="theme-accent-color">papers</span></h6>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-xs-12">
+                            <div class="text-center">
+                                <span class="stat-icon"><i class="pe-7s-tools fa-4x"></i></span>
+                                <h2><span class="countup">24</span></h2>
+                                <h6>专利 <span class="theme-accent-color">patents</span></h6>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-xs-12">
+                            <div class="text-center">
+                                <span class="stat-icon"><i class="pe-7s-like fa-4x"></i></span>
+                                <h2><span class="countup">99</span></h2>
+                                <h6>毕业研究生 <span class="theme-accent-color">Graduates</span></h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <footer class="white-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6 wow fadeIn" data-wow-delay="0.2s">
+                        <span class="copyright">Copyright © 2019 SCU图像信息研究所614B All rights reserved. 欢迎访问<a href="http://blog.leanote.com/lee-romantic" title="Github" target="_blank">个人博客</a>和<a href ="{% url "app:login" %}">智能监控系统</a>.</span>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <ul class="list-inline social-links wow fadeIn" data-wow-delay="0.2s">
+                            <li>
+                                <a href="https://github.com/804463592"><i class="fa fa-github"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-qq"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-weixin"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-weibo"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <div id="bottom-frame"></div>
+
+        <a href="#" id="back-to-top"><i class="fa fa-long-arrow-up"></i></a>
+
+    </div>
+
+    <script src="/static/javascript/aboutus_js/jquery.js"></script>
+    <script src="/static/javascript/aboutus_js/bootstrap.min.js"></script>
+    <script src="/static/javascript/aboutus_js/plugins.js"></script>
+    
+    <script src="/static/javascript/aboutus_js/init.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">
+
+    </script><script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <script type="text/javascript">
+    $(document).ready(function(){
+       'use strict';
+        jQuery('#headerwrap').backstretch([
+          "/static/images/aboutus_images/bg/bg1.jpg",
+          "/static/images/aboutus_images/bg/bg9.jpg",
+          "/static/images/aboutus_images/bg/bg8.jpg"
+        ], {duration: 8000, fade: 500});
+    });
+    </script>
+
+</body>
+
+</html>
