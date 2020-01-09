@@ -151,8 +151,6 @@ def aboutMe(request):
     user_email = user.user_email
     return render(request, "userinfo_templates/aboutme.html", context=locals())
 
-
-
 def infoChange(request):
     username = request.session.get("username")
     if not username:
@@ -191,7 +189,6 @@ def pwdChange(request):
             UserInfo.objects.filter(user_name=username).update(user_password = user_newpassword)
 
         return JsonResponse(data=data,safe=False)
-
 
 def mySpace(request):
     username = request.session.get("username")
