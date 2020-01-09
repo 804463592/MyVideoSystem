@@ -1,0 +1,55 @@
+{% extends 'userinfo_templates/userinfo_base.html' %}
+{% load static %}
+
+    {% block title %}title自定义{% endblock %}
+
+{% block style %}
+
+        <link href="/static/css/userinfo_css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+        <link href="/static/css/userinfo_css/style.css" type="text/css" rel="stylesheet" media="all">
+        <!-- font-awesome icons -->
+        <link href="/static/css/userinfo_css/fontawesome-all.min.css" rel="stylesheet">
+        <!-- //Custom Theme files -->
+        <!-- online-fonts -->
+        <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet">
+
+{% endblock %}
+
+{% block infobase %}
+    <form>
+    {% csrf_token %}
+    <h3 class="w3_head mb-5">修改资料</h3><br/>
+
+      <div class="form-group">
+        <label for="birthday">性别:</label><br/>
+		<label><input type="radio" name="sex" value="男生">男生</label>&emsp;&emsp;&emsp;
+		<label><input type="radio" name="sex" value="女生">女生</label>
+	 </div>
+
+     <div class="form-group">
+        <label for="exampleInputEmail1">职业:</label>
+        <input type="text" class="form-control" style="width:600px" id="exampleInputEmail1" placeholder="">
+      </div>
+
+      <div class="form-group">
+        <label for="exampleInputEmail1">居住地:</label>
+        <input type="text" class="form-control" style="width:600px" id="exampleInputEmail1" placeholder="">
+      </div>
+
+      <div class="form-group">
+        <label for="birthday">生日:</label>
+        <input type="password" class="form-control" style="width:600px" id="exampleInputPassword1" placeholder="">
+      </div>
+
+      <div class="form-group">
+         <label for="birthday">兴趣爱好:</label>
+         <input type="password" class="form-control" style="width:600px" id="exampleInputPassword1" placeholder="">
+      </div><br/>
+
+
+
+
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+
+{% endblock infobase %}

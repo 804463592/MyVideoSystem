@@ -1,7 +1,8 @@
 from django.urls import path,re_path
 
 from App import views
-
+from django.conf import settings
+from django.conf.urls.static import static
 urlpatterns =[
 
     #登录和登出
@@ -33,8 +34,15 @@ urlpatterns =[
 
     #注册和关于
     path("signup/",views.signUp,name = "signup"),
+
     path("checkuser/", views.checkUser),
     path("checkemail/", views.checkEmail),
 
     path("aboutus/", views.aboutUs, name="aboutus"),
+    path("userinfo/",views.userInfo,name ='userinfo'),
+    path("pwdchange/",views.pwdChange,name ='pwdchange'),
+    path("aboutme/",views.aboutMe,name ='aboutme'),
+    # path("base/",views.base,name ='base'),
+    path("infochange/",views.infoChange,name ='infochange'),
+    path("myspace/",views.mySpace,name ='myspace'),
 ]

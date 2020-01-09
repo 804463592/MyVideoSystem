@@ -40,7 +40,9 @@ class VideoProcesser(object):
     def setVideosMaxNum(self,system_info):
 
         if system_info is not None:
+            print("eeeee",type(system_info))
             self.videos_max_num = system_info.getVideosMaxNum()
+
             print("set videos_max_num:", self.videos_max_num)
         else:
             self.videos_max_num = 20
@@ -494,7 +496,8 @@ class VideoManager(VideoCamera,threading.Thread):
                     #采用队列看起来是比上面共用帧更好的方式,但是要注意这里的put是可以阻塞的，
                     #也就是说,当你忘了开启消费者线程的时候,队列满了的时候,代码会阻塞在这里,导致后面的队列里面没有视频
                     #所以在这里不一定是更好的方式！！！
-                    # self.save_frame_queue.put(FrameInfo(frame,current_datetime))
+
+                    #self.save_frame_queue.put(FrameInfo(frame,current_datetime))
 
                     #因为前端处理视频帧的能力比较有限,所以放入帧的时候抽帧处理,这里也有可能阻塞？？？那怎么办,
                     # 如果还是不想用全局帧self.frame =frame,那么需要判断是否已满

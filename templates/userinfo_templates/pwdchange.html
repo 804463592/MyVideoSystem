@@ -1,0 +1,45 @@
+{% extends 'userinfo_templates/userinfo_base.html' %}
+{% load static %}
+
+{#    {% block title %}title自定义{% endblock %}#}
+{% block linkscript %}
+    <script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/javascript/userinfo_js/pwdchange.js"></script>
+    <script>
+        $.ajaxSetup({
+            data:{csrfmiddlewaretoken:'{{ csrf_token }}'}
+        })
+    </script>
+
+{% endblock linkscript %}
+
+{% block infobase %}
+     <form method="post" enctype="multipart/form-data"  action="{% url "app:login" %}">
+     {% csrf_token %}
+     <h3 class="w3_head mb-5">修改密码</h3><br/>
+
+     <div class="form-group">
+        <label for="password1">原&nbsp;密&nbsp;码:</label>
+        <input name = "password1" type="password" class="form-control" style="width:600px" id="password1" placeholder="请输入原密码"  required="">
+      </div>
+
+      <div class="form-group">
+        <label for="password2">修改密码:</label>
+        <input name = "password2" type="password2" class="form-control" style="width:600px" id="password2" placeholder="请输入5-15位数字和字母组合的新密码" required="">
+      </div>
+
+      <div class="form-group">
+        <label for="password2_confirm">确认密码:</label>
+        <input name = "password2_confirm" type="password" class="form-control" style="width:600px" id="password2_confirm" placeholder="请再次输入确认新密码" required="">
+      </div><br/>
+
+      <div class="world1" id="error_box1" style="color:red "><br><p></p></div>
+{#      <div class="world1" id="error_box2" style="color:green "><br><p></p></div>#}
+      <button type="button" id="button" class="btn btn-default" onclick="check()">提&nbsp;&nbsp;交</button>
+{#      setTimeout("window.location.url='app:login'",30);#}
+
+    </form>
+
+{% endblock infobase %}
+
+

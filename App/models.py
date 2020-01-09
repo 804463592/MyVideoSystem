@@ -35,12 +35,16 @@ class VideoStorage(models.Model):
 
       end_time =models.DateTimeField(verbose_name="结束时间",default=timezone.now)
 
-
 class UserInfo(models.Model):
       user_name =models.CharField(max_length=32,unique=True)
       user_email = models.CharField(max_length=64,unique=True)
       user_password =models.CharField(max_length=32)
+      #upload_to是相对路径,相对于的是MEDIA_ROOT ,媒体根目录
+      user_icon = models.ImageField( upload_to = 'icon_images', default="icon_images/nezha.jpg")
       is_admin =models.BooleanField(null=False,default=False)
+      user_gender = models.BooleanField(default=False)
+      # user_address = models.CharField(max_length=12,unique=False,default = "China")
+      user_signature = models.CharField(max_length=50, blank=True, null=True, verbose_name="签名",default = "这个人很懒,什么都没说!")
 
 if __name__ =="__main__":
     #generate_video_path()

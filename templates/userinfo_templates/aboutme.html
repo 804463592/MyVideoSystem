@@ -1,0 +1,32 @@
+{% extends 'userinfo_templates/userinfo_base.html' %}
+{% load static %}
+
+<link href="/static/css/userinfo_css/style.css" type="text/css" rel="stylesheet" media="all">
+
+{#{% block infobase %}#}
+{##}
+{#     <img src="{{icon_url}}" alt="news image" class="round_icon" >#}
+{#     <h5>个性签名{{ user_signature }}</h5>#}
+{#     <p>用户名:{{ username }}</p><br/>#}
+{#     <p>邮&emsp;箱:{{ user_email}}</p><br/>#}
+{##}
+{#{% endblock infobase %}#}
+
+{% load static %}
+
+{% block title %}title自定义{% endblock %}
+
+
+{% block infobase %}
+    <h3 class="w3_head mb-5">个人资料</h3><br/><br/><br/>
+
+{#     <img src="{{icon_url}}" alt="news image" class="round_icon" >#}
+     <p class="world">个性签名:{{ user_signature }}</p><br/>
+     <p class="world">用&ensp;户&ensp;名:{{ username }}</p><br/>
+     <p class="world">邮&emsp;&emsp;箱:{{ user_email}}</p><br/>
+     <p class="world">性&emsp;&emsp;别:</p><br/>
+     <p class="world">职&emsp;&emsp;业:</p><br/>
+     <p class="world">居&ensp;住&ensp;地:</p><br/>
+
+
+{% endblock infobase %}

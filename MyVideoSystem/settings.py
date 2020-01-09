@@ -137,6 +137,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT =os.path.join(BASE_DIR,"static/videoStorage")
 MEDIA_URL_PREFIX ="/static/videoStorage/"
 
-
 # MEDIA_URL = '/media/'
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
