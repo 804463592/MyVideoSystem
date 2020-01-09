@@ -19,9 +19,5 @@ urlpatterns =[
     path("members/", views.members, name='members'),
     path("activities/", views.activities, name='activities'),
 
-
-
-
-
 ]
 

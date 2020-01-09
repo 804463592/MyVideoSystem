@@ -21,16 +21,24 @@ from django.views import static
 from django.conf import settings
 from django.conf.urls import url  #其实就是以前的re_path
 
+from App import views
+
 urlpatterns = [
+
     path('admin/', admin.site.urls),
 
-    path('app/',include(("App.urls",'App'),namespace='app')),
+    path('',include(("App.urls",'App'),namespace='app')),
 
-    path('app/videoanalysis/',include(("VideoAnalysis.urls","VideoAnalysis"),namespace='app/videoanalysis')),
+    path('videoanalysis/',include(("VideoAnalysis.urls","VideoAnalysis"),namespace='app/videoanalysis')),
 
-    #新增
+    #如果使用Django的web部署,则新增
     #url(r'^static/(?P<path>.*)$', static.serve,{'document_root': settings.STATIC_ROOT}, name='static'),
 
     path('aboutus/',include(("AboutUs.urls","AboutUs"),namespace='aboutus')),
+
+    # 定义首页路由,Django按照顺序匹配路由,因此这个首页路由必须放在最后
+    #path('',views.login),
+    path('',views.aboutUs),
+    #url(r'^$', views.login),
 
 ]

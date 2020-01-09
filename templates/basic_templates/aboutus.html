@@ -193,7 +193,7 @@
 
                         <div class="col-md-3">
                             <h2 class="mb50">小组介绍<span class="theme-accent-color"> </span></h2>
-                            <p class="lead">智能监控组位于四川大学电子信息学院图像信息研究所614B，主要研究目标检测，目标跟踪，重识别，异常行为检测，人群密度估计和视频去雾等领域。</p>
+                            <p class="lead">智能监控组位于四川大学电子信息学院图像信息研究所614B，主要研究领域包括目标检测，目标跟踪，重识别，异常行为检测，人群密度估计和视频去雾等。</p>
                             <p>The intelligent monitoring group is located in 614b, Institute of image information, College of electronic information, Sichuan University. We mainly studies target detection, target tracking, re recognition, abnormal behavior detection, population density estimation and video defogging.</p>
                             <p class="mt30"><a href="#contact" class="btn btn-primary btn-theme page-scroll">联系我们</a></p>
                         </div>
@@ -217,7 +217,7 @@
                                         <div class="content-area">
                                             <a href="{% url "aboutus:target_tracking" %}">
                                                 <h3 class="title">目标跟踪</h3>
-                                                <div class="content">目标跟踪就是在连续的视频序列中，建立所要跟踪物体的位置关系，得到物体完整的运动轨迹。</div>
+                                                <div class="content">目标跟踪就是在给定某视频序列初始帧的目标大小与位置的情况下，预测后续帧中该目标的大小与位置。视觉目标跟踪是计算机视觉中的一个重要研究方向，有着广泛的应用，如智能视频监控、人机交互、无人驾驶、无人机追踪等。目前主流的方法主要有相关滤波类跟踪算法和深度学习类跟踪算法。</div>
                                             </a>
                                         </div>
                                     </div>
@@ -228,7 +228,7 @@
                                         <div class="content-area">
                                             <a href="{% url "aboutus:re_identification" %}">
                                                 <h3 class="title">重识别</h3>
-                                                <div class="content">行人重识别也称行人再识别，是利用计算机视觉技术判断图像或者视频序列中是否存在特定行人的技术。</div>
+                                                <div class="content">行人重识别也称行人再识别，简称为ReID，是利用计算机视觉技术判断图像或者视频序列中是否存在特定行人的技术。广泛被认为是一个图像检索的子问题。给定一个监控行人图像，检索跨设备下的该行人图像。在监控视频中，由于相机分辨率和拍摄角度的缘故，通常无法得到质量非常高的人脸图片。当人脸识别失效的情况下，ReID就成为了一个非常重要的替代品技术。</div>
                                             </a>
                                         </div>
                                     </div>
@@ -239,7 +239,7 @@
                                         <div class="content-area">
                                             <a href="{% url "aboutus:abnormal_detection" %}">
                                                 <h3 class="title">异常行为检测</h3>
-                                                <div class="content">异常检测是指利用定量的方式来描述可接受的行为特征,以区分和正常行为相违背的、非正常的行为特征来检测入侵。</div>
+                                                <div class="content">异常检测是指利用定量的方式来描述可接受的行为特征,以区分和正常行为相违背的、非正常的行为特征来检测入侵。就目前而言，视频中的异常行为检测就是给定一部分只包含正常行为的样本片段，在此基础上构造可行算法，将测试样本中异常行为检测出来。常见的异常行为有：人群聚集、打架斗殴、徘徊滞留等。</div>
                                             </a>
                                         </div>
                                     </div>
@@ -250,7 +250,7 @@
                                         <div class="content-area">
                                             <a href="{% url "aboutus:density_estimation" %}">
                                                 <h3 class="title">人群密度估计</h3>
-                                                <div class="content">人群密度估计是指识别图像中的人群密度。</div>
+                                                <div class="content">随着国民经济的高速发展，人们的社会活动日益丰富，各类大型活动如体育盛会、文娱活动和商场促销的举办使公共场所中的人群聚集越来越频繁，聚集规模也越来越大，对公共安全产生了极大的隐患。因此，如何有效利用计算机和图像处理技术，实时监测公共场所人群活动，对人群密度异常情况及时预警，并采取相应的措施，对于维护公共秩序，保障人群安全具有非常重要的作用。人群密度估计在场景监控中至关重要，它对人群安全以及现场管理调度有着重要的作用和意义。</div>
                                             </a>
                                         </div>
                                     </div>
@@ -261,7 +261,7 @@
                                         <div class="content-area">
                                             <a href="{% url "aboutus:video_defog" %}">
                                                 <h3 class="title">视频去雾</h3>
-                                                <div class="content">视频去雾是通过一定技术处理，去除雾霾的干扰，恢复视频的细节信息，得到具有良好视觉效果的视频。</div>
+                                                <div class="content">视频去雾一直是图像处理领域一个备受关注的题目，其主要目的是将被大雾天气所影响的视频尽可能地还原成没有被大雾情况下的真实图像。相比于雾天下的视频，去雾后的视频还原了一部分被雾天所模糊的图像细节。它减少了雾天视频对实际生活和工作中对人们带来的影响，如交通出行，户外监测系统等。举例说，早年间由于视频去雾技术受限，许多户外监测系统在大雾天气下无法正常工作，影响到了人们的正常出行和生产，所以人们希望利用有效的方法将这些雾天影响下的视频尽可能真实地还原。</div>
                                             </a>
                                         </div>
                                     </div>
@@ -277,18 +277,18 @@
 {#我们的理念#}
         <div class="col-sm-6 nopadding-lr silver-bg">
             <div class="section-inner pad-sides-60 match-height" data-mh="promo-inner">
-                <h3 class="mb50">Experience <span class="theme-accent-color">Piper</span></h3>
-                <p class="lead mb50">Conveniently leverage other's distinctive expertise and backend metrics. Progressively harness intuitive systems and ethical niches. Continually drive extensible benefits vis-a-vis leading-edge meta-services. Conveniently leverage existing market-driven outsourcing vis-a-vis e-business process improvements. Intrinsicly extend quality interfaces with intermandated innovation.</p>
-                <p class="mb50">Quickly network web-enabled alignments without bleeding-edge supply chains. Credibly network sticky growth strategies via excellent infomediaries. Dramatically grow prospective core competencies whereas one-to-one manufactured products. Competently impact web-enabled deliverables without prospective bandwidth. Credibly matrix team building e-markets via B2B alignments.</p>
+                <h3 class="mb50">我们的 <span class="theme-accent-color">理念</span></h3>
+                <p class="lead mb50">没有不需要埋头苦干就能获得的成功，没有只靠PPT就能得到的财富，没有从天而降的高科技。追求卓越，需要无数苦思冥想的深夜，需要连续工作72小时的执着，更需要敢于大声说出真相的勇气。我们相信，那些回归常识、尊重奋斗的人，终将洞见时代机遇，并最终改变世界。</p>
+                <p class="mb50">There is no success that can be achieved without hard work, no wealth that can be obtained only by PPT, no high-tech from the sky. In pursuit of excellence, we need countless late night meditations, 72 hours of continuous work and courage to speak out the truth. We believe that those who return to common sense and respect struggle will eventually see the opportunities of the times and ultimately change the world.</p>
                 <p class="mt30"><a href="#contact" class="btn btn-primary btn-red page-scroll">Find Out More</a></p>
             </div>
         </div>
 
         <div class="col-sm-6 nopadding-lr dark-wrapper opaqued background-cover" style="background-image: url('/static/images/aboutus_images/bg/bg10.jpg');">
             <div class="dark-opaqued-half section-inner pad-sides-60 match-height text-right" data-mh="promo-inner">
-                <h3 class="mb50">Global <span class="theme-accent-color">Influence</span></h3>
-                <p class="lead mb50">Conveniently leverage other's distinctive expertise and backend metrics. Progressively harness intuitive systems and ethical niches. Continually drive extensible benefits vis-a-vis leading-edge meta-services. Conveniently leverage existing market-driven outsourcing vis-a-vis e-business process improvements. Intrinsicly extend quality interfaces with intermandated innovation.</p>
-                <p class="mb50">Quickly network web-enabled alignments without bleeding-edge supply chains. Credibly network sticky growth strategies via excellent infomediaries. Dramatically grow prospective core competencies whereas one-to-one manufactured products. Competently impact web-enabled deliverables without prospective bandwidth. Credibly matrix team building e-markets via B2B alignments.</p>
+                <h3 class="mb50">我们的 <span class="theme-accent-color">愿景</span></h3>
+                <p class="lead mb50">致力于监控领域的信息化和智能化，对监控场景的智能分析和描述是我们的不懈的追求。</p>
+                <p class="mb50">The intelligent video monitoring team is committed to the informatization and intelligence of the monitoring field. Combining human motion analysis and biometric identification, the intelligent analysis and description of the monitoring scene is our unremitting pursuit. </p>
                 <p class="mt30"><a href="#contact" class="btn btn-primary btn-white page-scroll">Find Out More</a></p>
             </div>
         </div>
@@ -1095,13 +1095,14 @@
 
 {#右边悬窗#}
         <div id="single-pager-navigation-wrapper"></div>
+
 {#毕业生寄语#}
         <section class="dark-wrapper opaqued parallax" data-parallax="scroll" data-image-src="/static/images/aboutus_images/bg/bg6.jpg" data-speed="0.8">
             <div class="section-inner">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12 text-center mb100">
-                            <h2 class="section-heading">Recent <span class="theme-accent-color">Client</span> Feedback</h2>
+                            <h2 class="section-heading">毕业 <span class="theme-accent-color">师兄师姐</span>寄语</h2>
                             <hr class="thin-hr">
                             <h3 class="section-subheading secondary-font">Satisfaction, everytime.</h3>
                         </div>
@@ -1118,8 +1119,8 @@
                                                 <img src="/static/images/aboutus_images/team/往届/黄彬.jpg" class="img-responsive testimonial-author" alt="">
                                             </div>
                                             <div class="col-sm-10">
-                                                <p>Compellingly customize highly efficient outsourcing with premium quality vectors. Conveniently target customer directed relationships after highly efficient process improvements.</p>
-                                                <h4>Charles Davies</h4>
+                                                <p>毕业时节雨纷纷，毕业生们欲断魂。试问前途何处有，学生遥指中关村！！！</p>
+                                                <h4>黄彬</h4>
                                             </div>
                                         </div>
                                     </div>
@@ -1131,8 +1132,8 @@
                                                 <img src="/static/images/aboutus_images/team/往届/易国宪.jpg" class="img-responsive testimonial-author" alt="">
                                             </div>
                                             <div class="col-sm-10">
-                                                <p>Compellingly customize highly efficient outsourcing with premium quality vectors. Conveniently target customer directed relationships after highly efficient process improvements.</p>
-                                                <h4>Charles Davies</h4>
+                                                <p> 想幸福吗！想吧！传你幸福秘籍：保健康，多欢笑，控感情，要乐观，做运动，常联系，为人豁达，结交益友，踏实工作，低调做人。勤加练习，保幸福无疆！</p>
+                                                <h4>易国宪</h4>
                                             </div>
                                         </div>
                                     </div>

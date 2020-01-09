@@ -125,13 +125,14 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 
-#新增
+#如果使用Django的web部署,则新增
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-#去掉
+#如果使用Django的web部署,则去掉
 # STATICFILES_DIRS =[
 #     os.path.join(BASE_DIR,'static'),
 # ]
+
 
 MEDIA_ROOT =os.path.join(BASE_DIR,"static/videoStorage")
 MEDIA_URL_PREFIX ="/static/videoStorage/"
