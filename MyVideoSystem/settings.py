@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'gs+t3-jk%3i0!#i&w6@1a2)u#7!7w=36)^^rtz6zjpxcw#37bo'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -117,7 +117,7 @@ USE_I18N = True
 USE_L10N = True
 
 #USE_TZ = True
-USE_TZ = False
+USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
@@ -126,12 +126,12 @@ USE_TZ = False
 STATIC_URL = '/static/'
 
 #如果使用Django的web部署,则新增
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 #如果使用Django的web部署,则去掉
-# STATICFILES_DIRS =[
-#     os.path.join(BASE_DIR,'static'),
-# ]
+STATICFILES_DIRS =[
+    os.path.join(BASE_DIR,'static'),
+]
 
 
 MEDIA_ROOT =os.path.join(BASE_DIR,"static/videoStorage")

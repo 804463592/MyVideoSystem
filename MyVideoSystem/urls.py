@@ -27,9 +27,9 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
 
-    path('',include(("App.urls",'App'),namespace='app')),
+    path('app/',include(("App.urls",'App'),namespace='app')),
 
-    path('videoanalysis/',include(("VideoAnalysis.urls","VideoAnalysis"),namespace='app/videoanalysis')),
+    path('app/videoanalysis/',include(("VideoAnalysis.urls","VideoAnalysis"),namespace='app/videoanalysis')),
 
     #如果使用Django的web部署,则新增
     #url(r'^static/(?P<path>.*)$', static.serve,{'document_root': settings.STATIC_ROOT}, name='static'),

@@ -1186,7 +1186,7 @@ p.banp {
 
 .round_icon{
   width: 150px;
-  height: 150px;
+  height: 200px;
   display: flex;
   border-radius: 80%;
   align-items: center;

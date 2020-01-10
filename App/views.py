@@ -66,8 +66,13 @@ def startVideoCamera(system_info,*video_obj_list):
 def videoSquare(request):
     # 保证用户已登录
     username = request.session.get("username")
+
+    user = UserInfo.objects.get(user_name=username)
+    icon_url = "/static/videoStorage/" + user.user_icon.url
+
     if username:
         #return HttpResponse("欢迎回来，%s" % username)
+
         return render(request, "basic_templates/videosquare.html", context=locals())
     else:
         return redirect(reverse("app:login"))
@@ -81,12 +86,12 @@ def login(request):
 
         #如果是邮箱,为方便起见,也全部转换成用户名
         user_name =check_user_email.matchName(name_or_email)
-        pass_word =request.POST.get("password")
+        pass_word =request.POST.get("password",default=None)
 
         #check_user_email.matchName如果返回None,则重新登录
         if not all([user_name,pass_word]):
 
-            return render(request,"basic_templates/login3.html")
+            return render(request, "basic_templates/login3.html")
 
         if check_user_email.checkNamePassword(user_name,pass_word):
             # 使用session会话技术
@@ -101,7 +106,7 @@ def login(request):
             #普通用户登录
             else:
                 #开启摄像头线程,可以重复调用,以确保在不同页面都保证开启
-                # startVideoCamera(system_info,video_obj,video_obj1,video_obj2)
+                startVideoCamera(system_info,video_obj,video_obj1,video_obj2)
                  #返回一个界面
                 return render(request, "basic_templates/videoanalysis.html", locals())
         else:
@@ -238,6 +243,9 @@ def videoLookBack(request):
     if not username:
         return redirect(reverse("app:login"))
 
+    user = UserInfo.objects.get(user_name=username)
+    icon_url = "/static/videoStorage/" + user.user_icon.url
+
     def addtwodimdict(thedict, key_a, key_b, val):
         if key_a in thedict:
             thedict[key_a].update({key_b: val})
@@ -276,8 +284,10 @@ def videoLookBack(request):
             return JsonResponse(data={"msg":"NoVideo"})
 
 def videoAnalysis(request):
+
     username = request.session.get("username")
     if not username:
+
         return redirect(reverse("app:login"))
 
     user = UserInfo.objects.get(user_name=username)
@@ -325,6 +335,9 @@ def videoPlay(request):
 def configuration(request):
     # 判断当前用户是否登录
     username = request.session.get("username")
+    user = UserInfo.objects.get(user_name=username)
+    icon_url = "/static/videoStorage/" + user.user_icon.url
+
     if not username:
         return redirect(reverse("app:login"))
 
@@ -352,13 +365,17 @@ def configuration(request):
             # 设置系统参数,并开启线程（该函数可保证已经开启则不允许重复开启,即不允许重复设置）
             startVideoCamera(system_info, video_obj, video_obj1, video_obj2)
 
-        return JsonResponse(data ={'msg':"system setting success！"}, safe=False)
+        return JsonResponse(data ={'msg':"系统设置成功！"}, safe=False)
 
 def systemInformation(request):
     if request.method == "GET":
         username = request.session.get("username")
+
         if not username:
             return redirect(reverse("app:login"))
+
+        user = UserInfo.objects.get(user_name=username)
+        icon_url = "/static/videoStorage/" + user.user_icon.url
 
         return render(request, "basic_templates/systeminformation.html", context=locals())
 
@@ -399,7 +416,7 @@ def signUp(request):
         # path = os.path.join(settings.STATICFILES_DIRS,path)
         # path = default_storage.save('/static/images/userinfo_images/icon_images/'+image.name,ContentFile(image.read()))
         # tmp_file = os.path.join(settings.BASE_DIR,path)
-        #
+
         # print("user_icon",tmp_file)
         #user.user_icon = user_icon
         user.save()
